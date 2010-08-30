@@ -8,6 +8,7 @@ $header = $matches[1];
 $html = file_get_contents($path . 'demo.html');
 $css = file_get_contents($path . 'demo.css');
 $js = file_get_contents($path . 'demo.js');
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,6 +18,8 @@ $js = file_get_contents($path . 'demo.js');
 </head>
 
 <body>
+	
+	<iframe src="run.php?demo=<?=$_GET['demo'];?>"></iframe>
 	
 	<h2>HTML</h2>
 	<textarea id="html"><?=$html?></textarea>
