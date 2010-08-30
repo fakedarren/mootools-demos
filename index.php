@@ -9,7 +9,7 @@
 
 	<ul>
 <?
-if ($handle = opendir('demos')){
+if ($handle = opendir(dirname(__FILE__) . '/demos/')){
     while (false !== ($folder = readdir($handle))){
         if ($folder != "." && $folder != ".."){
 ?>

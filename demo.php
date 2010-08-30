@@ -1,6 +1,6 @@
 <?
 
-$path = './demos/' . $_GET['demo'] . '/';
+$path = dirname(__FILE__) . '/demos/' . $_GET['demo'] . '/';
 
 preg_match('/\s*\/\*\s---*(.*?)\s\.\.\.\s*\*\//s', file_get_contents($path . 'demo.details'), $matches);
 $header = $matches[1];
