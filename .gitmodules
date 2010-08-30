@@ -1,0 +1,9 @@
+[submodule "codemirror"]
+	path = codemirror
+	url = http://github.com/marijnh/CodeMirror.git
+[submodule "more"]
+	path = more
+	url = http://github.com/mootools/mootools-more.git
+[submodule "core"]
+	path = core
+	url = git@github.com:mootools/mootools-core.git
