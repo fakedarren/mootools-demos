@@ -5,6 +5,9 @@ $path = dirname(__FILE__) . '/demos/' . $_GET['demo'] . '/';
 preg_match('/\s*\/\*\s---*(.*?)\s\.\.\.\s*\*\//s', file_get_contents($path . 'demo.details'), $matches);
 $header = $matches[1];
 
+preg_match('/\s*\/\*\s---*.*?\s\.\.\.\s*\*\/(.*)/s', file_get_contents($path . 'demo.details'), $matches);
+$description = $matches[1];
+
 $html = file_get_contents($path . 'demo.html');
 $css = file_get_contents($path . 'demo.css');
 $js = file_get_contents($path . 'demo.js');
@@ -18,6 +21,8 @@ $js = file_get_contents($path . 'demo.js');
 </head>
 
 <body>
+	
+<?=$description;?>
 	
 	<iframe src="run.php?demo=<?=$_GET['demo'];?>"></iframe>
 	
