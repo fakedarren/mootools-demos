@@ -6,7 +6,7 @@
 	url = http://github.com/mootools/mootools-more.git
 [submodule "core"]
 	path = core
-	url = git@github.com:mootools/mootools-core.git
+	url = http://github.com/mootools/mootools-core.git
 [submodule "packager"]
 	path = packager
 	url = http://github.com/kamicane/packager.git
