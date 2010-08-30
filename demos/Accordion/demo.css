@@ -1,0 +1,25 @@
+#accordion	{
+	margin: 20px 0px;
+}
+
+H3.toggler	{
+	background: #D2E0E6;
+	border: 1px solid #F5F5F5;
+	border-bottom-color: #DDD;
+	border-right-color: #DDD;
+	color: #528CE0;
+	cursor: pointer;
+	font-family: 'Andale Mono', sans-serif;
+	font-size: 12px;
+	margin: 0 0 4px 0;
+	padding: 3px 5px 1px;
+}
+
+DIV.element P, DIV.element H4	{
+	margin: 0px;
+	padding: 4px;
+}
+
+BLOCKQUOTE	{
+	padding: 5px 20px;
+}
