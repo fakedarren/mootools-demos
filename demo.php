@@ -24,7 +24,6 @@ $js = file_get_contents($path . 'demo.js');
 
 <body>
 	
-	
 	<div id="header">
 		<h1>MooTools</h1>
 	</div>
@@ -34,14 +33,14 @@ $js = file_get_contents($path . 'demo.js');
 		<?=$description;?>
 
 		<ul class="tabs">
-			<li class="first">Demo</li>
+			<li class="selected first">Demo</li>
 			<li>CSS</li>
 			<li>HTML</li>
 			<li>JavaScript</li>
 		</ul>
 	
 		<div class="tabcontent selected">
-			<iframe id="demoframe" src="run.php?demo=<?=$_GET['demo'];?>"></iframe>
+			<iframe id="demoframe" src="run.php?demo=<?=$_GET['demo'];?>" frameborder="0"></iframe>
 		</div>
 	
 		<div class="tabcontent">
@@ -49,16 +48,17 @@ $js = file_get_contents($path . 'demo.js');
 		</div>
 
 		<div class="tabcontent">
-			<textarea id="js"><?=$js;?></textarea>
+			<textarea id="html"><?=htmlspecialchars($html)?></textarea>
 		</div>
 
 		<div class="tabcontent">
-			<textarea id="html"><?=$html?></textarea>
+			<textarea id="js"><?=$js;?></textarea>
 		</div>
 
 	</div>
 
 	<script src="codemirror/js/codemirror.js" type="text/javascript"></script>
+	<script src="scripts.php" type="text/javascript"></script>
 	<script src="js/demos.js" type="text/javascript"></script>
 	
 </body>

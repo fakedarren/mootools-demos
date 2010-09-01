@@ -1,16 +1,29 @@
 .tabs	{
 	border-bottom: 1px solid #DDD;
+	font-size: 1.3em;
+	line-height: 25px;
 	list-style: none;
 	margin: 0 0 10px;
 	padding: 0;
 }
 	.tabs LI	{
+		border: 1px solid #DDD;
+		border-bottom: none;
+		color: #777;
+		cursor: pointer;
 		float: right;
-nil		margin: 0 0 0 5px;
+		margin: 0 0 0 5px;
+		padding: 0 5px;
 	}
 	.tabs LI.first	{
 		float: left;
 		margin: 0;
+	}
+	.tabs LI.selected	{
+		color: #111;
+		font-weight: bold;
+		font-size: 1.4em;
+		line-height: 25px;
 	}
 .tabs:AFTER	{
 	clear: both;
@@ -23,11 +36,11 @@ nil		margin: 0 0 0 5px;
 .tabcontent	{
 	display: none;
 }
+	.tabcontent IFRAME	{
+		min-height: 500px;
+		width: 960px;
+	}
 .tabcontent.selected	{
 	display: block;
 }
 
-#demoframe	{
-	min-height: 500px;
-	width: 960px;
-}
