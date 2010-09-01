@@ -18,26 +18,46 @@ $js = file_get_contents($path . 'demo.js');
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>MooTools Demos</title>
+	<link href="css/main.css" rel="stylesheet" type="text/css" />
+	<link href="css/demos.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 	
-<?=$description;?>
 	
-	<iframe src="run.php?demo=<?=$_GET['demo'];?>"></iframe>
+	<div id="header">
+		<h1>MooTools</h1>
+	</div>
 	
-	<h2>HTML</h2>
-	<textarea id="html"><?=$html?></textarea>
-	<hr />
+	<div id="content">
+
+		<?=$description;?>
+
+		<ul class="tabs">
+			<li class="first">Demo</li>
+			<li>CSS</li>
+			<li>HTML</li>
+			<li>JavaScript</li>
+		</ul>
 	
-	<h2>CSS</h2>
-	<textarea id="css"><?=$css;?></textarea>
-	<hr />
+		<div class="tabcontent selected">
+			<iframe id="demoframe" src="run.php?demo=<?=$_GET['demo'];?>"></iframe>
+		</div>
 	
-	<h2>JavaScript</h2>
-	<textarea id="js"><?=$js;?></textarea>
-	<hr />
-	
+		<div class="tabcontent">
+			<textarea id="css"><?=$css;?></textarea>
+		</div>
+
+		<div class="tabcontent">
+			<textarea id="js"><?=$js;?></textarea>
+		</div>
+
+		<div class="tabcontent">
+			<textarea id="html"><?=$html?></textarea>
+		</div>
+
+	</div>
+
 	<script src="codemirror/js/codemirror.js" type="text/javascript"></script>
 	<script src="js/demos.js" type="text/javascript"></script>
 	

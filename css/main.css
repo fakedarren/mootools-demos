@@ -1,0 +1,30 @@
+HTML, BODY	{
+	margin: 0;
+	padding: 0;
+}
+HTML	{
+	font-size: 100%;
+}
+BODY	{
+	background: #F4F5F5;
+	font: 62.5% "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#header	{
+	background: #F9F9F9;
+	border-bottom: 1px solid #DDD;
+	height: 122px;
+}
+	#header H1	{
+		background: url(graphics/mootools.png) no-repeat 0 50%;
+		height: 46px;
+		margin: 0 auto;
+		padding: 38px 0;
+		text-indent: -9999px;
+		width: 960px;
+	}
+
+#content	{
+	margin: 0 auto;
+	width: 960px;
+}

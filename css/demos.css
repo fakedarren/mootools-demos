@@ -1,0 +1,33 @@
+.tabs	{
+	border-bottom: 1px solid #DDD;
+	list-style: none;
+	margin: 0 0 10px;
+	padding: 0;
+}
+	.tabs LI	{
+		float: right;
+nil		margin: 0 0 0 5px;
+	}
+	.tabs LI.first	{
+		float: left;
+		margin: 0;
+	}
+.tabs:AFTER	{
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.tabcontent	{
+	display: none;
+}
+.tabcontent.selected	{
+	display: block;
+}
+
+#demoframe	{
+	min-height: 500px;
+	width: 960px;
+}
