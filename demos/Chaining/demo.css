@@ -1,0 +1,12 @@
+#box {
+	margin: 0pt auto;
+	width: 100px;
+	height: 70px;
+	background: #4f8096;
+	border: 1px solid #7199ab;
+}
+ 
+#start {
+	text-align: center;
+	margin: .5em 0;
+}

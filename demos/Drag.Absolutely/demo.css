@@ -1,0 +1,24 @@
+#containment {
+	height: 210px;
+	width: 330px;
+	background: #eee;
+	position: relative;
+}
+ 
+#dragger {
+	height: 20px;
+	width: 20px;
+	background: #000;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+ 
+div.dropper {
+	margin-left: 10px;
+	margin-top: 10px;
+	float: left;
+	height: 40px;
+	width: 30px;
+	background: #ff3300;
+}
