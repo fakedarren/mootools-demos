@@ -1,12 +1,7 @@
 #box {
-	margin: 0pt auto;
-	width: 100px;
+	background: #4F8096;
+	border: 1px solid #7199AB;
 	height: 70px;
-	background: #4f8096;
-	border: 1px solid #7199ab;
-}
- 
-#start {
-	text-align: center;
-	margin: .5em 0;
+	margin: 0 auto;
+	width: 100px;
 }
