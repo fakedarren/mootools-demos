@@ -1,0 +1,19 @@
+/*
+---
+
+name: MouseEnter Demo
+
+description: 
+
+authors:
+  - 
+
+keywords:
+  - Elements, Events
+
+requires: [Core/*]
+
+...
+*/
+
+<p>This demo shows how to use the custom mouseenter and mouseleave events. Just hover the grey box below.</p>
