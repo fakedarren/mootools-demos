@@ -12,14 +12,13 @@ if (isset($_GET['demo'])){
 </head>
 
 <body>
-
 	<ul>
 <?
 if ($handle = opendir(dirname(__FILE__) . '/demos/')){
     while (false !== ($folder = readdir($handle))){
         if ($folder != "." && $folder != ".."){
 ?>
-		<li><a href="demo.php?demo=<?=$folder;?>"><?=$folder;?></a></li>	
+		<li><a href="?demo=<?=$folder;?>"><?=$folder;?></a></li>	
 <?		
 		}
     }
@@ -27,6 +26,5 @@ if ($handle = opendir(dirname(__FILE__) . '/demos/')){
 }	
 ?>
 	</ul>
-	
 </body>
 </html>
