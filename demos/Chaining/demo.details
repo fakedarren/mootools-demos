@@ -1,12 +1,19 @@
-#box {
-	margin: 0pt auto;
-	width: 100px;
-	height: 70px;
-	background: #4f8096;
-	border: 1px solid #7199ab;
-}
- 
-#start {
-	text-align: center;
-	margin: .5em 0;
-}
+/*
+---
+
+name: Chaining
+
+description: An example of chaining used for effects
+
+authors:
+  - Djamil Legato
+
+keywords:
+  - Fx, Chaining
+
+requires: [Core/*]
+
+...
+*/
+
+<p>An example of chaining used for effects.</p>
