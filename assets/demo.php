@@ -1,6 +1,6 @@
 <?
 
-$path = dirname(__FILE__) . '/demos/' . $_GET['demo'] . '/';
+$path = dirname(__FILE__) . '/../demos/' . $_GET['demo'] . '/';
 
 preg_match('/\s*\/\*\s---*(.*?)\s\.\.\.\s*\*\//s', file_get_contents($path . 'demo.details'), $matches);
 $header = $matches[1];
@@ -18,8 +18,8 @@ $js = file_get_contents($path . 'demo.js');
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>MooTools Demos</title>
-	<link href="css/main.css" rel="stylesheet" type="text/css" />
-	<link href="css/demos.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/demos.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -40,7 +40,7 @@ $js = file_get_contents($path . 'demo.js');
 		</ul>
 	
 		<div class="tabcontent selected">
-			<iframe id="demoframe" src="run.php?demo=<?=$_GET['demo'];?>" frameborder="0"></iframe>
+			<iframe id="demoframe" src="assets/run.php?demo=<?=$_GET['demo'];?>" frameborder="0"></iframe>
 		</div>
 	
 		<div class="tabcontent">
@@ -58,8 +58,8 @@ $js = file_get_contents($path . 'demo.js');
 	</div>
 
 	<script src="codemirror/js/codemirror.js" type="text/javascript"></script>
-	<script src="scripts.php" type="text/javascript"></script>
-	<script src="js/demos.js" type="text/javascript"></script>
+	<script src="assets/scripts.php" type="text/javascript"></script>
+	<script src="assets/js/demos.js" type="text/javascript"></script>
 	
 </body>
 </html>

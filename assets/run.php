@@ -1,5 +1,5 @@
 <?
-$path = dirname(__FILE__) . '/demos/' . $_GET['demo'] . '/';
+$path = dirname(__FILE__) . '/../demos/' . $_GET['demo'] . '/';
 $html = file_get_contents($path . 'demo.html');
 $css = file_get_contents($path . 'demo.css');
 $js = file_get_contents($path . 'demo.js');

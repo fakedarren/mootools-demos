@@ -1,3 +1,9 @@
+<? 
+if (isset($_GET['demo'])){
+	require('assets/demo.php');
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
