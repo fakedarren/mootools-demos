@@ -1,0 +1,19 @@
+/*
+---
+
+name: Transitions
+
+description: Transitions
+
+authors:
+  - 
+
+keywords:
+  - Transitions, Fx
+
+requires: [Core/*]
+
+...
+*/
+
+<p>Shows the transitions</p>
