@@ -38,6 +38,8 @@ $js = file_get_contents($path . 'demo.js');
 			<li>HTML</li>
 			<li>JavaScript</li>
 		</ul>
+		
+		<a href="http://jsfiddle.zalewa.info/gh/get/mootools/1.2/fakedarren/mootools-demos/tree/master/demos/<?=$_GET['demo'];?>/">Edit!</a>
 	
 		<div class="tabcontent selected">
 			<iframe id="demoframe" src="assets/run.php?demo=<?=$_GET['demo'];?>" frameborder="0"></iframe>
