@@ -28,7 +28,7 @@ window.addEvent('domready', function() {
 	var otherEl = $('myOtherElement');
 	
 	$('heightEffect').addEvent('click', function(){
-		otherEl.tween('height', 50);
+		otherEl.tween('height', 30);
 		return false; // alternative syntax to stop the event
 	});
 	
