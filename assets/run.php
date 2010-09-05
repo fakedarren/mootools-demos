@@ -17,6 +17,8 @@ $js = file_get_contents($path . 'demo.js');
 <body>
 	<?=$html;?>
 	<script src="scripts.php" type="text/javascript"></script>
+	<!-- WHILE -MORE DOES NOT SUPPORT PACKAGER -->
+	<script src="mootools.more.js" type="text/javascript"></script>
 	<script type="text/javascript">	
 		<?=$js;?>
 	</script>

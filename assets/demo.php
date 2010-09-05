@@ -61,6 +61,8 @@ $js = file_get_contents($path . 'demo.js');
 
 	<script src="codemirror/js/codemirror.js" type="text/javascript"></script>
 	<script src="assets/scripts.php" type="text/javascript"></script>
+	<!-- WHILE -MORE DOES NOT SUPPORT PACKAGER -->
+	<script src="assets/mootools.more.js" type="text/javascript"></script>
 	<script src="assets/js/demos.js" type="text/javascript"></script>
 	
 </body>
