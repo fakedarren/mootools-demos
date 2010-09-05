@@ -16,4 +16,4 @@ requires: [Core/*]
 ...
 */
 
-<p>With MooTools it is easy to define often used actions as custom events for elements. This is especially useful for input-elements. This demo shows you how to define a custom event, that only fires when you press the Enter-Button inside the given element.</p>
+<p>Ghost dragging for Shopping Carts.</p>
