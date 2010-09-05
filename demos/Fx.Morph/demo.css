@@ -1,0 +1,14 @@
+
+
+#idList {
+	margin: 0;
+	padding: 0;
+}
+#idList li {
+	display: block;
+	margin: 0;
+	padding: 4px;
+	width: 120px;
+	background: #333;
+	color: #888;
+}

@@ -1,0 +1,19 @@
+/*
+---
+
+name: Fx.Morph
+
+description: Fx.Morph demo
+
+authors:
+  - 
+
+keywords:
+  - Fx
+
+requires: [Core/*]
+
+...
+*/
+
+<p>The always-requested hover transition</p>
