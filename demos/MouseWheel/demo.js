@@ -20,7 +20,7 @@ document.addEvent('mousewheel', function(event) {
 		log = 'down';
 	}
  
-	$('log').setHTML(log);
+	$('log').set('html', log);
  
 	var cls = function() {
 		[up, down].each(function(arrow) {
