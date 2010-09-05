@@ -1,0 +1,19 @@
+/*
+---
+
+name: Drag.Move
+
+description: A drag example showing how to manage droppable areas
+
+authors:
+  - 
+
+keywords:
+  - Drag
+
+requires: [Core/*, More/Drag.Move]
+
+...
+*/
+
+<p>Request is the basic XHR request class in MooTools. While not extremely useful on its own, it provides the basic functionality for both Request.HTML and Request.JSON.</p>

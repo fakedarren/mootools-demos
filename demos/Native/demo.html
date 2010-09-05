@@ -1,0 +1,33 @@
+<a id="link" href="#">Execute Example</a>
+
+<div class="element"></div>
+<div class="element"></div>
+<div class="element otherElement"></div>
+<div class="element otherElement"></div>
+
+<div style="clear: both;"></div>
+<div class="help">
+	<strong>Why?</strong> Via the newly added method we do not have to loop through the Array with
+	Array.each to just start the same method with same arguments on all the elements in the
+	given Array. If you need that functionality more often it is better to just add another method
+	to the Native then creating pointless functions or writing the same code again and again.
+	You should get the idea!
+</div>
+
+<h3 class="code">Code:</h3>
+<pre>Array.implement({
+
+invoke: function(fn, args){
+var result = [];
+
+for (var i = 0, l = this.length; i &lt; l; i++){
+  if(this[i] &amp;&amp; this[i][fn])
+    result.push(args ? this[i][fn].pass(args, this[i])() : this[i][fn]());
+}
+return result;
+}
+
+});</pre>
+
+<h3 class="code">Usage:</h3>
+<pre>myArray.invoke('fn', args);</pre>
