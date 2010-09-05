@@ -1,32 +1,19 @@
-<div id="myElement" class="slider">
-	<div class="knob">
-	</div>
+
+<div id="slider" class="slider">
+	<div class="knob"></div>
 </div>
-<div id="fontSize">
-	Change the value, to change the fontsize.
+<div id="fontSize">Change the value, to change the fontsize.</div>
+
+<p>With the Slider it is damn easy to create stuff like an RGB-Color Selector which actually looks good.</p>
+
+<div id="red" class="advanced slider">
+	<div class="knob"></div>
 </div>
-<br/>
-<br/>
-<div class="help">
-	<strong>Why?</strong> This is a nice User-Interface-Element to not just let the user set a value
-	by typing into an input field but limiting the range without further needs to check
-	the user input (on clientside). With callbacks you can manipulate anything after changing the value.
+<div id="green" class="advanced slider">
+	<div class="knob"></div>
 </div>
-<h2>Advanced Example</h2>
-<p>
-	With the Slider it is damn easy to create stuff like an RGB-Color Selector which actually looks good.
-</p>
-<div id="red" class="slider advanced">
-	<div class="knob">
-	</div>
+<div id="blue" class="advanced slider">
+	<div class="knob"></div>
 </div>
-<div id="green" class="slider advanced">
-	<div class="knob">
-	</div>
-</div>
-<div id="blue" class="slider advanced">
-	<div class="knob">
-	</div>
-</div>
-<span class="b">Selected color: </span>
-<span id="setColor"></span>
+
+<p>Selected color: <span id="setColor"></span></p>

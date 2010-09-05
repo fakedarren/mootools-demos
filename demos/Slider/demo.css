@@ -1,32 +1,36 @@
-div.slider {
+.slider {
 	width: 200px;
 	height: 16px;
 	background: #eee;
 }
-div.slider div.knob {
-	background: #000;
-	width: 16px;
-	height: 16px;
-}
-div#fontSize {
+	.slider .knob {
+		background: #000;
+		width: 16px;
+		height: 16px;
+	}
+	
+#fontSize {
 	height: 50px;
+	line-height: 50px;
 }
 
-div.advanced {
+.advanced {
 	width: 400px;
 	margin: 5px 0;
-	background: url(images/slider.png) 0 center repeat-x;
+	background: grey;
 }
-div.advanced div.knob {
-	background: no-repeat center center;
-	cursor: pointer;
+	.advanced .knob {
+		cursor: pointer;
+		-moz-border-radius: 6px;
+		-webkit-border-radius: 6px;
+		border-radius: 6px;
+	}
+#red .knob {
+	background: red;
 }
-div#red div.knob {
-	background-image: url(images/red.png);
+#green .knob {
+	background: green;
 }
-div#green div.knob {
-	background-image: url(images/green.png);
-}
-div#blue div.knob {
-	background-image: url(images/blue.png);
+#blue .knob {
+	background: blue;
 }

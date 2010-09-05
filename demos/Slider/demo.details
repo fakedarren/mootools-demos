@@ -1,9 +1,9 @@
 /*
 ---
 
-name: Effects
+name: Slider
 
-description: Effects
+description: Slider demo
 
 authors:
   - 
@@ -11,9 +11,9 @@ authors:
 keywords:
   - Effects
 
-requires: [Core/*]
+requires: [Core/*, More/Slider]
 
 ...
 */
 
-<p>The Slider-Plugin allows you to drag&amp;drop a knob inside an element to set a value within a certain range.</p>
+<p>The Slider allows you to drag a knob inside an element to set a value within a certain range.</p>
