@@ -1,18 +1,18 @@
 window.addEvent('domready', function(){
 	
-	var drag = new Drag.Move($('dragger'), {
+	var drag = new Drag.Move($('drag'), {
 	
-		'container': $('containment'),
-		'droppables': $$('.dropper'),
+		'container': $('container'),
+		'droppables': $$('.drop'),
 	
 		'onEnter': function(element, droppable){
-			droppable.setStyle('background-color', '#000');
+			droppable.setStyle('background', '#000');
 		},
-		'onLeave': function(element, drop){
-			droppable.setStyle('background-color', '#F30');
+		'onLeave': function(element, droppable){
+			droppable.setStyle('background', '#F30');
 		},
 		'onDrop': function(element, droppable){
-			if (droppable) droppable.setStyle('background-color', '#FACE8F');
+			if (droppable) droppable.setStyle('background', '#FACE8F');
 		}
 	});
 	 

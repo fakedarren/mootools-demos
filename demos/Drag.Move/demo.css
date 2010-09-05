@@ -1,24 +1,24 @@
-#containment {
+#container	{
+	background: #DDD;
 	height: 210px;
-	width: 330px;
-	background: #eee;
 	position: relative;
+	width: 330px;
 }
  
-#dragger {
-	height: 20px;
-	width: 20px;
+#drag	{
 	background: #000;
+	height: 20px;
+	left: 0;
 	position: absolute;
 	top: 0;
-	left: 0;
+	width: 20px;
 }
  
-div.dropper {
-	margin-left: 10px;
-	margin-top: 10px;
+.drop	{
+	background: #F30;
 	float: left;
 	height: 40px;
+	margin-left: 10px;
+	margin-top: 10px;
 	width: 30px;
-	background: #ff3300;
 }
