@@ -1,12 +1,6 @@
 [submodule "codemirror"]
 	path = codemirror
 	url = http://github.com/marijnh/CodeMirror.git
-[submodule "more"]
-	path = more
-	url = http://github.com/mootools/mootools-more.git
-[submodule "core"]
-	path = core
-	url = http://github.com/mootools/mootools-core.git
 [submodule "packager"]
 	path = packager
 	url = http://github.com/kamicane/packager.git
