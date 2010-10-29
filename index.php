@@ -1,4 +1,4 @@
-<? 
+<?php
 if (isset($_GET['demo'])){
 	require('assets/demo.php');
 	exit();
@@ -13,13 +13,13 @@ if (isset($_GET['demo'])){
 
 <body>
 	<ul>
-<?
+<?php
 if ($handle = opendir(dirname(__FILE__) . '/demos/')){
     while (false !== ($folder = readdir($handle))){
         if ($folder != "." && $folder != ".."){
 ?>
-		<li><a href="?demo=<?=$folder;?>"><?=$folder;?></a></li>	
-<?		
+		<li><a href="?demo=<?php echo $folder; ?>"><?php echo $folder; ?></a></li>	
+<?php		
 		}
     }
     closedir($handle);

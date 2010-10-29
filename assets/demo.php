@@ -1,4 +1,4 @@
-<?
+<?php
 
 $path = dirname(__FILE__) . '/../demos/' . $_GET['demo'] . '/';
 
@@ -33,7 +33,7 @@ $js = file_get_contents($path . 'demo.js');
 	
 	<div id="content">
 
-		<a href="http://jsfiddle.net/gh/get/mootools/1.3/fakedarren/mootools-demos/tree/master/demos/<?=$_GET['demo'];?>/" class="button">Edit with jsFiddle</a>
+		<a href="http://jsfiddle.net/gh/get/mootools/1.3/fakedarren/mootools-demos/tree/master/demos/<?php echo $_GET['demo']; ?>/" class="button">Edit with jsFiddle</a>
 		
 		<div id="description">
 			<?=$description;?>
@@ -47,19 +47,19 @@ $js = file_get_contents($path . 'demo.js');
 		</ul>
 			
 		<div class="tabcontent selected">
-			<iframe id="demoframe" src="assets/run.php?demo=<?=$_GET['demo'];?>" frameborder="0"></iframe>
+			<iframe id="demoframe" src="assets/run.php?demo=<?php echo $_GET['demo']; ?>" frameborder="0"></iframe>
 		</div>
 	
 		<div class="tabcontent">
-			<textarea id="css"><?=$css;?></textarea>
+			<textarea id="css"><?php echo $css; ?></textarea>
 		</div>
 
 		<div class="tabcontent">
-			<textarea id="html"><?=htmlspecialchars($html)?></textarea>
+			<textarea id="html"><?php echo htmlspecialchars($html); ?></textarea>
 		</div>
 
 		<div class="tabcontent">
-			<textarea id="js"><?=$js;?></textarea>
+			<textarea id="js"><?php echo $js; ?></textarea>
 		</div>
 
 	</div>
