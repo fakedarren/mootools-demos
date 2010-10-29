@@ -25,12 +25,15 @@ $js = file_get_contents($path . 'demo.js');
 <body>
 	
 	<div id="header">
-		<h1>MooTools</h1>
+		<div>
+			<a href="index.php" class="button">Back</a>
+			<h1>MooTools</h1>
+		</div>
 	</div>
 	
 	<div id="content">
 
-		<a href="http://jsfiddle.net/gh/get/mootools/1.3/fakedarren/mootools-demos/tree/master/demos/<?=$_GET['demo'];?>/" class="editbutton">Edit with jsFiddle</a>
+		<a href="http://jsfiddle.net/gh/get/mootools/1.3/fakedarren/mootools-demos/tree/master/demos/<?=$_GET['demo'];?>/" class="button">Edit with jsFiddle</a>
 		
 		<div id="description">
 			<?=$description;?>

@@ -15,13 +15,19 @@ BODY	{
 	border-bottom: 1px solid #DDD;
 	height: 122px;
 }
+	#header DIV {
+		margin: 0 auto;
+		width: 960px;
+	}
+	#header .button	{
+		margin: 50px 0 0;
+	}
 	#header H1	{
 		background: url(graphics/mootools.png) no-repeat 0 50%;
 		height: 46px;
 		margin: 0 auto;
 		padding: 38px 0;
 		text-indent: -9999px;
-		width: 960px;
 	}
 
 #content	{
