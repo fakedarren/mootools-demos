@@ -44,3 +44,36 @@
 	display: block;
 }
 
+.editbutton	{
+	background: #DEDEDE;
+	background: -moz-linear-gradient(top, #FFF, #888);
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#888));
+	border: 1px solid #D6D6D6;
+	color: #666;
+	display: inline-block;
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FFFFFF', EndColorStr='#888888');
+	float: right;
+	font: bold 1.3em/22px Helvetica, Arial, sans-serif;
+	height: 22px;
+	padding: 0 10px;
+	text-decoration: none;
+	text-shadow: 0 1px 0 #FFF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+	.editbutton:HOVER	{
+		background: #BEBEBE;
+		background: -moz-linear-gradient(top, #DDD, #666);
+		background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#666));
+		border: 1px solid #B6B6B6;
+		color: #444;
+		filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#DDDDDD', EndColorStr='#666666');
+		text-shadow: 0 1px 0 #DDD;	
+	}
+
+#description	{
+	margin: 0 0 40px;
+}
+	#description P	{
+		font-size: 1.3em;
+	}

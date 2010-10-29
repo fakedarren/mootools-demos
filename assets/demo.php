@@ -30,7 +30,11 @@ $js = file_get_contents($path . 'demo.js');
 	
 	<div id="content">
 
-		<?=$description;?>
+		<a href="http://jsfiddle.net/gh/get/mootools/1.3/fakedarren/mootools-demos/tree/master/demos/<?=$_GET['demo'];?>/" class="editbutton">Edit with jsFiddle</a>
+		
+		<div id="description">
+			<?=$description;?>
+		</div>
 
 		<ul class="tabs">
 			<li class="selected first">Demo</li>
@@ -38,9 +42,7 @@ $js = file_get_contents($path . 'demo.js');
 			<li>HTML</li>
 			<li>JavaScript</li>
 		</ul>
-		
-		<a href="http://jsfiddle.zalewa.info/gh/get/mootools/1.2/fakedarren/mootools-demos/tree/master/demos/<?=$_GET['demo'];?>/">Edit!</a>
-	
+			
 		<div class="tabcontent selected">
 			<iframe id="demoframe" src="assets/run.php?demo=<?=$_GET['demo'];?>" frameborder="0"></iframe>
 		</div>
@@ -60,9 +62,8 @@ $js = file_get_contents($path . 'demo.js');
 	</div>
 
 	<script src="codemirror/js/codemirror.js" type="text/javascript"></script>
-	<script src="assets/scripts.php" type="text/javascript"></script>
-	<!-- WHILE -MORE DOES NOT SUPPORT PACKAGER -->
-	<script src="assets/mootools.more.js" type="text/javascript"></script>
+	<script src="Source/mootools-core-1.3-full.js" type="text/javascript"></script>
+	<script src="Source/mootools-more-1.3-full.js" type="text/javascript"></script>
 	<script src="assets/js/demos.js" type="text/javascript"></script>
 	
 </body>

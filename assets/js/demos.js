@@ -33,7 +33,8 @@ var content = $$('.tabcontent');
 
 tabs.each(function(tab, index){
 	tab.addEvent('click', function(){
-		$$(tabs, content).removeClass('selected');
+		$$(tabs).removeClass('selected');
+		$$(content).removeClass('selected');
 		tabs[index].addClass('selected');
 		content[index].addClass('selected');
 	});
