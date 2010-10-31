@@ -10,6 +10,12 @@ BODY	{
 	font: 62.5% "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+H1	{
+	color: #C17878;
+	font-size: 3em;
+	line-height: 30px;
+}
+
 P	{
 	font-size: 1.3em;
 }
@@ -64,6 +70,7 @@ UL	{
 		width: 150px;
 	}
 		#content #leftcolumn LI	{
+			padding: 1px 0;
 			text-align: right;
 		}
 	#content #rightcolumn	{
