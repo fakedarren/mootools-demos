@@ -26,7 +26,7 @@ $js = file_get_contents($path . 'demo.js');
 	
 	<div id="header">
 		<div>
-			<a href="index.php" class="button">Back</a>
+			<a href="?" class="button">Back</a>
 			<h1>MooTools</h1>
 		</div>
 	</div>

@@ -14,6 +14,14 @@ P	{
 	font-size: 1.3em;
 }
 
+A:LINK, A:VISITED {
+    color: #6B7B95;
+}
+
+A:HOVER, A:ACTIVE {
+    color: #E79D35;
+}
+
 UL	{
 	list-style: none;
 	margin: 0;
@@ -45,6 +53,7 @@ UL	{
 
 #content	{
 	margin: 0 auto;
+	padding: 0 0 50px;
 	width: 960px;
 }
 	#content #leftcolumn	{
