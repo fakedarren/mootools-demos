@@ -10,6 +10,19 @@ BODY	{
 	font: 62.5% "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+P	{
+	font-size: 1.3em;
+}
+
+UL	{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+	UL LI	{
+		font-size: 1.3em;
+	}
+
 #header	{
 	background: #F9F9F9;
 	border-bottom: 1px solid #DDD;
@@ -34,3 +47,18 @@ BODY	{
 	margin: 0 auto;
 	width: 960px;
 }
+	#content #leftcolumn	{
+		border-right: 1px solid #DDD;
+		float: left;
+		margin: 25px 24px 0 0;
+		padding: 0 25px 0 0;
+		width: 150px;
+	}
+		#content #leftcolumn LI	{
+			text-align: right;
+		}
+	#content #rightcolumn	{
+		float: left;
+		margin: 25px 0 0;
+		width: 760px;
+	}
