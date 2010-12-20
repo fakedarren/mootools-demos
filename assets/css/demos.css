@@ -1,29 +1,27 @@
 .tabs	{
 	border-bottom: 1px solid #DDD;
-	font-size: 1.3em;
-	line-height: 25px;
-	list-style: none;
-	margin: 0 0 10px;
-	padding: 0;
+	height: 33px;
 }
 	.tabs LI	{
-		border: 1px solid #DDD;
-		border-bottom: none;
+		background: url(graphics/tab.png) no-repeat;
 		color: #777;
 		cursor: pointer;
 		float: right;
+		font: bold 1.2em/18px Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		height: 25px;
 		margin: 0 0 0 5px;
-		padding: 0 5px;
+		padding: 8px 0 0;
+		text-align: center;
+		width: 74px;
 	}
 	.tabs LI.first	{
 		float: left;
 		margin: 0;
 	}
 	.tabs LI.selected	{
-		color: #111;
-		font-weight: bold;
-		font-size: 1.4em;
-		line-height: 25px;
+		color: #B86364;
+		height: 26px;
 	}
 .tabs:AFTER	{
 	clear: both;
@@ -34,6 +32,7 @@
 }
 
 .tabcontent	{
+	background: #F4F5F5;
 	display: none;
 }
 	.tabcontent IFRAME	{
@@ -50,6 +49,7 @@
 	background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#888));
 	border: 1px solid #D6D6D6;
 	color: #666;
+	cursor: pointer;
 	display: inline-block;
 	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FFFFFF', EndColorStr='#888888');
 	float: right;
