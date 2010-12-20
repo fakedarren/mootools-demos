@@ -31,9 +31,9 @@ $js = file_get_contents($path . 'demo.js');
 		</div>
 	</div>
 	
-	<div id="content">
+	<form id="content" action="http://jsfiddle.net/api/post/mootools/1.3/dependencies/more,art/" method="post">
 
-		<a href="http://jsfiddle.net/gh/get/mootools/1.3/fakedarren/mootools-demos/tree/master/demos/<?php echo $_GET['demo']; ?>/" class="button">Edit with jsFiddle</a>
+		<button type="submit" class="button">Edit with jsFiddle</button>
 		
 		<div id="description">
 			<?=$description;?>
@@ -51,18 +51,18 @@ $js = file_get_contents($path . 'demo.js');
 		</div>
 	
 		<div class="tabcontent">
-			<textarea id="css"><?php echo $css; ?></textarea>
+			<textarea id="css" name="css"><?php echo $css; ?></textarea>
 		</div>
 
 		<div class="tabcontent">
-			<textarea id="html"><?php echo htmlspecialchars($html); ?></textarea>
+			<textarea id="html" name="html"><?php echo htmlspecialchars($html); ?></textarea>
 		</div>
 
 		<div class="tabcontent">
-			<textarea id="js"><?php echo $js; ?></textarea>
+			<textarea id="js" name="js"><?php echo $js; ?></textarea>
 		</div>
 
-	</div>
+	</form>
 
 	<script src="codemirror/js/codemirror.js" type="text/javascript"></script>
 	<script src="Source/mootools-core-1.3-full.js" type="text/javascript"></script>
