@@ -19,6 +19,7 @@ $js = file_get_contents($path . 'demo.js');
 	<?=$html;?>
 	<script src="../Source/mootools-core-1.3-full.js" type="text/javascript"></script>
 	<script src="../Source/mootools-more-1.3-full.js" type="text/javascript"></script>
+	<script src="../Source/mootools-art-0.87.js" type="text/javascript"></script>
 	<script type="text/javascript">	
 		<?=$js;?>
 	</script>
