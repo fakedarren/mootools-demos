@@ -9,11 +9,6 @@ authors:
   - Valerio Proietti
   - Christoph Pojer
 
-keywords:
-  - Accordion
-
-requires: [Core/*, More/Fx.Accordion]
-
 ...
 */
 
