@@ -8,11 +8,6 @@ description: An example of chaining used for effects
 authors:
   - Djamil Legato
 
-keywords:
-  - Fx, Chaining
-
-requires: [Core/*]
-
 ...
 */
 
