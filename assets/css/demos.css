@@ -34,6 +34,7 @@
 .tabcontent	{
 	background: #F4F5F5;
 	display: none;
+	padding: 15px 0;
 }
 	.tabcontent IFRAME	{
 		min-height: 500px;
@@ -69,7 +70,7 @@
 		border: 1px solid #B6B6B6;
 		color: #444;
 		filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#DDDDDD', EndColorStr='#666666');
-		text-shadow: 0 1px 0 #DDD;	
+		text-shadow: 0 1px 0 #DDD;
 	}
 
 #description	{
