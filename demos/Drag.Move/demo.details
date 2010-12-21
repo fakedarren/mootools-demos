@@ -7,13 +7,7 @@ description: A drag example showing how to manage droppable areas
 
 authors:
   - Djamil Legato
-  - Darren Waddell
-
-keywords:
-  - Drag
-
-requires: [Core/*, More/Drag.Move]
-
+  
 ...
 */
 

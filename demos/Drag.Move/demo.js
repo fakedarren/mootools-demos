@@ -1,6 +1,6 @@
 window.addEvent('domready', function(){
 	
-	var drag = new Drag.Move($('drag'), {
+	new Drag.Move($('drag'), {
 	
 		'container': $('container'),
 		'droppables': $$('.drop'),

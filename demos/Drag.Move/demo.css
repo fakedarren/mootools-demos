@@ -1,12 +1,13 @@
-#container	{
+#container {
 	background: #DDD;
-	height: 210px;
+	height: 160px;
 	position: relative;
 	width: 330px;
 }
  
-#drag	{
+#drag {
 	background: #000;
+	cursor: move;
 	height: 20px;
 	left: 0;
 	position: absolute;
@@ -14,7 +15,7 @@
 	width: 20px;
 }
  
-.drop	{
+.drop {
 	background: #F30;
 	float: left;
 	height: 40px;
