@@ -48,6 +48,9 @@ $js = file_get_contents($path . 'demo.js');
 
 		<ul class="tabs">
 			<li class="selected first">Demo</li>
+			<?php if (!empty($descriptor['docs'])): ?>
+			<li>Docs</li>
+			<?php endif; ?>
 			<li>CSS</li>
 			<li>HTML</li>
 			<li>JavaScript</li>
@@ -56,6 +59,17 @@ $js = file_get_contents($path . 'demo.js');
 		<div class="tabcontent selected">
 			<iframe id="demoframe" src="assets/run.php?demo=<?php echo $_GET['demo']; ?>" frameborder="0"></iframe>
 		</div>
+
+		<?php if (!empty($descriptor['docs'])): ?>
+		<div class="tabcontent">
+			<h3>Documentation References:</h3>
+			<ul class="doc_references">
+			<?php foreach ($descriptor['docs'] as $doc): ?>
+				<li><a href="<?php echo $doc['url']; ?>"><?php echo $doc['name']; ?></a></li>
+			<?php endforeach; ?>
+			</ul>
+		</div>
+		<?php endif; ?>
 
 		<div class="tabcontent">
 			<textarea id="css" name="css"><?php echo $css; ?></textarea>

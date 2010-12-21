@@ -9,6 +9,10 @@ authors:
   - Valerio Proietti
   - Christoph Pojer
 
+docs:
+  - name: Fx.Accordion
+    url: http://mootools.net/docs/more/Fx/Fx.Accordion
+
 ...
 */
 

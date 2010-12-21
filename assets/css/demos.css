@@ -75,3 +75,8 @@
 #description	{
 	margin: 0 0 40px;
 }
+
+ul.doc_references {
+	list-style: circle;
+	padding-left: 20px;
+}
