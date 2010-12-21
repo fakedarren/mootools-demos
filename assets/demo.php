@@ -1,14 +1,18 @@
 <?php
 
-$path = dirname(__FILE__) . '/../demos/' . $_GET['demo'] . '/';
+include dirname(__FILE__) . '/../libs/yaml.php';
 
+$path = dirname(__FILE__) . '/../demos/' . $_GET['demo'] . '/';
 $details = file_get_contents($path . 'demo.details');
 
-preg_match('/\/\*\s*^---(.*?)^\.\.\.\s*\*\//ms', $details, $matches);
-$header = $matches[1];
-
 preg_match('/\/\*\s*^---(.*?)^\.\.\.\s*\*\/(.*)/ms', $details, $matches);
-$description = $matches[2];
+
+$descriptor = array();
+
+if (!empty($matches)){
+	$descriptor = YAML::decode($matches[1]);
+	$description = $matches[2];
+}
 
 $html = file_get_contents($path . 'demo.html');
 $css = file_get_contents($path . 'demo.css');
@@ -38,7 +42,8 @@ $js = file_get_contents($path . 'demo.js');
 		<button type="submit" class="button">Edit with jsFiddle</button>
 
 		<div id="description">
-			<?php echo $description; ?>
+			<?php if (!empty($descriptor['name'])): echo '<h2>' . $descriptor['name'] . '</h2>'; endif; ?>
+			<?php if (!empty($description)): echo $description; endif; ?>
 		</div>
 
 		<ul class="tabs">
