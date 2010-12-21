@@ -3,16 +3,11 @@
 
 name: Drag.Cart
 
-description: How to add custom events using MooTools
+description: A shopping cart demo
 
 authors:
-  - 
-
-keywords:
-  - Accordion
-
-requires: [Core/*]
-
+  - The MooTools Development Team
+  
 ...
 */
 

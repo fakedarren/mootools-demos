@@ -1,3 +1,4 @@
+
 window.addEvent('domready', function(){
 	
 	$$('.item').addEvent('mousedown', function(evt){
