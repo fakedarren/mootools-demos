@@ -1,15 +1,22 @@
+
+ul#example1 {
+	width: 200px;
+}
+
 LI	{
 	cursor: move;
+	padding: 3px;
 }
-LI:HOVER	{
-	background: #CCC;
-}
-#example2 UL	{
-	background: #F9F9F9;
+
+#example2 UL {
 	border: 1px solid #000;
 	float: left;
-	min-height: 20px;
+	min-height: 10px;
 	margin: 5px;
-	padding-left: 20px;
 	width: 200px;
+}
+
+#example LI {
+	margin: 0;
+	background: #F9F9F9;
 }
