@@ -1,0 +1,14 @@
+/*
+---
+
+name: Effects
+
+description: Effects
+
+authors:
+  - Darren Waddell
+
+...
+*/
+
+<p>The powerful Fx Classes allow you to change any number of css styles with any transition and any duration.</p>
