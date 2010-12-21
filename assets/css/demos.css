@@ -7,8 +7,7 @@
 		color: #777;
 		cursor: pointer;
 		float: right;
-		font: bold 1.2em/18px Helvetica, Arial, sans-serif;
-		font-weight: bold;
+		font: bold 1em/18px Helvetica, Arial, sans-serif;
 		height: 25px;
 		margin: 0 0 0 5px;
 		padding: 8px 0 0;
@@ -54,7 +53,7 @@
 	display: inline-block;
 	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FFFFFF', EndColorStr='#888888');
 	float: right;
-	font: bold 1.3em/22px Helvetica, Arial, sans-serif;
+	font: bold 1.2em/22px Helvetica, Arial, sans-serif;
 	height: 22px;
 	margin: 0 0 30px 30px;
 	padding: 0 10px;
@@ -76,6 +75,3 @@
 #description	{
 	margin: 0 0 40px;
 }
-	#description P	{
-		font-size: 1.3em;
-	}

@@ -2,23 +2,27 @@ HTML, BODY	{
 	margin: 0;
 	padding: 0;
 }
-HTML	{
-	font-size: 100%;
-}
 
 BODY	{
 	background: #F4F5F5;
-	font: 62.5% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 0.75em "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-H1	{
+H1,
+H2 {
 	color: #C17878;
-	font-size: 3em;
+	font-size: 2em;
 	line-height: 30px;
 }
 
-P	{
-	font-size: 1.3em;
+H2,
+H3 {
+	color: #78ba91;
+	font-size: 1.7em;
+}
+
+H3 {
+	font-size: 1.5em;
 }
 
 A:LINK, A:VISITED {
@@ -34,9 +38,6 @@ UL	{
 	margin: 0;
 	padding: 0;
 }
-	UL LI	{
-		font-size: 1.3em;
-	}
 
 #header	{
 	background: #F9F9F9;
