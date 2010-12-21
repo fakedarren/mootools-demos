@@ -2,7 +2,7 @@
 var target = $('target');
 var fx = new Fx.Morph(target, {
 	duration: 1000,
-	chain: 'cancel'
+	link: 'chain'
 });
 
 var box = $('box');
@@ -41,7 +41,7 @@ durationInput.addEvent('keyup', function(){
 box.addEvent('mousedown', function(event){
 	event.stop();
 	fx.start({
-		'top': [event.page.y - 25],
-		'left': [event.page.x - 25]
+		top: [event.page.y - 25],
+		left: [event.page.x - 25]
 	});
 });
