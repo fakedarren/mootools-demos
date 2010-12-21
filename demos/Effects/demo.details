@@ -6,12 +6,7 @@ name: Effects
 description: Effects
 
 authors:
-  - Djamil Legato
-
-keywords:
-  - Effects
-
-requires: [Core/*]
+  - Darren Waddell
 
 ...
 */
