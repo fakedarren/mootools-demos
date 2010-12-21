@@ -1,4 +1,5 @@
-$('makeRequest').addEvent('click', function() {
+$('makeRequest').addEvent('click', function(event){
+	event.stop();
 
 	new Request.HTML({
 

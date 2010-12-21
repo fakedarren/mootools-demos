@@ -3,7 +3,7 @@
 	border: 1px solid #F9F9F9;
 	width: 525px;
 }
- 
+
 .item {
 	background-color: #FFF;
 	background-position: left top;
@@ -24,16 +24,16 @@
 		font-weight: bold;
 		left: 0;
 		position: absolute;
-		text-align: center;	 
+		text-align: center;
 		width: 100%;
 	}
-	
+
 #cart {
 	background-color: #FFF;
 	border: 1px solid #F9F9F9;
 	float: right;
 	padding-bottom: 50px;
-	width: 280px;
+	width: 180px;
 }
 	#cart .info {
 		color: #444;

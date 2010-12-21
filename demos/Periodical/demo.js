@@ -1,17 +1,20 @@
-var effect = new Fx.Tween('box', {duration: 800});
-var periodical;
- 
+
+var effect = new Fx.Tween('box', {duration: 800}),
+	periodical;
+
 var fx = function() {
 	effect.start('background-color', '#6684a0').chain(function() {
 		effect.start('background-color', '#bcd965');
 	});
-}
- 
-$('start').addEvent('click', function() {
-	fx();
-	periodical = fx.periodical(1700);
+	return fx;
+};
+
+$('start').addEvent('click', function(event){
+	event.stop();
+	periodical = fx().periodical(1700);
 });
- 
-$('stop').addEvent('click', function() {
-	$clear(periodical);
+
+$('stop').addEvent('click', function(event){
+	event.stop();
+	clearInterval(periodical);
 });

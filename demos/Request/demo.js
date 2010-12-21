@@ -17,11 +17,13 @@ window.addEvent('domready', function(){
 
 	});
 
-	$('makeRequest').addEvent('click', function(){
+	$('makeRequest').addEvent('click', function(event){
+		event.stop();
 		req.send();
 	});
 
-	$('failedRequest').addEvent('click', function(e){
+	$('failedRequest').addEvent('click', function(event){
+		event.stop();
 		//We can pass new options for our Request object to the send method.
 		req.send({url: '../demos/Request/not_here.txt'});
 	});
