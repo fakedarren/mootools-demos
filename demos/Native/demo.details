@@ -11,8 +11,6 @@ authors:
 keywords:
   - Native
 
-requires: [Core/*]
-
 ...
 */
 

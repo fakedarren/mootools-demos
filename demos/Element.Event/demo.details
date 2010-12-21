@@ -3,15 +3,13 @@
 
 name: Element.Event Demo
 
-description: 
+description:
 
 authors:
-  - 
+  -
 
 keywords:
   - Elements, Events
-
-requires: [Core/*]
 
 ...
 */

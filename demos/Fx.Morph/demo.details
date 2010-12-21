@@ -6,12 +6,10 @@ name: Fx.Morph
 description: Fx.Morph demo
 
 authors:
-  - 
+  -
 
 keywords:
   - Fx
-
-requires: [Core/*]
 
 ...
 */

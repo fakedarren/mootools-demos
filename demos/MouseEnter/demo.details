@@ -3,15 +3,13 @@
 
 name: MouseEnter Demo
 
-description: 
+description:
 
 authors:
-  - 
+  -
 
 keywords:
   - Elements, Events
-
-requires: [Core/*]
 
 ...
 */

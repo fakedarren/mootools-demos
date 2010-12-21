@@ -11,7 +11,5 @@ authors:
 keywords:
   - Mouse
 
-requires: [Core/*]
-
 ...
 */

@@ -11,8 +11,6 @@ authors:
 keywords:
   - Transitions, Fx
 
-requires: [Core/*]
-
 ...
 */
 
