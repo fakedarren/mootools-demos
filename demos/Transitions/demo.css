@@ -1,11 +1,11 @@
 #box {
-    height: 500px;
+    height: 400px;
     width: 100%;
     background: #ccc;
     margin-top: 10px;
     overflow: hidden;
 }
- 
+
 #target {
     height: 50px;
     width: 50px;

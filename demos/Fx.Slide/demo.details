@@ -6,9 +6,9 @@ name: Effects
 description: Effects
 
 authors:
-  - Darren Waddell
+  - The MooTools Developer Team
 
 ...
 */
 
-<p>The powerful Fx Classes allow you to change any number of css styles with any transition and any duration.</p>
+<p>Slide elements in and out, or even toggle them!</p>

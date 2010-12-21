@@ -6,7 +6,7 @@ name: Transitions
 description: Transitions
 
 authors:
-  - 
+  -
 
 keywords:
   - Transitions, Fx
@@ -17,3 +17,5 @@ requires: [Core/*]
 */
 
 <p>Shows the transitions</p>
+
+<p>Click somewhere on the gray area to see the transition</p>

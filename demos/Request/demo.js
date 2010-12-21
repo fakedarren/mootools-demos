@@ -1,14 +1,9 @@
 window.addEvent('domready', function(){
 
-	// You can skip the following line. We need it to make sure demos
-	// are runnable on MooTools demos web page.
-	var demo_path = window.demo_path || '';
-	// --
-
 	//We can use one Request object many times.
 	var req = new Request({
 
-		url: demo_path + 'data.txt',
+		url: '../demos/Request/data.txt',
 
 		onSuccess: function(txt){
 			$('result').set('text', txt);
@@ -28,7 +23,7 @@ window.addEvent('domready', function(){
 
 	$('failedRequest').addEvent('click', function(e){
 		//We can pass new options for our Request object to the send method.
-		req.send({url:'/assets/not_here.txt'});
+		req.send({url: '../demos/Request/not_here.txt'});
 	});
 
 });

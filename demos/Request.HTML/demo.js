@@ -1,13 +1,17 @@
-window.addEvent('domready', function() {
-	
+$('makeRequest').addEvent('click', function() {
+
 	new Request.HTML({
-		
-		url: '/mootools-demos/demos/Request.HTML/demo.response.html',
-		
+
+		url: '../demos/Request.HTML/demo.response.php',
+
+		onRequest: function(){
+			$('result').set('text', 'loading...');
+		},
+
 		onComplete: function(response){
-			alert(response);
+			$('result').empty().adopt(response);
 		}
-		
+
 	}).send();
 
 });

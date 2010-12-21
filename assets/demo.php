@@ -2,11 +2,13 @@
 
 $path = dirname(__FILE__) . '/../demos/' . $_GET['demo'] . '/';
 
-preg_match('/\s*\/\*\s---*(.*?)\s\.\.\.\s*\*\//s', file_get_contents($path . 'demo.details'), $matches);
+$details = file_get_contents($path . 'demo.details');
+
+preg_match('/\/\*\s*^---(.*?)^\.\.\.\s*\*\//ms', $details, $matches);
 $header = $matches[1];
 
-preg_match('/\s*\/\*\s---*.*?\s\.\.\.\s*\*\/(.*)/s', file_get_contents($path . 'demo.details'), $matches);
-$description = $matches[1];
+preg_match('/\/\*\s*^---(.*?)^\.\.\.\s*\*\/(.*)/ms', $details, $matches);
+$description = $matches[2];
 
 $html = file_get_contents($path . 'demo.html');
 $css = file_get_contents($path . 'demo.css');
@@ -23,20 +25,20 @@ $js = file_get_contents($path . 'demo.js');
 </head>
 
 <body>
-	
+
 	<div id="header">
 		<div>
 			<a href="?" class="button">Back</a>
 			<h1>MooTools</h1>
 		</div>
 	</div>
-	
+
 	<form id="content" action="http://jsfiddle.net/api/post/mootools/1.3/dependencies/more,art/" method="post">
 
 		<button type="submit" class="button">Edit with jsFiddle</button>
-		
+
 		<div id="description">
-			<?=$description;?>
+			<?php echo $description; ?>
 		</div>
 
 		<ul class="tabs">
@@ -45,11 +47,11 @@ $js = file_get_contents($path . 'demo.js');
 			<li>HTML</li>
 			<li>JavaScript</li>
 		</ul>
-			
+
 		<div class="tabcontent selected">
 			<iframe id="demoframe" src="assets/run.php?demo=<?php echo $_GET['demo']; ?>" frameborder="0"></iframe>
 		</div>
-	
+
 		<div class="tabcontent">
 			<textarea id="css" name="css"><?php echo $css; ?></textarea>
 		</div>
@@ -68,6 +70,6 @@ $js = file_get_contents($path . 'demo.js');
 	<script src="Source/mootools-core-1.3-full.js" type="text/javascript"></script>
 	<script src="Source/mootools-more-1.3-full.js" type="text/javascript"></script>
 	<script src="assets/js/demos.js" type="text/javascript"></script>
-	
+
 </body>
 </html>

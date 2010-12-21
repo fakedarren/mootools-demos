@@ -1,0 +1,20 @@
+/*
+---
+
+name: Periodical
+
+description: Periodically shows another Fx
+
+authors:
+  -
+
+keywords:
+  - Function
+  - Periodical
+
+requires: [Core/Fx]
+
+...
+*/
+
+<p>Periodically shows another Fx</p>
