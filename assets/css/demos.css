@@ -37,7 +37,7 @@
 }
 	.tabcontent IFRAME	{
 		min-height: 500px;
-		width: 960px;
+		width: 100%;
 	}
 .tabcontent.selected	{
 	display: block;
