@@ -1,17 +1,18 @@
+
 window.addEvent('domready', function(){
 
 	$$('#draggables DIV').makeDraggable({
-			
+
 		droppables: $$('#droppables DIV'),
-		
+
 		onEnter: function(draggable, droppable){
 			droppable.setStyle('background', '#78BA91');
 		},
-		
+
 		onLeave: function(draggable, droppable){
 			droppable.setStyle('background', '#1D1D20');
 		},
-		
+
 		onDrop: function(draggable, droppable){
 			if (droppable){
 				draggable.destroy();
@@ -23,7 +24,7 @@ window.addEvent('domready', function(){
 				draggable.setStyle('background', '#FAEC8F');
 			}
 		}
-		
+
 	});
 
 });

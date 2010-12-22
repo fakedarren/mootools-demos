@@ -1,18 +1,23 @@
-$('makeRequest').addEvent('click', function(event){
-	event.stop();
 
-	new Request.HTML({
+window.addEvent('domready', function(){
 
-		url: '../demos/Request.HTML/demo.response.php',
+	$('makeRequest').addEvent('click', function(event){
+		event.stop();
 
-		onRequest: function(){
-			$('result').set('text', 'loading...');
-		},
+		new Request.HTML({
 
-		onComplete: function(response){
-			$('result').empty().adopt(response);
-		}
+			url: 'demos/Request.HTML/demo.response.php',
 
-	}).send();
+			onRequest: function(){
+				$('result').set('text', 'loading...');
+			},
+
+			onComplete: function(response){
+				$('result').empty().adopt(response);
+			}
+
+		}).send();
+
+	});
 
 });

@@ -1,17 +1,16 @@
 
 window.addEvent('domready', function() {
 
-
 	$$('.simple-fx LI').addEvent('click', function(){
-	
+
 		var property = $(this).get('data-property');
 		var to = $(this).get('data-value');
-		
+
 		$('element').tween(property, to);
-		
+
 	});
-	
-	
+
+
 	$('morph-1').addEvent('click', function(){
 		$('element').morph({
 			'background-color': '#F9F9F9',
@@ -19,7 +18,7 @@ window.addEvent('domready', function() {
 			'width': '200px'
 		});
 	});
-	
+
 	$('morph-2').addEvent('click', function(){
 		$('element').morph({
 			'background-color': '#B86364',
@@ -29,15 +28,14 @@ window.addEvent('domready', function() {
 			'width': '100px'
 		});
 	});
-	
+
 	$('morph-3').addEvent('click', function(){
 		$('element').morph('.myClass')
 	});
-	
-	
+
+
 	$('reset').addEvent('click', function(){
 		$('element').erase('style');
 	});
-	
 
 });

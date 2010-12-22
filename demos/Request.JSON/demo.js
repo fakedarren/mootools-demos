@@ -1,7 +1,7 @@
 
 window.addEvent('domready', function() {
 
-	var images_path = '../demos/Request.JSON/images/';
+	var images_path = 'demos/Request.JSON/images/';
 	var gallery = $('gallery');
 
 	var addImages = function(images){
@@ -24,7 +24,7 @@ window.addEvent('domready', function() {
 		e.stop();
 
 		var request = new Request.JSON({
-			url: '../demos/Request.JSON/data.json',
+			url: 'demos/Request.JSON/data.json',
 			onComplete: function(jsonObj) {
 				addImages(jsonObj.previews);
 			}

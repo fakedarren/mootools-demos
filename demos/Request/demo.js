@@ -1,9 +1,10 @@
+
 window.addEvent('domready', function(){
 
 	//We can use one Request object many times.
 	var req = new Request({
 
-		url: '../demos/Request/data.txt',
+		url: 'demos/Request/data.txt',
 
 		onSuccess: function(txt){
 			$('result').set('text', txt);
@@ -25,7 +26,7 @@ window.addEvent('domready', function(){
 	$('failedRequest').addEvent('click', function(event){
 		event.stop();
 		//We can pass new options for our Request object to the send method.
-		req.send({url: '../demos/Request/not_here.txt'});
+		req.send({url: 'demos/Request/not_here.txt'});
 	});
 
 });

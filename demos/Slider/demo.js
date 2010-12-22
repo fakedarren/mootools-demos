@@ -1,3 +1,4 @@
+
 window.addEvent('domready', function(){
 
 	var slider = new Slider($('slider'), $('slider').getElement('.knob'), {
@@ -8,7 +9,6 @@ window.addEvent('domready', function(){
 		}
 	});
 	slider.set($('fontSize').getStyle('font-size'));
-
 
 	var color = [0, 0, 0];
 

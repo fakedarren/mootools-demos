@@ -1,16 +1,17 @@
+
 window.addEvent('domready', function(){
 
 	var log = $('log');
-	
+
 	var fx = new Fx.Morph('box', {
 		duration: 1000,
 		transition: Fx.Transitions.Quart.easeOut
 	});
-	 
+
 	$('start').addEvent('click', function(){
-		
+
 		log.set('html', 'starting...');
-		
+
 		fx.start({
 			'width': 300,
 			'height': 210
@@ -24,7 +25,7 @@ window.addEvent('domready', function(){
 			this.start.delay(5000, this, {
 				'opacity': 1
 			});
-		})	
+		})
 		.chain(function(){
 			log.set('html', 'Third effect completed (3/5).<br />Waiting 2 seconds before starting fourth.');
 			this.start.delay(2000, this, {
@@ -40,7 +41,7 @@ window.addEvent('domready', function(){
 		}).chain(function(){
 			log.set('html', 'Fifth effect completed (5/5).');
 		});
-		
+
 	});
-	
+
 });

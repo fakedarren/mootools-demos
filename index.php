@@ -37,6 +37,11 @@ if (isset($_GET['demo'])){
 	<title>MooTools Demos<?php if (!empty($descriptor['name'])): echo ' - ' . $descriptor['name']; endif; ?></title>
 	<link href="assets/css/main.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/demos.css" rel="stylesheet" type="text/css" />
+<?php if ($demo && !empty($css)): ?>
+<style>
+<?php echo $css; ?>
+</style>
+<?php endif; ?>
 </head>
 
 <body>
@@ -86,7 +91,7 @@ if (isset($_GET['demo'])){
 				</ul>
 
 				<div class="tabcontent selected">
-					<iframe id="demoframe" src="assets/run.php?demo=<?php echo $_GET['demo']; ?>" frameborder="0" scrolling="no"></iframe>
+					<?php echo $html; ?>
 				</div>
 
 				<?php if (!empty($descriptor['docs'])): ?>
@@ -117,7 +122,12 @@ if (isset($_GET['demo'])){
 			<script src="codemirror/js/codemirror.js" type="text/javascript"></script>
 			<script src="Source/mootools-core-1.3-full.js" type="text/javascript"></script>
 			<script src="Source/mootools-more-1.3-full.js" type="text/javascript"></script>
+			<script src="Source/mootools-art-0.87.js" type="text/javascript"></script>
 			<script src="assets/js/demos.js" type="text/javascript"></script>
+
+			<script type="text/javascript">
+				<?php echo $js; ?>
+			</script>
 
 
 			<?php else: ?>
