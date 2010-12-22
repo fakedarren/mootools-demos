@@ -86,7 +86,7 @@ if (isset($_GET['demo'])){
 				</ul>
 
 				<div class="tabcontent selected">
-					<iframe id="demoframe" src="assets/run.php?demo=<?php echo $_GET['demo']; ?>" frameborder="0"></iframe>
+					<iframe id="demoframe" src="assets/run.php?demo=<?php echo $_GET['demo']; ?>" frameborder="0" scrolling="no"></iframe>
 				</div>
 
 				<?php if (!empty($descriptor['docs'])): ?>
