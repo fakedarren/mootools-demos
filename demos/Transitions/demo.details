@@ -11,6 +11,14 @@ authors:
 keywords:
   - Transitions, Fx
 
+docs:
+  - name: Fx.Transitions
+    url: http://mootools.net/docs/core/Fx/Fx.Transitions
+  - name: Fx.Morph
+    url: http://mootools.net/docs/core/Fx/Fx.Morph
+  - name: Event page property
+    url: http://mootools.net/docs/core/Types/Event#Event:constructor
+
 ...
 */
 

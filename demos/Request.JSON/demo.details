@@ -12,7 +12,9 @@ keywords:
   - Request
   - HTML
 
-requires: [Core/Request.JSON]
+docs:
+  - name: Request.JSON
+    url: http://mootools.net/docs/core/Request/Request.JSON
 
 ...
 */

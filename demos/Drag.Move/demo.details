@@ -7,7 +7,11 @@ description: A drag example showing how to manage droppable areas
 
 authors:
   - Djamil Legato
-  
+
+docs:
+  - name: Drag.Move
+    url: http://mootools.net/docs/more/Drag/Drag.Move
+
 ...
 */
 

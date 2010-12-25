@@ -1,7 +1,7 @@
 /*
 ---
 
-name: Element.Event Demo
+name: Element.Event
 
 description:
 
@@ -10,6 +10,10 @@ authors:
 
 keywords:
   - Elements, Events
+
+docs:
+  - name: Element.Event
+    url: http://mootools.net/docs/core/Element/Element.Event
 
 ...
 */

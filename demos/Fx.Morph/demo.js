@@ -4,8 +4,7 @@ window.addEvent('domready', function(){
 	var lis = $$('#idList LI');
 
 	lis.set('morph', {
-		duration: 200,
-		wait: false
+		duration: 200
 	})
 
 	lis.addEvents({

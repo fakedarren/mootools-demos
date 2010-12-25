@@ -11,6 +11,10 @@ authors:
 keywords:
   - Fx
 
+docs:
+  - name: Fx.Morph
+    url: http://mootools.net/docs/core/Fx/Fx.Morph
+
 ...
 */
 

@@ -17,7 +17,7 @@ window.addEvent('domready', function() {
 		focus: function() {
 			// When focusing, if the textarea contains value "Type here", we
 			// simply clear it.
-			if (textarea.value.contains('Type here')) textarea.value = '';
+			if (textarea.value.contains('Type here')) textarea.set('value', '');
 		},
 
 		keyup: function() {
@@ -34,7 +34,8 @@ window.addEvent('domready', function() {
 		burn: function(text) {
 			// When the textarea contains one of the magic words
 			// we reset textarea value and set the log with text
-			textarea.value = ''; log.set('html', text);
+			textarea.set('value', '');
+			log.set('html', text);
 
 			// then we start the highlight morphing
 			highlight.start({
