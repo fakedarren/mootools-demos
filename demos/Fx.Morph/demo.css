@@ -19,13 +19,13 @@
 }
 
 /* The styles for the second list defined in the CSS */
-#idList2 li.hover {
+.hover {
 	background-color: #666;
 	color: #FF8;
 	margin-left: 5px
 }
 
-#idList2 li.default {
+.default {
 	background-color: #333;
 	color: #888;
 	margin-left: 0;

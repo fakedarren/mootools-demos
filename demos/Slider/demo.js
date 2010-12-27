@@ -1,14 +1,16 @@
 
 window.addEvent('domready', function(){
 
-	var slider = new Slider($('slider'), $('slider').getElement('.knob'), {
-		steps: 35,
-		range: [12],
+	var slider = $('slider');
+
+	new Slider(slider, slider.getElement('.knob'), {
+		range: [9, 35],
+		initialStep: 14,
 		onChange: function(value){
-			$('fontSize').setStyle('font-size', value);
+			if (value) $('fontSize').setStyle('font-size', value);
 		}
 	});
-	slider.set($('fontSize').getStyle('font-size'));
+
 
 	var color = [0, 0, 0];
 
@@ -20,6 +22,7 @@ window.addEvent('domready', function(){
 				color[i] = this.step;
 				$('setColor').setStyle('color', color).set('text', color.rgbToHex());
 			}
-		}).set(0);
+		});
 	});
+
 });

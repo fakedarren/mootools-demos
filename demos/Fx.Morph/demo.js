@@ -37,10 +37,10 @@ window.addEvent('domready', function(){
 		}).addEvents({
 			// Using Function:pass, which is a shorter alternative for
 			//     function(){
-			//         el.morph('#idList2 li.hover');
+			//         el.morph('.hover');
 			//     }
-			mouseenter: el.morph.pass('#idList2 li.hover', el),
-			mouseleave: el.morph.pass('#idList2 li.default', el)
+			mouseenter: el.morph.pass('.hover', el),
+			mouseleave: el.morph.pass('.default', el)
 		});
 	});
 
