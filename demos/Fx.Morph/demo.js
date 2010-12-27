@@ -1,5 +1,7 @@
+
 window.addEvent('domready', function(){
 
+	// First list, using CSS styles in the JavaScript
 	var list = $$('#idList LI');
 
 	list.set('morph', {
@@ -26,6 +28,20 @@ window.addEvent('domready', function(){
 			});
 		}
 
+	});
+
+	// Morphing the list with CSS selectors
+	$$('#idList2 LI').each(function(el){
+		el.set('morph', {
+			duration: 200
+		}).addEvents({
+			// Using Function:pass, which is a shorter alternative for
+			//     function(){
+			//         el.morph('#idList2 li.hover');
+			//     }
+			mouseenter: el.morph.pass('#idList2 li.hover', el),
+			mouseleave: el.morph.pass('#idList2 li.default', el)
+		});
 	});
 
 });
