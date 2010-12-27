@@ -1,15 +1,15 @@
-
 window.addEvent('domready', function(){
 
-	var lis = $$('#idList LI');
+	var list = $$('#idList LI');
 
-	lis.set('morph', {
+	list.set('morph', {
 		duration: 200
-	})
+	});
 
-	lis.addEvents({
+	list.addEvents({
 
 		mouseenter: function(){
+			// this refers to the element in an event
 			this.morph({
 				'background-color': '#666',
 				'color': '#FF8',
@@ -18,6 +18,7 @@ window.addEvent('domready', function(){
 		},
 
 		mouseleave: function(){
+			// this refers to the element in an event
 			this.morph({
 				'background-color': '#333',
 				'color': '#888',
