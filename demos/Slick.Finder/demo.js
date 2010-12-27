@@ -13,7 +13,6 @@ window.addEvent('domready', function(){
 
 	searchDOM.addEvent('click', function(){
 		var selector = selector_input.get('value');
-		console.log(elements);
 		elements.getElements(selector).highlight();
 	});
 
