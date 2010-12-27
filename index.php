@@ -59,6 +59,8 @@ if (isset($_GET['demo'])){
 				<li><a href="?demo=Chaining">Chaining</a></li>
 				<li><a href="?demo=Native">Native</a></li>
 				<li><a href="?demo=Periodical">Periodical</a></li>
+				<li><h4>Slick</h4></li>
+				<li><a href="?demo=Slick.Finder">Slick.Finder</a></li>
 				<li><h4>Drag and Drop</h4></li>
 				<li><a href="?demo=Drag.Cart">Drag.Cart</a></li>
 				<li><a href="?demo=Drag.Drop">Drag.Drop</a></li>
