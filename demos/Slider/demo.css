@@ -1,14 +1,14 @@
 .slider {
 	width: 200px;
 	height: 16px;
-	background: #eee;
+	background: grey;
 }
 	.slider .knob {
 		background: #000;
 		width: 16px;
 		height: 16px;
 	}
-	
+
 #fontSize {
 	height: 50px;
 	line-height: 50px;

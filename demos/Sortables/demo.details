@@ -11,7 +11,9 @@ authors:
 keywords:
   - Effects
 
-requires: [Core/*, More/Sortables]
+docs:
+  - name: Sortables
+    url: http://mootools.net/docs/more/Drag/Sortables
 
 ...
 */

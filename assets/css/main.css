@@ -75,6 +75,13 @@ UL	{
 			padding: 1px 0;
 			text-align: right;
 		}
+		#content #leftcolumn H4 {
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+			font-size: 1.2em;
+			color: #313334;
+			line-height: 20px;
+		}
 	#content #rightcolumn	{
 		float: left;
 		margin: 25px 0 0;

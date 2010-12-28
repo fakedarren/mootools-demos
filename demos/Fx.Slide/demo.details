@@ -1,14 +1,18 @@
 /*
 ---
 
-name: Effects
+name: Fx.Slide
 
-description: Effects
+description: With Fx.Slide you can slide elements in and out, or even toggle them!
 
 authors:
   - The MooTools Developer Team
 
+docs:
+  - name: Fx.Slide
+    url: http://mootools.net/docs/more/Fx/Fx.Slide
+
 ...
 */
 
-<p>Slide elements in and out, or even toggle them!</p>
+<p>With Fx.Slide you can slide elements in and out, or even toggle them!</p>

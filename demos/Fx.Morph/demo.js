@@ -1,16 +1,17 @@
 
 window.addEvent('domready', function(){
 
-	var lis = $$('#idList LI');
+	// First list, using CSS styles in the JavaScript
+	var list = $$('#idList LI');
 
-	lis.set('morph', {
-		duration: 200,
-		wait: false
-	})
+	list.set('morph', {
+		duration: 200
+	});
 
-	lis.addEvents({
+	list.addEvents({
 
 		mouseenter: function(){
+			// this refers to the element in an event
 			this.morph({
 				'background-color': '#666',
 				'color': '#FF8',
@@ -19,6 +20,7 @@ window.addEvent('domready', function(){
 		},
 
 		mouseleave: function(){
+			// this refers to the element in an event
 			this.morph({
 				'background-color': '#333',
 				'color': '#888',
@@ -26,6 +28,20 @@ window.addEvent('domready', function(){
 			});
 		}
 
+	});
+
+	// Morphing the list with CSS selectors
+	$$('#idList2 LI').each(function(el){
+		el.set('morph', {
+			duration: 200
+		}).addEvents({
+			// Using Function:pass, which is a shorter alternative for
+			//     function(){
+			//         el.morph('.hover');
+			//     }
+			mouseenter: el.morph.pass('.hover', el),
+			mouseleave: el.morph.pass('.default', el)
+		});
 	});
 
 });

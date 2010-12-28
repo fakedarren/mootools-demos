@@ -55,17 +55,33 @@ if (isset($_GET['demo'])){
 	<div id="content">
 		<div id="leftcolumn">
 			<ul>
-				<li><a href="?"><strong>Demos</strong></a></li>
-		<?php
-		if ($handle = opendir(dirname(__FILE__) . '/demos/')){
-		    while (false !== ($folder = readdir($handle))){
-		        if ($folder != "." && $folder != ".."){
-					?><li><a href="?demo=<?php echo $folder; ?>"><?php echo $folder; ?></a></li><?php
-				}
-		    }
-		    closedir($handle);
-		}
-		?>
+				<li><h4><a href="?">Demos</a></h4></li>
+				<li><a href="?demo=Chaining">Chaining</a></li>
+				<li><a href="?demo=Native">Native</a></li>
+				<li><a href="?demo=Periodical">Periodical</a></li>
+				<li><h4>Slick</h4></li>
+				<li><a href="?demo=Slick.Finder">Slick.Finder</a></li>
+				<li><h4>Drag and Drop</h4></li>
+				<li><a href="?demo=Drag.Cart">Drag.Cart</a></li>
+				<li><a href="?demo=Drag.Drop">Drag.Drop</a></li>
+				<li><a href="?demo=Drag.Move">Drag.Move</a></li>
+				<li><h4>Effects</h4></li>
+				<li><a href="?demo=Effects">Effects</a></li>
+				<li><a href="?demo=Fx.Morph">Fx.Morph</a></li>
+				<li><a href="?demo=Fx.Slide">Fx.Slide</a></li>
+				<li><a href="?demo=Transitions">Transitions</a></li>
+				<li><h4>Events</h4></li>
+				<li><a href="?demo=Element.Event">Element.Event</a></li>
+				<li><a href="?demo=MouseEnter">MouseEnter</a></li>
+				<li><a href="?demo=MouseWheel">MouseWheel</a></li>
+				<li><h4>Request</h4></li>
+				<li><a href="?demo=Request">Request</a></li>
+				<li><a href="?demo=Request.HTML">Request.HTML</a></li>
+				<li><a href="?demo=Request.JSON">Request.JSON</a></li>
+				<li><h4>Plugins</h4></li>
+				<li><a href="?demo=Accordion">Accordion</a></li>
+				<li><a href="?demo=Slider">Slider</a></li>
+				<li><a href="?demo=Sortables">Sortables</a></li>
 			</ul>
 		</div>
 		<div id="rightcolumn">

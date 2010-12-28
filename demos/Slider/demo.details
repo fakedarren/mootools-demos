@@ -6,12 +6,14 @@ name: Slider
 description: Slider demo
 
 authors:
-  - 
+  -
 
 keywords:
   - Effects
 
-requires: [Core/*, More/Slider]
+docs:
+  - name: Slider
+    url: http://mootools.net/docs/more/Drag/Slider
 
 ...
 */

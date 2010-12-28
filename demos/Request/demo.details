@@ -6,12 +6,14 @@ name: Drag.Move
 description: A drag example showing how to manage droppable areas
 
 authors:
-  - 
+  -
 
 keywords:
   - Drag
 
-requires: [Core/*, More/Drag.Move]
+docs:
+  - name: Request
+    url: http://mootools.net/docs/core/Request/Request
 
 ...
 */

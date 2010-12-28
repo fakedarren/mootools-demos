@@ -20,7 +20,7 @@ window.addEvent('domready', function() {
 		});
 	};
 
-	$('loadJson').addEvent('click', function(e){
+	$('loadJSON').addEvent('click', function(e){
 		e.stop();
 
 		var request = new Request.JSON({
@@ -31,7 +31,7 @@ window.addEvent('domready', function() {
 		}).send();
 	});
 
-	$('clearJson').addEvent('click', function(e){
+	$('clearJSON').addEvent('click', function(e){
 		e.stop();
 		gallery.empty();
 	});

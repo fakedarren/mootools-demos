@@ -8,6 +8,12 @@ description: Another simple Drag example showing droppable areas
 authors:
   - Djamil Legato
 
+docs:
+  - name: Element:makeDraggable
+    url: http://mootools.net/docs/more/Drag/Drag.Move#Element:makeDraggable
+  - name: Element:morph
+    url: http://mootools.net/docs/core/Fx/Fx.Morph#Element:morph
+
 ...
 */
 
