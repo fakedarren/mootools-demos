@@ -53,8 +53,8 @@
 	display: inline-block;
 	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FFFFFF', EndColorStr='#888888');
 	float: right;
-	font: bold 1.2em/22px Helvetica, Arial, sans-serif;
-	height: 22px;
+	font: bold 1.2em/28px Helvetica, Arial, sans-serif;
+	height: 28px;
 	margin: 0 0 30px 30px;
 	padding: 0 10px;
 	text-decoration: none;
@@ -79,4 +79,12 @@
 ul.doc_references {
 	list-style: circle;
 	padding-left: 20px;
+}
+
+.CodeMirror-wrapping {
+	background-color: #FFF;
+	border: 1px solid #DDD;
+	border-top: none;
+	margin: -15px 0 0;
+	padding: 10px;
 }

@@ -135,7 +135,7 @@ if (isset($_GET['demo'])){
 
 			</form>
 
-			<script src="codemirror/js/codemirror.js" type="text/javascript"></script>
+			<script src="assets/codemirror/js/codemirror.js" type="text/javascript"></script>
 			<script src="Source/mootools-core-1.3-full.js" type="text/javascript"></script>
 			<script src="Source/mootools-more-1.3-full.js" type="text/javascript"></script>
 			<script src="Source/mootools-art-0.87.js" type="text/javascript"></script>

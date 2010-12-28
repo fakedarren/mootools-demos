@@ -25,6 +25,10 @@ H3 {
 	font-size: 1.5em;
 }
 
+P {
+	line-height: 17px;
+}
+
 A:LINK, A:VISITED {
     color: #6B7B95;
 }
