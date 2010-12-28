@@ -3,17 +3,30 @@
 	height: 33px;
 }
 	.tabs LI	{
-		background: url(graphics/tab.png) no-repeat;
-		color: #777;
 		cursor: pointer;
 		float: right;
 		font: bold 1em/18px Helvetica, Arial, sans-serif;
-		height: 25px;
 		margin: 0 0 0 5px;
-		padding: 8px 0 0;
 		text-align: center;
+	}
+	.tabs LI.tab	{
+		background: url(graphics/tab.png) no-repeat;
+		color: #777;
+		padding: 8px 0 0;
+		height: 25px;
 		width: 74px;
 	}
+	.tabs LI.jsfiddle	{
+		width: 140px;
+	}
+		.tabs LI.jsfiddle button	{
+			cursor: pointer;
+			background: url(graphics/jsfiddle.png) no-repeat;
+			width: 140px;
+			height: 33px;
+			border: 0;
+			text-indent: -3000px;
+		}
 	.tabs LI.first	{
 		float: left;
 		margin: 0;
@@ -42,35 +55,6 @@
 .tabcontent.selected	{
 	display: block;
 }
-
-.button	{
-	background: #DEDEDE;
-	background: -moz-linear-gradient(top, #FFF, #888);
-	background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#888));
-	border: 1px solid #D6D6D6;
-	color: #666;
-	cursor: pointer;
-	display: inline-block;
-	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FFFFFF', EndColorStr='#888888');
-	float: right;
-	font: bold 1.2em/28px Helvetica, Arial, sans-serif;
-	height: 28px;
-	margin: 0 0 30px 30px;
-	padding: 0 10px;
-	text-decoration: none;
-	text-shadow: 0 1px 0 #FFF;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
-	.button:HOVER	{
-		background: #BEBEBE;
-		background: -moz-linear-gradient(top, #DDD, #666);
-		background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#666));
-		border: 1px solid #B6B6B6;
-		color: #444;
-		filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#DDDDDD', EndColorStr='#666666');
-		text-shadow: 0 1px 0 #DDD;
-	}
 
 #description	{
 	margin: 0 0 40px;
