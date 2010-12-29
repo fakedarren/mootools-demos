@@ -18,8 +18,8 @@ window.addEvent('domready', function(){
 			},
 
 			data: {
-				// This is some that the server will return
-				// we pass this only for our demo runner and jsfille
+				// This is some content that the server will return
+				// we pass this only for our demo runner and jsfiddle
 				html: '<h3>The Request Was Successful</h3>' +
 					'<p>Here is some <em>HTML content</em>.  It\'s pretty neat, isn\'t it?</p>' +
 					'<p>It does not have to be a complete page, since the &lt;head&gt; section is already present in the parent page.</p>' +
