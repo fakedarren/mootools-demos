@@ -1,0 +1,21 @@
+/*
+---
+
+name: Element.Event.Pseudos
+
+description:
+
+authors:
+  -
+
+keywords:
+  - Element, Event, Pseudos
+
+docs:
+  - name: Element.Event.Pseudos
+    url: http://mootools.net/docs/more/Element/Element.Event.Pseudos
+
+...
+*/
+
+<p>This demo will show you how to: Use the provided 'once' pseudo event and how to create a custom pseudo event.</p>
