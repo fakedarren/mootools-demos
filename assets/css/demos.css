@@ -69,6 +69,7 @@ ul.doc_references {
 	background-color: #FFF;
 	border: 1px solid #DDD;
 	border-top: none;
+	height: auto !important;
 	margin: -15px 0 0;
 	padding: 10px;
 }
