@@ -63,6 +63,10 @@ UL	{
 		text-indent: -9999px;
 	}
 
+#wrapper {
+	background: url(graphics/gradient.png) repeat-x;
+}
+
 #content	{
 	margin: 0 auto;
 	padding: 0 0 50px;

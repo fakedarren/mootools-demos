@@ -52,109 +52,113 @@ if (isset($_GET['demo'])){
 		</div>
 	</div>
 
-	<div id="content">
-		<div id="leftcolumn">
-			<ul>
-				<li><h4><a href="?">Demos</a></h4></li>
-				<li><a href="?demo=Chaining">Chaining</a></li>
-				<li><a href="?demo=Native">Native</a></li>
-				<li><a href="?demo=Periodical">Periodical</a></li>
-				<li><h4>Slick</h4></li>
-				<li><a href="?demo=Slick.Finder">Slick.Finder</a></li>
-				<li><h4>Drag and Drop</h4></li>
-				<li><a href="?demo=Drag.Cart">Drag.Cart</a></li>
-				<li><a href="?demo=Drag.Drop">Drag.Drop</a></li>
-				<li><a href="?demo=Drag.Move">Drag.Move</a></li>
-				<li><h4>Effects</h4></li>
-				<li><a href="?demo=Effects">Effects</a></li>
-				<li><a href="?demo=Fx.Morph">Fx.Morph</a></li>
-				<li><a href="?demo=Fx.Slide">Fx.Slide</a></li>
-				<li><a href="?demo=Transitions">Transitions</a></li>
-				<li><h4>Events</h4></li>
-				<li><a href="?demo=Element.Event">Element.Event</a></li>
-				<li><a href="?demo=MouseEnter">MouseEnter</a></li>
-				<li><a href="?demo=MouseWheel">MouseWheel</a></li>
-				<li><h4>Request</h4></li>
-				<li><a href="?demo=Request">Request</a></li>
-				<li><a href="?demo=Request.HTML">Request.HTML</a></li>
-				<li><a href="?demo=Request.JSON">Request.JSON</a></li>
-				<li><h4>Plugins</h4></li>
-				<li><a href="?demo=Accordion">Accordion</a></li>
-				<li><a href="?demo=Slider">Slider</a></li>
-				<li><a href="?demo=Sortables">Sortables</a></li>
-			</ul>
-		</div>
-		<div id="rightcolumn">
-			<?php if ($demo): ?>
+	<div id="wrapper">
 
-			<form action="http://jsfiddle.net/api/post/mootools/1.3/dependencies/more,art/" method="post">
-
-				<div id="description">
-					<?php if (!empty($descriptor['name'])): echo '<h2>' . $descriptor['name'] . '</h2>'; endif; ?>
-					<?php if (!empty($description)): echo $description; endif; ?>
-				</div>
-
-
-				<ul class="tabs">
-					<li class="selected first tab">Demo</li>
-					<li class="jsfiddle"><button type="submit">Edit with jsFiddle</button></li>
-					<?php if (!empty($descriptor['docs'])): ?>
-					<li class="tab">Docs</li>
-					<?php endif; ?>
-					<li class="tab">CSS</li>
-					<li class="tab">HTML</li>
-					<li class="tab">JavaScript</li>
+		<div id="content">
+			<div id="leftcolumn">
+				<ul>
+					<li><h4><a href="?">Demos</a></h4></li>
+					<li><a href="?demo=Chaining">Chaining</a></li>
+					<li><a href="?demo=Native">Native</a></li>
+					<li><a href="?demo=Periodical">Periodical</a></li>
+					<li><h4>Slick</h4></li>
+					<li><a href="?demo=Slick.Finder">Slick.Finder</a></li>
+					<li><h4>Drag and Drop</h4></li>
+					<li><a href="?demo=Drag.Cart">Drag.Cart</a></li>
+					<li><a href="?demo=Drag.Drop">Drag.Drop</a></li>
+					<li><a href="?demo=Drag.Move">Drag.Move</a></li>
+					<li><h4>Effects</h4></li>
+					<li><a href="?demo=Effects">Effects</a></li>
+					<li><a href="?demo=Fx.Morph">Fx.Morph</a></li>
+					<li><a href="?demo=Fx.Slide">Fx.Slide</a></li>
+					<li><a href="?demo=Transitions">Transitions</a></li>
+					<li><h4>Events</h4></li>
+					<li><a href="?demo=Element.Event">Element.Event</a></li>
+					<li><a href="?demo=MouseEnter">MouseEnter</a></li>
+					<li><a href="?demo=MouseWheel">MouseWheel</a></li>
+					<li><h4>Request</h4></li>
+					<li><a href="?demo=Request">Request</a></li>
+					<li><a href="?demo=Request.HTML">Request.HTML</a></li>
+					<li><a href="?demo=Request.JSON">Request.JSON</a></li>
+					<li><h4>Plugins</h4></li>
+					<li><a href="?demo=Accordion">Accordion</a></li>
+					<li><a href="?demo=Slider">Slider</a></li>
+					<li><a href="?demo=Sortables">Sortables</a></li>
 				</ul>
+			</div>
+			<div id="rightcolumn">
+				<?php if ($demo): ?>
 
-				<div class="tabcontent selected">
-					<?php echo $html; ?>
-				</div>
+				<form action="http://jsfiddle.net/api/post/mootools/1.3/dependencies/more,art/" method="post">
 
-				<?php if (!empty($descriptor['docs'])): ?>
-				<div class="tabcontent">
-					<h3>Documentation References:</h3>
-					<ul class="doc_references">
-					<?php foreach ($descriptor['docs'] as $doc): ?>
-						<li><a href="<?php echo $doc['url']; ?>"><?php echo $doc['name']; ?></a></li>
-					<?php endforeach; ?>
+					<div id="description">
+						<?php if (!empty($descriptor['name'])): echo '<h2>' . $descriptor['name'] . '</h2>'; endif; ?>
+						<?php if (!empty($description)): echo $description; endif; ?>
+					</div>
+
+
+					<ul class="tabs">
+						<li class="selected first tab">Demo</li>
+						<li class="jsfiddle"><button type="submit">Edit with jsFiddle</button></li>
+						<?php if (!empty($descriptor['docs'])): ?>
+						<li class="tab">Docs</li>
+						<?php endif; ?>
+						<li class="tab">CSS</li>
+						<li class="tab">HTML</li>
+						<li class="tab">JavaScript</li>
 					</ul>
-				</div>
+
+					<div class="tabcontent selected">
+						<?php echo $html; ?>
+					</div>
+
+					<?php if (!empty($descriptor['docs'])): ?>
+					<div class="tabcontent">
+						<h3>Documentation References:</h3>
+						<ul class="doc_references">
+						<?php foreach ($descriptor['docs'] as $doc): ?>
+							<li><a href="<?php echo $doc['url']; ?>"><?php echo $doc['name']; ?></a></li>
+						<?php endforeach; ?>
+						</ul>
+					</div>
+					<?php endif; ?>
+
+					<div class="tabcontent">
+						<textarea id="css" name="css"><?php echo $css; ?></textarea>
+					</div>
+
+					<div class="tabcontent">
+						<textarea id="html" name="html"><?php echo htmlspecialchars($html); ?></textarea>
+					</div>
+
+					<div class="tabcontent">
+						<textarea id="js" name="js"><?php echo $js; ?></textarea>
+					</div>
+
+				</form>
+
+				<script src="assets/codemirror/js/codemirror.js" type="text/javascript"></script>
+				<script src="Source/mootools-core-1.3-full.js" type="text/javascript"></script>
+				<script src="Source/mootools-more-1.3-full.js" type="text/javascript"></script>
+				<script src="Source/mootools-art-0.87.js" type="text/javascript"></script>
+				<script src="assets/js/demos.js" type="text/javascript"></script>
+
+				<script type="text/javascript">
+					<?php echo $js; ?>
+				</script>
+
+
+				<?php else: ?>
+				<h2>MooTools Demos</h2>
+
+				<p>The demos are here to give you some examples of how MooTools works. Demos can be opened in <a href="http://jsfiddle.net">jsFiddle</a> for editing, and you can <a href="https://github.com/fakedarren/mootools-demos">download the entire demo runner here</a>.</p>
+
+				<p>We hope you enjoy our demos.</p>
+				<p>The MooTools Development Team.</p>
 				<?php endif; ?>
-
-				<div class="tabcontent">
-					<textarea id="css" name="css"><?php echo $css; ?></textarea>
-				</div>
-
-				<div class="tabcontent">
-					<textarea id="html" name="html"><?php echo htmlspecialchars($html); ?></textarea>
-				</div>
-
-				<div class="tabcontent">
-					<textarea id="js" name="js"><?php echo $js; ?></textarea>
-				</div>
-
-			</form>
-
-			<script src="assets/codemirror/js/codemirror.js" type="text/javascript"></script>
-			<script src="Source/mootools-core-1.3-full.js" type="text/javascript"></script>
-			<script src="Source/mootools-more-1.3-full.js" type="text/javascript"></script>
-			<script src="Source/mootools-art-0.87.js" type="text/javascript"></script>
-			<script src="assets/js/demos.js" type="text/javascript"></script>
-
-			<script type="text/javascript">
-				<?php echo $js; ?>
-			</script>
-
-
-			<?php else: ?>
-			<h2>MooTools Demos</h2>
-
-			<p>The demos are here to give you some examples of how MooTools works. Demos can be opened in <a href="http://jsfiddle.net">jsFiddle</a> for editing, and you can <a href="https://github.com/fakedarren/mootools-demos">download the entire demo runner here</a>.</p>
-
-			<p>We hope you enjoy our demos.</p>
-			<p>The MooTools Development Team.</p>
-			<?php endif; ?>
+			</div>
 		</div>
+
 	</div>
 
 </body>
