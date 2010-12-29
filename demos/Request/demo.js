@@ -4,7 +4,7 @@ window.addEvent('domready', function(){
 	//We can use one Request object many times.
 	var req = new Request({
 
-		url: 'demos/Request/data.txt',
+		url: '/echo/html/',
 
 		onSuccess: function(txt){
 			$('result').set('text', txt);
@@ -20,13 +20,15 @@ window.addEvent('domready', function(){
 
 	$('makeRequest').addEvent('click', function(event){
 		event.stop();
-		req.send();
+		req.send({data: { // our demo runner and jsfiddle will return this as return html
+			html: 'The request was successful!'
+		}});
 	});
 
 	$('failedRequest').addEvent('click', function(event){
 		event.stop();
 		//We can pass new options for our Request object to the send method.
-		req.send({url: 'demos/Request/not_here.txt'});
+		req.send({url: 'Request/not_here.txt'});
 	});
 
 });

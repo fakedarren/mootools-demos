@@ -27,6 +27,10 @@ if (isset($_GET['demo'])){
 		$css = file_get_contents($path . 'demo.css');
 		$js = file_get_contents($path . 'demo.js');
 
+		// Fix links for Request, so they both work here and on jsfiddle
+		$html_demo = preg_replace('/\/echo\/(html|json)\//', 'Request.php', $html);
+		$js_demo = preg_replace('/\/echo\/(html|json)\//', 'Request.php', $js);
+
 	}
 }
 ?>
@@ -118,7 +122,7 @@ if (isset($_GET['demo'])){
 				</form>
 
 				<div class="tabcontent selected">
-					<?php echo $html; ?>
+					<?php echo $html_demo; ?>
 				</div>
 
 				<?php if (!empty($descriptor['docs'])): ?>
@@ -151,7 +155,7 @@ if (isset($_GET['demo'])){
 				<script src="assets/js/demos.js" type="text/javascript"></script>
 
 				<script type="text/javascript">
-					<?php echo $js; ?>
+					<?php echo $js_demo; ?>
 				</script>
 
 
