@@ -90,13 +90,19 @@ if (isset($_GET['demo'])){
 			<div id="rightcolumn">
 				<?php if ($demo): ?>
 
+				<div id="description">
+					<?php if (!empty($descriptor['name'])): echo '<h2>' . $descriptor['name'] . '</h2>'; endif; ?>
+					<?php if (!empty($description)): echo $description; endif; ?>
+				</div>
+
+
 				<form action="http://jsfiddle.net/api/post/mootools/1.3/dependencies/more,art/" method="post">
 
-					<div id="description">
-						<?php if (!empty($descriptor['name'])): echo '<h2>' . $descriptor['name'] . '</h2>'; endif; ?>
-						<?php if (!empty($description)): echo $description; endif; ?>
+					<div id="jsfiddle_data">
+						<textarea id="css" name="css"><?php echo $css; ?></textarea>
+						<textarea id="html" name="html"><?php echo htmlspecialchars($html); ?></textarea>
+						<textarea id="js" name="js"><?php echo $js; ?></textarea>
 					</div>
-
 
 					<ul class="tabs">
 						<li class="selected first tab">Demo</li>
@@ -109,34 +115,34 @@ if (isset($_GET['demo'])){
 						<li class="tab">JavaScript</li>
 					</ul>
 
-					<div class="tabcontent selected">
-						<?php echo $html; ?>
-					</div>
-
-					<?php if (!empty($descriptor['docs'])): ?>
-					<div class="tabcontent">
-						<h3>Documentation References:</h3>
-						<ul class="doc_references">
-						<?php foreach ($descriptor['docs'] as $doc): ?>
-							<li><a href="<?php echo $doc['url']; ?>"><?php echo $doc['name']; ?></a></li>
-						<?php endforeach; ?>
-						</ul>
-					</div>
-					<?php endif; ?>
-
-					<div class="tabcontent">
-						<textarea id="css" name="css"><?php echo $css; ?></textarea>
-					</div>
-
-					<div class="tabcontent">
-						<textarea id="html" name="html"><?php echo htmlspecialchars($html); ?></textarea>
-					</div>
-
-					<div class="tabcontent">
-						<textarea id="js" name="js"><?php echo $js; ?></textarea>
-					</div>
-
 				</form>
+
+				<div class="tabcontent selected">
+					<?php echo $html; ?>
+				</div>
+
+				<?php if (!empty($descriptor['docs'])): ?>
+				<div class="tabcontent">
+					<h3>Documentation References:</h3>
+					<ul class="doc_references">
+					<?php foreach ($descriptor['docs'] as $doc): ?>
+						<li><a href="<?php echo $doc['url']; ?>"><?php echo $doc['name']; ?></a></li>
+					<?php endforeach; ?>
+					</ul>
+				</div>
+				<?php endif; ?>
+
+				<div class="tabcontent">
+					<textarea id="css_tab" name="css_tab"><?php echo $css; ?></textarea>
+				</div>
+
+				<div class="tabcontent">
+					<textarea id="html_tab" name="html_tab"><?php echo htmlspecialchars($html); ?></textarea>
+				</div>
+
+				<div class="tabcontent">
+					<textarea id="js_tab" name="js_tab"><?php echo $js; ?></textarea>
+				</div>
 
 				<script src="assets/codemirror/js/codemirror.js" type="text/javascript"></script>
 				<script src="Source/mootools-core-1.3-full.js" type="text/javascript"></script>

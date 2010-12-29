@@ -1,7 +1,7 @@
 
 var editors = [];
 
-editors['html'] = CodeMirror.fromTextArea('html', {
+editors['html'] = CodeMirror.fromTextArea('html_tab', {
     parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "parsehtmlmixed.js"],
 	stylesheet: ["assets/codemirror/css/xmlcolors.css", "assets/codemirror/css/jscolors.css", "assets/codemirror/css/csscolors.css"],
 	height: "dynamic",
@@ -10,7 +10,7 @@ editors['html'] = CodeMirror.fromTextArea('html', {
 	readOnly: true
 });
 
-editors['css'] = CodeMirror.fromTextArea('css', {
+editors['css'] = CodeMirror.fromTextArea('css_tab', {
     parserfile: "parsecss.js",
     stylesheet: "assets/codemirror/css/csscolors.css",
 	height: "dynamic",
@@ -19,7 +19,7 @@ editors['css'] = CodeMirror.fromTextArea('css', {
 	readOnly: true
 });
 
-editors['js'] = CodeMirror.fromTextArea('js', {
+editors['js'] = CodeMirror.fromTextArea('js_tab', {
     parserfile: ["tokenizejavascript.js", "parsejavascript.js"],
     stylesheet: "assets/codemirror/css/jscolors.css",
 	height: "dynamic",
@@ -28,8 +28,8 @@ editors['js'] = CodeMirror.fromTextArea('js', {
 	readOnly: true
 });
 
-var tabs = $$('.tabs LI.tab');
-var content = $$('.tabcontent');
+var tabs = $$('.tabs LI.tab'),
+	content = $$('.tabcontent');
 
 tabs.each(function(tab, index){
 	tab.addEvent('click', function(){
