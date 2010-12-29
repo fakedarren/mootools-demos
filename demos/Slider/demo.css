@@ -1,7 +1,7 @@
 .slider {
-	width: 200px;
+	background: #CCC;
 	height: 16px;
-	background: grey;
+	width: 200px;
 }
 	.slider .knob {
 		background: #000;
@@ -17,7 +17,7 @@
 .advanced {
 	width: 400px;
 	margin: 5px 0;
-	background: grey;
+	background: #CCC;
 }
 	.advanced .knob {
 		cursor: pointer;

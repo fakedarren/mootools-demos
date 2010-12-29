@@ -21,7 +21,7 @@ window.addEvent('domready', function() {
 
 	$('morph-2').addEvent('click', function(){
 		$('element').morph({
-			'background': '#B86364',
+			'background-color': '#B86364',
 			'border-width': '1px',
 			'border-style': 'solid',
 			'border-color': '#f00',

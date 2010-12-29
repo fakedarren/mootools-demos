@@ -22,6 +22,7 @@
 		.tabs LI.jsfiddle button	{
 			cursor: pointer;
 			background: url(graphics/jsfiddle.png) no-repeat;
+			display: block;
 			width: 140px;
 			height: 33px;
 			border: 0;
