@@ -1,0 +1,23 @@
+#container {
+	border: 1px solid #999;
+	float: left;
+	width:145px;
+}
+
+.item {
+	background-color: #84B683;
+	cursor: pointer;
+	float: left;
+	height: 40px;
+	margin: 4px;
+	width:40px;
+}
+
+.new {
+	background-color: #4C7BA5;
+}
+
+#output {
+	float: left;
+	margin-left: 15px;
+}
