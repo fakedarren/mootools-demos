@@ -13,6 +13,9 @@
 		margin: 0 0 4px 0;
 		padding: 3px 5px 1px;
 	}
+	#accordion .content {
+		background-color: #F4F5F5;
+	}
 
 DIV.element P, DIV.element H4	{
 	margin: 0px;
