@@ -84,6 +84,7 @@ if (isset($_GET['demo'])){
 					<li><a href="?demo=Accordion">Accordion</a></li>
 					<li><a href="?demo=Slider">Slider</a></li>
 					<li><a href="?demo=Sortables">Sortables</a></li>
+					<li><a href="?demo=Enhanced-Form">Enhanced Forms</a></li>
 				</ul>
 			</div>
 			<div id="rightcolumn">
