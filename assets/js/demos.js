@@ -28,7 +28,7 @@ editors['js'] = CodeMirror.fromTextArea('js', {
 	readOnly: true
 });
 
-var tabs = $$('.tabs LI');
+var tabs = $$('.tabs LI.tab');
 var content = $$('.tabcontent');
 
 tabs.each(function(tab, index){

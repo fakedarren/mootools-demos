@@ -89,21 +89,21 @@ if (isset($_GET['demo'])){
 
 			<form action="http://jsfiddle.net/api/post/mootools/1.3/dependencies/more,art/" method="post">
 
-				<button type="submit" class="button">Edit with jsFiddle</button>
-
 				<div id="description">
 					<?php if (!empty($descriptor['name'])): echo '<h2>' . $descriptor['name'] . '</h2>'; endif; ?>
 					<?php if (!empty($description)): echo $description; endif; ?>
 				</div>
 
+
 				<ul class="tabs">
-					<li class="selected first">Demo</li>
+					<li class="selected first tab">Demo</li>
+					<li class="jsfiddle"><button type="submit">Edit with jsFiddle</button></li>
 					<?php if (!empty($descriptor['docs'])): ?>
-					<li>Docs</li>
+					<li class="tab">Docs</li>
 					<?php endif; ?>
-					<li>CSS</li>
-					<li>HTML</li>
-					<li>JavaScript</li>
+					<li class="tab">CSS</li>
+					<li class="tab">HTML</li>
+					<li class="tab">JavaScript</li>
 				</ul>
 
 				<div class="tabcontent selected">
