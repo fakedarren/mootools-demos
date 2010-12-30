@@ -1,17 +1,19 @@
+
 #container {
 	border: 1px solid #999;
-	width:145px;
+	width: 145px;
+	overflow: hidden;
 }
 
 .item {
-	background-color: #84B683;
-	cursor: pointer;
-	float: left;
 	height: 40px;
-	margin: 4px;
 	width:40px;
+	margin: 4px;
+	float: left;
+	background-color: #78BA91;
+	cursor: pointer;
 }
 
 .active {
-	background-color: #4C7BA5;
+	background-color: #6B7B95;
 }
