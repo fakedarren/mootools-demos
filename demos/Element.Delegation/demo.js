@@ -6,7 +6,7 @@ window.addEvent('domready', function() {
 		timer;
 
 	// Element.Delegation setup
-	$('container').addEvent('click:relay(.item)', function(){
+	container.addEvent('click:relay(.item)', function(){
 
 		// Check whether it is a new div or not with the Element:hasClass method
 		var message = this.hasClass('new') ? 'new div clicked!' : 'div clicked!';
