@@ -25,12 +25,13 @@
 	width: 190px;
 }
 	#actions LI, #reset {
-		color: blue;
+		color: #6B7B95;
 		cursor: pointer;
 		line-height: 18px;
 		text-decoration: underline;
 	}
 	#actions LI:HOVER, #reset:HOVER {
+		color: #E79D35;
 		text-decoration: none;
 	}
 	
