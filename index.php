@@ -114,9 +114,9 @@ if (isset($_GET['demo'])){
 						<?php if (!empty($descriptor['docs'])): ?>
 						<li class="tab">Docs</li>
 						<?php endif; ?>
-						<li class="tab">CSS</li>
-						<li class="tab">HTML</li>
-						<li class="tab">JavaScript</li>
+						<li class="code tab">CSS</li>
+						<li class="code tab">HTML</li>
+						<li class="code tab">JavaScript</li>
 					</ul>
 
 				</form>

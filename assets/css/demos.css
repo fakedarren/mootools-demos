@@ -10,11 +10,19 @@
 		text-align: center;
 	}
 	.tabs LI.tab	{
-		background: url(graphics/tab.png) no-repeat;
+		background: -moz-linear-gradient(top, #FDFDFD, #F4F5F5);
+		background: -webkit-gradient(linear, left top, left bottom, from(#FDFDFD), to(#F4F5F5));
+		border: 1px solid #CCC;
+		border-bottom: none;
 		color: #777;
+		filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FDFDFD', EndColorStr='#F4F5F5');
 		padding: 8px 0 0;
-		height: 25px;
+		height: 24px;
 		width: 74px;
+		-moz-border-radius-topleft: 6px;
+		-moz-border-radius-topright: 6px;
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
 	}
 	.tabs LI.jsfiddle	{
 		width: 140px;
@@ -34,7 +42,12 @@
 	}
 	.tabs LI.selected	{
 		color: #B86364;
-		height: 26px;
+		height: 25px;
+	}
+	.tabs LI.selected.code {
+		background: -moz-linear-gradient(top, #FDFDFD, #FFFFFF);
+		background: -webkit-gradient(linear, left top, left bottom, from(#FDFDFD), to(#FFFFFF));
+		filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FDFDFD', EndColorStr='#FFFFFF');
 	}
 .tabs:AFTER	{
 	clear: both;
