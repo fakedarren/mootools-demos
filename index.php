@@ -80,6 +80,7 @@ if (isset($_GET['demo'])){
 					<li><a href="?demo=Element.Event">Element.Event</a></li>
 					<li><a href="?demo=MouseEnter">MouseEnter</a></li>
 					<li><a href="?demo=MouseWheel">MouseWheel</a></li>
+					<li><a href="?demo=Element.Delegation">Element.Delegation</a></li>
 					<li><h4>Request</h4></li>
 					<li><a href="?demo=Request">Request</a></li>
 					<li><a href="?demo=Request.HTML">Request.HTML</a></li>
