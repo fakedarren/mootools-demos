@@ -67,14 +67,15 @@ UL	{
 	background: url(graphics/gradient.png) repeat-x;
 }
 
-#content	{
+#content {
 	margin: 0 auto;
 	padding: 0 0 50px;
 	width: 960px;
 }
-	#content #leftcolumn	{
+	#content #leftcolumn {
 		border-right: 1px solid #DDD;
 		float: left;
+		font-size: 1.1em;
 		margin: 25px 24px 0 0;
 		padding: 0 25px 50px 0;
 		width: 150px;
@@ -89,6 +90,9 @@ UL	{
 			font-size: 1.2em;
 			color: #313334;
 			line-height: 20px;
+		}
+		#content #leftcolumn A {
+			display: block;
 		}
 	#content #rightcolumn	{
 		float: left;
