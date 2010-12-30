@@ -31,12 +31,12 @@ window.addEvent('domready', function(){
 		.chain(function(){
 			log.set('html', 'Third effect completed (3/5).<br />Waiting 2 seconds before starting fourth.');
 			this.start.delay(2000, this, {
-				'background-color': '#89c577'
+				'background-color': '#78BA91'
 			});
 		}).chain(function(){
 			log.set('html', 'Fourth effect completed (4/5).<br />Waiting 1 second before starting fifth.');
 			this.start.delay(1000, this, {
-				'background-color': '#4f8096',
+				'background-color': '#A87AAD',
 				'width': 100,
 				'height': 70
 			});

@@ -1,7 +1,7 @@
 #box {
     height: 400px;
     width: 100%;
-    background: #ccc;
+    background: #ddd;
     margin-top: 10px;
     overflow: hidden;
 }
@@ -9,6 +9,6 @@
 #target {
     height: 50px;
     width: 50px;
-    background: #ff3300;
+    background: #C17878;
     position: absolute;
 }​

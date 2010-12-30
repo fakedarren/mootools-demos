@@ -3,7 +3,7 @@
 	position: relative;
 } 
 	#draggables DIV {
-		background: #C17878;
+		background: #78BA91;
 		cursor: move;
 		height: 50px;
 		left: 10px;
@@ -13,7 +13,7 @@
 	}
 	 
 #droppables DIV {
-	background: #1D1D20;
+	background: #6B7B95;
 	float: left;
 	height: 100px;
 	margin: 10px;
