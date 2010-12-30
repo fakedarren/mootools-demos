@@ -1,35 +1,36 @@
-<a id="link" href="#">Execute Example</a>
+<p><a id="link" href="#">Execute Example</a></p>
 
-<div class="element"></div>
-<div class="element"></div>
-<div class="element otherElement"></div>
-<div class="element otherElement"></div>
-
-<div style="clear: both;"></div>
-<div class="help">
-	<strong>Why?</strong> Via the newly added method we do not have to loop through the Array with
-	Array.each to just start the same method with same arguments on all the elements in the
-	given Array. If you need that functionality more often it is better to just add another method
-	to the Native then creating pointless functions or writing the same code again and again.
-	You should get the idea!
+<div id="elements">
+	<div class="element"></div>
+	<div class="element"></div>
+	<div class="element otherElement"></div>
+	<div class="element otherElement"></div>
 </div>
 
 <h3>Code:</h3>
-<pre>Array.implement({
+<pre>Elements.implement({
 
-	invoke: function(fn, args){
-		var result = [];
+	equalize: function(property){
+		var sum = 0,
+			length = i = this.length;
+		while (i--) sum += this[i].getDimensions()[property];
+		var average = Math.round(sum / length);
+		i = length;
+		while (i--) this.tween(property, average);
+		return this;
+	},
 
-		for (var i = 0, l = this.length; i &lt; l; i++){
-			if(this[i] &amp;&amp; this[i][fn]){
-				result.push(args ? this[i][fn].pass(args, this[i])() : this[i][fn]());
-			}
+	setRandom: function(property, min, max){
+		var i = this.length, value;
+		while (i--){
+			value = Math.round(min + (max - min) * Math.random());
+			this[i].tween(property, value);
 		}
-
-		return result;
+		return this;
 	}
 
 });</pre>
 
 <h3>Usage:</h3>
-<pre>myArray.invoke('fn', args);</pre>
+<pre>myElements.equalize(property);
+myElements.setRandom(property, min, max);</pre>

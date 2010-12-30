@@ -1,38 +1,38 @@
 
-// We add the "invoke"-Method to Arrays
-Array.implement({
+// We add the "equalize" and "setRandom" methods to Elements
+Elements.implement({
 
-	invoke: function(fn, args){
-		var result = [];
+	equalize: function(property){
+		var sum = 0,
+			length = i = this.length;
+		while (i--) sum += this[i].getDimensions()[property];
+		var average = Math.round(sum / length);
+		i = length;
+		while (i--) this.tween(property, average);
+		return this;
+	},
 
-		for (var i = 0, l = this.length; i < l; i++){
-			if(this[i] && this[i][fn]){
-				result.push(args ? this[i][fn].pass(args, this[i])() : this[i][fn]());
-			}
+	setRandom: function(property, min, max){
+		var i = this.length, value;
+		while (i--){
+			value = Math.round(min + (max - min) * Math.random());
+			this[i].tween(property, value);
 		}
-
-		return result;
+		return this;
 	}
 
 });
 
 window.addEvent('domready', function(){
 
-	var els = $$('div.element');
+	var els = $$('div.element'), i = false;
 
-	var myArray = [
-		new Fx.Tween(els[0]),
-		new Fx.Tween(els[1]),
-		new Fx.Tween(els[2]),
-		new Fx.Tween(els[3]),
-	];
+	$('link').addEvent('click', function(event){
+		event.stop();
 
-	var i = false;
+		i = !i
 
-	$('link').addEvent('click', function(e){
-		e.stop();
-
-		i = !i;
-		myArray.invoke('start', ['height', i ? '120px' : '50px']);
+		if (i) els.equalize('height');
+		else els.setRandom('height', 30, 100);
 	});
 });
