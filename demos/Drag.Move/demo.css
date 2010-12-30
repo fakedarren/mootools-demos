@@ -1,25 +1,24 @@
 #container {
 	background: #DDD;
-	height: 160px;
+	height: 260px;
 	position: relative;
-	width: 330px;
 }
  
 #drag {
-	background: #000;
+	background: #78BA91;
 	cursor: move;
-	height: 20px;
+	height: 40px;
 	left: 0;
 	position: absolute;
 	top: 0;
-	width: 20px;
+	width: 40px;
 }
  
 .drop {
-	background: #F30;
+	background: #6B7B95;
 	float: left;
-	height: 40px;
-	margin-left: 10px;
-	margin-top: 10px;
-	width: 30px;
+	height: 60px;
+	margin-left: 20px;
+	margin-top: 20px;
+	width: 72px;
 }

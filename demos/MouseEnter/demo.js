@@ -10,8 +10,8 @@ window.addEvent('domready', function(){
 		mouseenter: function(){
 			// This morphes the opacity and backgroundColor
 			this.morph({
-				'opacity': 1,
-				'background-color': '#c6d880'
+				'opacity': 0.6,
+				'background-color': '#E79D35'
 			});
 		},
 		mouseleave: function(){

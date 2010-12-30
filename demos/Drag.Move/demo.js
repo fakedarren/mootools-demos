@@ -8,15 +8,15 @@ window.addEvent('domready', function(){
 		droppables: $$('.drop'),
 
 		onEnter: function(element, droppable){
-			droppable.setStyle('background', '#000');
+			droppable.setStyle('background', '#E79D35');
 		},
 
 		onLeave: function(element, droppable){
-			droppable.setStyle('background', '#F30');
+			droppable.setStyle('background', '#6B7B95');
 		},
 
 		onDrop: function(element, droppable){
-			if (droppable) droppable.setStyle('background', '#FACE8F');
+			if (droppable) droppable.setStyle('background', '#C17878');
 		}
 
 	});

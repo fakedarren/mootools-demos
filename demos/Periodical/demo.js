@@ -6,8 +6,8 @@ window.addEvent('domready', function(){
 
 	// Create the function wich will run the effect
 	var fx = function() {
-		effect.start('background-color', '#6684a0').chain(function() {
-			effect.start('background-color', '#bcd965');
+		effect.start('background-color', '#6B7B95').chain(function(){
+			effect.start('background-color', '#E79D35');
 		});
 		// return this function, so you could do fx() which returns fx,
 		//or fx()()() which still returns fx and runs the function 3 times

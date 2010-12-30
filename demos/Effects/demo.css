@@ -1,7 +1,7 @@
 
 #element {
 	background-color: #F9F9F9;
-	border: 1px solid #000;
+	border: 1px solid #6B7B95;
 	color: #000;
 	float: left;
 	height: 60px;
@@ -14,7 +14,7 @@
 	background-color: #C6D880;
 	border: 3px dashed #000;
 	font-size: 20px;
-	height: 50px;
+	height: 60px;
 	padding: 20px;
 	width: 300px;
 }
