@@ -2,7 +2,8 @@
 window.addEvent('domready', function() {
 
 	var output = $('output'),
-		container = $('container');
+		container = $('container'),
+		timer;
 
 	// Element.Delegation setup
 	$('container').addEvent('click:relay(.item)', function(){
@@ -11,9 +12,10 @@ window.addEvent('domready', function() {
 		var message = this.hasClass('new') ? 'new div clicked!' : 'div clicked!';
 		output.set('text', message);
 
-		(function(){ // clear the message after 500 ms
+		clearTimeout(timer);
+		timer = (function(){ // clear the message after 1000 ms
 			output.set('text', '');
-		}).delay(500);
+		}).delay(1000);
 
 	});
 
