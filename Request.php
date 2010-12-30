@@ -9,7 +9,7 @@ if (!empty($_GET['html'])){
 } elseif (!empty($_POST['html'])){
 	$output = $_POST['html'];
 } elseif (!empty($_POST['json'])){
-	$output = $_POST['json'];
+	$output = stripslashes($_POST['json']);
 } elseif (!empty($_GET['jsonp'])){
 
 	header('Content-Type: text/javascript');
