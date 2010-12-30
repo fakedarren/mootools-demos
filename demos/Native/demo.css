@@ -1,3 +1,4 @@
+
 #elements {
 	overflow: hidden;
 }
@@ -23,8 +24,4 @@ pre {
 	color: #333;
 	overflow: auto;
 	font-size: 12px;
-}
-
-p.margin {
-	margin: 5px 0;
 }
