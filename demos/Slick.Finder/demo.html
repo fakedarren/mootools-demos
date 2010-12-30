@@ -6,20 +6,15 @@
 <input type="text" id="selector"  />
 <input type="button" value="Search the DOM" id="searchDOM" /><br />
 
-
 <ul id="selector_list">
-	<li><h4>Selectors:</h4></li>
+	<li><h4>CSS Selectors:</h4></li>
 	<li>
-		<a href="#">p !> .chapter</a><br />
-		Matches a .chapter that is a direct parent of a paragraph
+		<a href="#">p, a, label</a><br />
+		Matches all paragraph, links and labels
 	</li>
 	<li>
-		<a href="#">p ! div.chapter</a><br />
-		Matches a div.chapter which is any parent of a paragraph
-	</li>
-	<li>
-		<a href="#">a !> strong ! th:nth-child(3) ! table</a><br />
-		Give me every TABLE whose third TH contains a STRONG A
+		<a href="#">tr td:first-child</a><br />
+		Matches all first td in every row
 	</li>
 	<li>
 		<a href="#">input:checked + label</a><br />
@@ -36,14 +31,28 @@
 		<a href="#">table tr:odd td</a><br />
 		Selects all td elements of the odd rows of the table
 	</li>
+	<li><h4>Reversed Combinators:</h4></li>
+	<li>
+		<a href="#">p !> .chapter</a><br />
+		Matches a .chapter that is a direct parent of a paragraph
+	</li>
+	<li>
+		<a href="#">p ! div.chapter</a><br />
+		Matches a div.chapter which is any parent of a paragraph
+	</li>
+	<li>
+		<a href="#">a !> strong ! th:nth-child(3) ! table</a><br />
+		Give me every TABLE whose third TH contains a STRONG A
+	</li>
 </ul>
 
 
 <div id="search_wrapper">
 
+	<h4>The elements we search in:</h4>
+	
 	<div id="seach_in_here">
 
-		<h4>The elements we search in:</h4>
 
 		<div class="chapter">
 			<p>div.chapter > p</p>

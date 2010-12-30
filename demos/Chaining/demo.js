@@ -8,7 +8,9 @@ window.addEvent('domready', function(){
 		transition: Fx.Transitions.Quart.easeOut
 	});
 
-	$('start').addEvent('click', function(){
+	$('start').addEvent('click', function(event){
+
+		event.stop();
 
 		log.set('html', 'starting...');
 
