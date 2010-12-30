@@ -1,0 +1,19 @@
+/*
+---
+
+name: Fx.Sort
+
+description: With Fx.Sort you can reorder a group of items with a transition. 
+
+authors:
+  - The MooTools Developer Team
+
+docs:
+  - name: Fx.Sort
+    url: http://mootools.net/docs/more/Fx/Fx.Sort
+
+...
+*/
+
+<p>With Fx.Sort you can reorder a group of items with a transition.</p>
+<p><strong>Note:</strong> Fx.Sort does not, by default, reorder the DOM; it just puts the elements into x/y locations that imply the sort, but their location in the DOM remains unless you execute Fx.Sort:rearrangeDOM.</p>
