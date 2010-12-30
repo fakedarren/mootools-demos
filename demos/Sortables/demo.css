@@ -3,7 +3,8 @@ ul#example1 {
 	width: 200px;
 }
 
-LI	{
+#example1 LI,
+#example2 LI	{
 	cursor: move;
 	padding: 3px;
 }
