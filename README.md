@@ -8,5 +8,5 @@ You can submit new demos by forking this repository and send us a pull request.
 
 #### Used Color Scheme
 
-http://jsfiddle.net/Z5u5s/3/
+[MooTools Demos Color Scheme](http://jsfiddle.net/Z5u5s/3/)
 
