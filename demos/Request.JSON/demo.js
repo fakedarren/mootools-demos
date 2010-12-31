@@ -39,13 +39,22 @@ window.addEvent('domready', function() {
 		e.stop();
 
 		var request = new Request.JSON({
+
 			url: '/echo/json/',
+
+			onRequest: function(){
+				gallery.set('text', 'Loading...');
+			},
+
 			onComplete: function(jsonObj) {
+				gallery.empty();
 				addImages(jsonObj.previews);
 			},
+
 			data: { // our demo runner and jsfiddle will return this exact data as a JSON string
 				json: JSON.encode(data)
 			}
+
 		}).send();
 	});
 
