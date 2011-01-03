@@ -1,32 +1,34 @@
 
-var editors = [];
+var editors = {
 
-editors['html'] = CodeMirror.fromTextArea('html_tab', {
-    parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "parsehtmlmixed.js"],
-	stylesheet: ["assets/codemirror/css/xmlcolors.css", "assets/codemirror/css/jscolors.css", "assets/codemirror/css/csscolors.css"],
-	height: "dynamic",
-    path: "assets/codemirror/js/",
-    autoMatchParens: true,
-	readOnly: true
-});
+	html: CodeMirror.fromTextArea('html_tab', {
+	    parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "parsehtmlmixed.js"],
+		stylesheet: ["assets/codemirror/css/xmlcolors.css", "assets/codemirror/css/jscolors.css", "assets/codemirror/css/csscolors.css"],
+		height: "dynamic",
+	    path: "assets/codemirror/js/",
+	    autoMatchParens: true,
+		readOnly: true
+	}),
 
-editors['css'] = CodeMirror.fromTextArea('css_tab', {
-    parserfile: "parsecss.js",
-    stylesheet: "assets/codemirror/css/csscolors.css",
-	height: "dynamic",
-    path: "assets/codemirror/js/",
-    autoMatchParens: true,
-	readOnly: true
-});
+	js: CodeMirror.fromTextArea('js_tab', {
+	    parserfile: ["tokenizejavascript.js", "parsejavascript.js"],
+	    stylesheet: "assets/codemirror/css/jscolors.css",
+		height: "dynamic",
+	    path: "assets/codemirror/js/",
+	    autoMatchParens: true,
+		readOnly: true
+	}),
 
-editors['js'] = CodeMirror.fromTextArea('js_tab', {
-    parserfile: ["tokenizejavascript.js", "parsejavascript.js"],
-    stylesheet: "assets/codemirror/css/jscolors.css",
-	height: "dynamic",
-    path: "assets/codemirror/js/",
-    autoMatchParens: true,
-	readOnly: true
-});
+	css: CodeMirror.fromTextArea('css_tab', {
+	    parserfile: "parsecss.js",
+	    stylesheet: "assets/codemirror/css/csscolors.css",
+		height: "dynamic",
+	    path: "assets/codemirror/js/",
+	    autoMatchParens: true,
+		readOnly: true
+	})
+
+};
 
 var tabs = $$('.tabs LI.tab'),
 	content = $$('.tabcontent');
