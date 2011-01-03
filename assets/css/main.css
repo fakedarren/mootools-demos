@@ -97,6 +97,6 @@ UL	{
 	#content #rightcolumn	{
 		float: left;
 		margin: 25px 0 0;
-		overflow-x: hidden;
+		overflow: hidden;
 		width: 760px;
 	}

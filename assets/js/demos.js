@@ -37,5 +37,6 @@ tabs.each(function(tab, index){
 		content.removeClass('selected');
 		tabs[index].addClass('selected');
 		content[index].addClass('selected');
+		for (var name in editors) if (editors.hasOwnProperty(name)) editors[name].setDynamicHeight();
 	});
 });
