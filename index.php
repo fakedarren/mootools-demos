@@ -75,6 +75,7 @@ if (isset($_GET['demo'])){
 					<li><a href="?demo=Effects">Effects</a></li>
 					<li><a href="?demo=Fx.Morph">Fx.Morph</a></li>
 					<li><a href="?demo=Fx.Slide">Fx.Slide</a></li>
+					<li><a href="?demo=Fx.Sort">Fx.Sort</a></li>
 					<li><a href="?demo=Transitions">Transitions</a></li>
 					<li><h4>Events</h4></li>
 					<li><a href="?demo=Element.Event">Element.Event</a></li>
