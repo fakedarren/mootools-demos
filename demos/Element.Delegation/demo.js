@@ -12,6 +12,8 @@ window.addEvent('domready', function() {
 		var message = this.hasClass('new') ? 'new div clicked!' : 'div clicked!';
 		output.set('text', message);
 
+		this.set('tween', {link: 'chain'}).fade(0.5).fade(1);
+
 		clearTimeout(timer);
 		timer = (function(){ // clear the message after 1000 ms
 			output.set('text', '');
