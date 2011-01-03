@@ -1,66 +1,43 @@
-<a href="#" class="fireSort">forward</a> | <a href="#" class="fireSort">backward</a> | <a href="#" class="fireSort">reverse</a>  |
-<input id="mode" type="checkbox" value="vertical" checked />
-<label for="sortMode">vertical sort</label> | 
 <label for="fxTransition">Transition</label>
 <select id="fxTransition" style="width: 100px;">
-	<option value="linear">
-		Linear
-	</option>
-	<option value="Quad">
-		Quadratic
-	</option>
-	<option value="Cubic">
-		Cubic
-	</option>
-	<option value="Quart">
-		Quartic
-	</option>
-	<option value="Quint">
-		Quintic
-	</option>
-	<option value="Sine">
-		Sinusoidal
-	</option>
-	<option value="Expo">
-		Exponential
-	</option>
-	<option value="Circ">
-		Circular
-	</option>
-	<option value="Bounce">
-		Bouncing
-	</option>
-	<option value="Back" selected="">
-		Back
-	</option>
-	<option value="Elastic">
-		Elastic
-	</option>
+	<option value="linear">Linear</option>
+	<option value="Quad">Quadratic</option>
+	<option value="Cubic">Cubic</option>
+	<option value="Quart">Quartic</option>
+	<option value="Quint">Quintic</option>
+	<option value="Sine">Sinusoidal</option>
+	<option value="Expo">Exponential</option>
+	<option value="Circ">Circular</option>
+	<option value="Bounce">Bouncing</option>
+	<option value="Back" selected="">Back</option>
+	<option value="Elastic">Elastic</option>
 </select>
 
 <select id="fxEase" style="width: 100px;">
-	<option value="easeIn">
-		easeIn
-	</option>
-	<option value="easeOut">
-		easeOut
-	</option>
-	<option value="easeInOut" selected="">
-		easeInOut
-	</option>
+	<option value="easeIn">easeIn</option>
+	<option value="easeOut">easeOut</option>
+	<option value="easeInOut" selected="">easeInOut</option>
 </select>
 <label for="duration">duration</label>
-<input type="text" id="duration" value="1000" style="width: 60px;">
+<input type="text" id="duration" value="1000" style="width: 60px;" />
+<input id="mode" type="checkbox" value="vertical" checked />
+<label for="mode">vertical sort</label>
 <hr />
 <div id="container"  >
-	<div class="sort">div 0</div>
-	<div class="sort">div 1</div>
-	<div class="sort">div 2</div>
-	<div class="sort">div 3</div>
-	<div class="sort">div 4</div>
+	<div class="red sort">red</div>
+    <div class="purple sort">purple</div>
+    <div class="green sort">green</div>
+    <div class="orange sort">orange</div>
+    <div class="blue sort">blue</div>
 </div>
 <hr />
-<a href="#" id="sort">Sort [1,3,0,2,4]</a> | <a href="#" id="swap">Swap first and last child</a> | <a href="#" id="order">Current order</a> | <a href="#" id="reorderDOM">Fx.Sort:rearrangeDOM</a>
+<a href="#" class="fireSort">forward</a> |
+<a href="#" class="fireSort">backward</a> |
+<a href="#" class="fireSort">reverse</a>  |
+<a href="#" id="sort">Sort [1,3,0,2,4]</a> |
+<a href="#" id="swap">Swap first and last child</a> |
+<a href="#" id="order">Current order</a> |
+<a href="#" id="reorderDOM">rearrangeDOM</a>
 <hr />
-<span> Current DOM order </span>
-<pre id="output"></pre>
+<h3> Current DOM order </h3>
+<code id="output"></code>
