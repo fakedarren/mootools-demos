@@ -39,13 +39,13 @@ window.addEvent('domready', function(){
 		displayDOM();	//onComplete isn't fire so update UI DOM visual manually
 	});
 
-	document.id('swap').addEvent('click', function(e){
+	document.id('swap').addEvent('click', function(event){
 		event.stop();
 		var elems = container.getChildren();
 		sorter.swap(elems[0], elems[elems.length - 1]);
 	});
 
-	document.id('sort').addEvent('click', function(e){
+	document.id('sort').addEvent('click', function(event){
 		event.stop();
 		sorter.sort([1, 3, 0, 2, 4]);
 	});
