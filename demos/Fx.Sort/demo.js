@@ -1,23 +1,24 @@
 window.addEvent('domready', function() {
-	var container = document.id('container'), // cache sort container
-		sorter = new Fx.Sort($$('#container .sort'), { // setup sort object
-				"duration": document.id('duration').value,
-				"transition": Fx.Transitions[document.id('fxTransition').value][document.id('fxEase').value],
-				"mode": "vertical",
-				onComplete: function() {
-					displayDOM() ;
-				}
-			});
+	var container = document.id('container'), //cache sort container
+        queuedElems = [], //used to track what elements to swap on click
+		sorter = new Fx.Sort($$('#container .sort'), { //setup sort object
+            "duration": document.id('duration').value,
+            "transition": Fx.Transitions[document.id('fxTransition').value][document.id('fxEase').value],
+            "mode": "vertical",
+            onComplete: function() {
+                displayDOM();// update the UI DOM visual on each sort
+            }
+        });
 	
-	displayDOM();
+	displayDOM();//update the UI DOM visual on domready
 
+    //sort based on text of element that was clicked (forward, backward, reverse)
 	$$('.fireSort').addEvent('click', function(e) {
             e.preventDefault();
-            //sort based on text of element that was clicked (forward, backward, reverse)
             sorter[this.get('text')]();
         }
 	);
-	
+
 	document.id('order').addEvent('click', function(e) {
             e.preventDefault();
             alert(sorter.currentOrder);
@@ -27,7 +28,7 @@ window.addEvent('domready', function() {
 	document.id('reorderDOM').addEvent('click', function(e) {
             e.preventDefault();
             sorter.rearrangeDOM();
-            displayDOM();
+            displayDOM();//onComplete isn't fire so update UI DOM visual manually
         }
 	);
 	
@@ -35,9 +36,9 @@ window.addEvent('domready', function() {
         sorter.rearrangeDOM(); //rearrange DOM first so that elements stack properly
         sorter.options.mode = (this.checked) ? "vertical":"horizontal";
         container.toggleClass('container');
-        displayDOM();
+        displayDOM();//onComplete isn't fire so update UI DOM visual manually
 	});
-	
+
 	document.id('swap').addEvent('click', function(e) {
             e.preventDefault();
             var elems = container.getChildren();
@@ -62,12 +63,18 @@ window.addEvent('domready', function() {
 	document.id('duration').addEvent('keyup', function() {
 		sorter.options.duration = this.value.toInt();
 	});
+
+    //allows users to click on elements to swap their positions
+    $$('.sort').addEvent('click', function(){
+       if(queuedElems.length > 0) sorter.swap(queuedElems.pop(), this);
+       else queuedElems.push(this);
+    });
 	
 	//helper function, displays the DOM visually to see how the sort effects it
 	function displayDOM() {
         var str = '';
         container.getChildren().each( function(item) {
-            str += '<div style="'+item.style.cssText+'">'+item.get('text')+'</div>\r\n';
+            str += '<div style="'+item.style.cssText+'">'+item.get('text')+'</div>\n';
         });
         document.id('output').set('text',  str);
 	}

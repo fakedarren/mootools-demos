@@ -7,6 +7,7 @@
     margin: 3px;
     padding: 2px;
     border: 1px solid #333;
+    cursor: pointer;
 }
 .red {background-color: #C17878;}
 .purple {background-color: #A87AAD;}
@@ -14,3 +15,8 @@
 .orange {background-color: #E79D35;}
 .blue {background-color: #6B7B95;}
 strong{color: #C17878;}
+
+#note{
+    font-size: 10px;
+    color: #A87AAD;
+}
