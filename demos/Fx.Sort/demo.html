@@ -1,3 +1,4 @@
+
 <label for="fxTransition">Transition</label>
 <select id="fxTransition" style="width: 100px;">
 	<option value="linear">Linear</option>
@@ -12,6 +13,7 @@
 	<option value="Back" selected="">Back</option>
 	<option value="Elastic">Elastic</option>
 </select>
+
 <select id="fxEase" style="width: 100px;">
 	<option value="easeIn">easeIn</option>
 	<option value="easeOut">easeOut</option>
@@ -38,8 +40,8 @@
 
 <hr />
 
-<a href="#" class="fireSort" title="Arrange the items in the original order (0,1,2,3,etc)">forward</a> |
 <a href="#" class="fireSort" title="Arrange the items in the original order reversed (...3,2,1,0)">backward</a> |
+<a href="#" class="fireSort" title="Arrange the items in the original order (0,1,2,3,etc)">forward</a> |
 <a href="#" class="fireSort" title="Arrange the items in the current order reversed">reverse</a>  |
 <a href="#" id="sort" title="Rearranges the items visually into a new order">Sort [1,3,0,2,4]</a> |
 <a href="#" id="swap" title="Swaps the position of one item with another">Swap first and last child</a> |
@@ -47,4 +49,4 @@
 <a href="#" id="reorderDOM" title="Rearranges the DOM to the current sort order">rearrangeDOM</a>
 
 <h3> Current DOM order </h3>
-<code id="output"></code>
+<pre id="output"></pre>
