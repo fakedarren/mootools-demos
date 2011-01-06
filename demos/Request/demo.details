@@ -1,15 +1,15 @@
 /*
 ---
 
-name: Drag.Move
+name: Request
 
-description: A drag example showing how to manage droppable areas
+description: Simple Ajax example
 
 authors:
   -
 
 keywords:
-  - Drag
+  - Request
 
 docs:
   - name: Request
