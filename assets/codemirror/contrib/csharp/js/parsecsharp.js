@@ -7,7 +7,7 @@
  * See manual.html for more info about the parser interface.
  */
 
-var JSParser = Editor.Parser = (function() {
+var JSParser = Editor.Parser = ((() => {
   // Token types that can be considered to be atoms.
   var atomicTypes = {"atom": true, "number": true, "variable": true, "string": true, "regexp": true};
   // Setting that can be used to have JSON data indent properly.
@@ -32,8 +32,9 @@ var JSParser = Editor.Parser = (function() {
 
   // CSharp indentation rules.
   function indentCSharp(lexical) {
-    return function(firstChars) {
-      var firstChar = firstChars && firstChars.charAt(0), type = lexical.type;
+    return firstChars => {
+      var firstChar = firstChars && firstChars.charAt(0);
+      var type = lexical.type;
       var closing = firstChar == type;
       if (type == "vardef")
         return lexical.indented + 4;
@@ -67,13 +68,16 @@ var JSParser = Editor.Parser = (function() {
     // line. Used to create lexical scope objects.
     var column = 0;
     var indented = 0;
+
     // Variables which are used by the mark, cont, and pass functions
     // below to communicate with the driver loop in the 'next'
     // function.
-    var consume, marked;
-  
+    var consume;
+
+    var marked;
+
     // The iterator object.
-    var parser = {next: next, copy: copy};
+    var parser = {next, copy};
 
     function next(){
       // Start by performing any 'lexical' actions (adjusting the
@@ -130,8 +134,10 @@ var JSParser = Editor.Parser = (function() {
     // objects are not mutated in a harmful way, so they can be shared
     // between runs of the parser.
     function copy(){
-      var _lexical = lexical, _cc = cc.concat([]), _tokenState = tokens.state;
-  
+      var _lexical = lexical;
+      var _cc = cc.concat([]);
+      var _tokenState = tokens.state;
+
       return function copyParser(input){
         lexical = _lexical;
         cc = _cc.concat([]); // copies the array
@@ -150,12 +156,12 @@ var JSParser = Editor.Parser = (function() {
     // cont and pass are used by the action functions to add other
     // actions to the stack. cont will cause the current token to be
     // consumed, pass will leave it for the next action.
-    function cont(){
-      push(arguments);
+    function cont(...args) {
+      push(args);
       consume = true;
     }
-    function pass(){
-      push(arguments);
+    function pass(...args) {
+      push(args);
       consume = false;
     }
     // Used to change the style of the current token.
@@ -165,7 +171,7 @@ var JSParser = Editor.Parser = (function() {
 
     // Push a new lexical context of the given type.
     function pushlex(type, info) {
-      var result = function(){
+      var result = () => {
         lexical = new CSharpLexical(indented, column, type, null, lexical, info)
       };
       result.lex = true;
@@ -179,7 +185,7 @@ var JSParser = Editor.Parser = (function() {
     // The 'lex' flag on these actions is used by the 'next' function
     // to know they can (and have to) be ran before moving on to the
     // next token.
-  
+
     // Creates an action that discards tokens until it finds one of
     // the given type.
     function expect(wanted){
@@ -309,20 +315,20 @@ var JSParser = Editor.Parser = (function() {
     function funarg(type, value){
       if (type == "variable"){cont();}
     }
-    
+
     function classdef(type) {
         if (type == "variable") cont(classdef, statement);
         else if (type == ":") cont(classdef, statement);
     }
-  
+
     return parser;
   }
 
   return {
     make: parseCSharp,
     electricChars: "{}:",
-    configure: function(obj) {
+    configure(obj) {
       if (obj.json != null) json = obj.json;
     }
   };
-})();
+}))();

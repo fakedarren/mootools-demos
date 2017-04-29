@@ -22,11 +22,11 @@ function tokenizer(source, state) {
   }
 
   var tokenizer = {
-    state: state,
+    state,
 
-    take: function(type) {
+    take(type) {
       if (typeof(type) == "string")
-        type = {style: type, type: type};
+        type = {style: type, type};
 
       type.content = (type.content || "") + source.get();
       if (!/\n$/.test(type.content))
@@ -35,7 +35,7 @@ function tokenizer(source, state) {
       return type;
     },
 
-    next: function () {
+    next() {
       if (!source.more()) throw StopIteration;
 
       var type;
@@ -48,7 +48,7 @@ function tokenizer(source, state) {
         type = "whitespace";
       else
         while (!type)
-          type = this.state(source, function(s) {tokenizer.state = s;});
+          type = this.state(source, s => {tokenizer.state = s;});
 
       return this.take(type);
     }

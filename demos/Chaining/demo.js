@@ -1,5 +1,5 @@
 
-window.addEvent('domready', function(){
+window.addEvent('domready', () => {
 
 	var log = $('log');
 
@@ -8,7 +8,7 @@ window.addEvent('domready', function(){
 		transition: Fx.Transitions.Quart.easeOut
 	});
 
-	$('start').addEvent('click', function(event){
+	$('start').addEvent('click', event => {
 
 		event.stop();
 
@@ -40,7 +40,7 @@ window.addEvent('domready', function(){
 				'width': 100,
 				'height': 70
 			});
-		}).chain(function(){
+		}).chain(() => {
 			log.set('html', 'Fifth effect completed (5/5).');
 		});
 

@@ -1,6 +1,6 @@
 /* Tokenizer for JavaScript code */
 
-var tokenizeJavaScript = (function() {
+var tokenizeJavaScript = ((() => {
   // Advance the stream until the given character (not preceded by a
   // backslash) is encountered, or the end of the line is reached.
   function nextUntilUnescaped(source, end) {
@@ -20,9 +20,9 @@ var tokenizeJavaScript = (function() {
   // incorrect code). The style information included in these objects
   // is used by the highlighter to pick the correct CSS style for a
   // token.
-  var keywords = function(){
+  var keywords = (() => {
     function result(type, style){
-      return {type: type, style: "js-" + style};
+      return {type, style: "js-" + style};
     }
     // keywords that take a parenthised expression, and then a
     // statement (if)
@@ -45,7 +45,7 @@ var tokenizeJavaScript = (function() {
       "true": atom, "false": atom, "null": atom, "undefined": atom, "NaN": atom, "Infinity": atom,
       "ometa": keywordB
     };
-  }();
+  })();
 
   // Some helper regexps
   var isOperatorChar = /[+\-*&%=<>!?|~]/;
@@ -56,9 +56,9 @@ var tokenizeJavaScript = (function() {
   // we are inside of a multi-line comment and whether the next token
   // could be a regular expression).
   function jsTokenState(inside, regexp) {
-    return function(source, setState) {
+    return (source, setState) => {
       var newInside = inside;
-      var type = jsToken(inside, regexp, source, function(c) {newInside = c;});
+      var type = jsToken(inside, regexp, source, c => {newInside = c;});
       var newRegexp = type.type == "operator" || type.type == "keyword c" || type.type.match(/^[\[{}\(,;:]$/);
       if (newRegexp != regexp || newInside != inside)
         setState(jsTokenState(newInside, newRegexp));
@@ -203,7 +203,5 @@ var tokenizeJavaScript = (function() {
   }
 
   // The external interface to the tokenizer.
-  return function(source, startState) {
-    return tokenizer(source, startState || jsTokenState(false, true));
-  };
-})();
+  return (source, startState) => tokenizer(source, startState || jsTokenState(false, true));
+}))();

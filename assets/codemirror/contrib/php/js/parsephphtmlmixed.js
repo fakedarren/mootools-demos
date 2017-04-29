@@ -8,7 +8,7 @@ Yahoo! Inc. under the BSD (revised) open source license
 Based on parsehtmlmixed.js by Marijn Haverbeke.
 */
 
-var PHPHTMLMixedParser = Editor.Parser = (function() {
+var PHPHTMLMixedParser = Editor.Parser = ((() => {
   var processingInstructions = ["<?php"];
 
   if (!(PHPParser && CSSParser && JSParser && XMLParser))
@@ -16,9 +16,12 @@ var PHPHTMLMixedParser = Editor.Parser = (function() {
   XMLParser.configure({useHTMLKludges: true});
 
   function parseMixed(stream) {
-    var htmlParser = XMLParser.make(stream), localParser = null,
-        inTag = false, lastAtt = null, phpParserState = null;
-    var iter = {next: top, copy: copy};
+    var htmlParser = XMLParser.make(stream);
+    var localParser = null;
+    var inTag = false;
+    var lastAtt = null;
+    var phpParserState = null;
+    var iter = {next: top, copy};
 
     function top() {
       var token = htmlParser.next();
@@ -58,7 +61,7 @@ var PHPHTMLMixedParser = Editor.Parser = (function() {
       else
         localParser = parser.make(stream, baseIndent + indentUnit);
 
-      return function() {
+      return () => {
         if (stream.lookAhead(tag, false, false, true)) {
           if (parser == PHPParser) phpParserState = localParser.copy();
           localParser = null;
@@ -67,7 +70,8 @@ var PHPHTMLMixedParser = Editor.Parser = (function() {
         }
 
         var token = localParser.next();
-        var lt = token.value.lastIndexOf("<"), sz = Math.min(token.value.length - lt, tag.length);
+        var lt = token.value.lastIndexOf("<");
+        var sz = Math.min(token.value.length - lt, tag.length);
         if (lt != -1 && token.value.slice(lt, lt + sz).toLowerCase() == tag.slice(0, sz) &&
             stream.lookAhead(tag.slice(sz), false, false, true)) {
           stream.push(token.value.slice(lt));
@@ -76,7 +80,7 @@ var PHPHTMLMixedParser = Editor.Parser = (function() {
 
         if (token.indentation) {
           var oldIndent = token.indentation;
-          token.indentation = function(chars) {
+          token.indentation = chars => {
             if (chars == "</")
               return baseIndent;
             else
@@ -89,9 +93,13 @@ var PHPHTMLMixedParser = Editor.Parser = (function() {
     }
 
     function copy() {
-      var _html = htmlParser.copy(), _local = localParser && localParser.copy(),
-          _next = iter.next, _inTag = inTag, _lastAtt = lastAtt, _php = phpParserState;
-      return function(_stream) {
+      var _html = htmlParser.copy();
+      var _local = localParser && localParser.copy();
+      var _next = iter.next;
+      var _inTag = inTag;
+      var _lastAtt = lastAtt;
+      var _php = phpParserState;
+      return _stream => {
         stream = _stream;
         htmlParser = _html(_stream);
         localParser = _local && _local(_stream);
@@ -108,9 +116,9 @@ var PHPHTMLMixedParser = Editor.Parser = (function() {
   return {
     make: parseMixed,
     electricChars: "{}/:",
-    configure: function(conf) {
+    configure(conf) {
       if (conf.opening != null) processingInstructions = conf.opening;
     }
   };
 
-})();
+}))();

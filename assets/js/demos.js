@@ -30,11 +30,11 @@ var editors = {
 
 };
 
-var tabs = $$('.tabs LI.tab'),
-	content = $$('.tabcontent');
+var tabs = $$('.tabs LI.tab');
+var content = $$('.tabcontent');
 
-tabs.each(function(tab, index){
-	tab.addEvent('click', function(){
+tabs.each((tab, index) => {
+	tab.addEvent('click', () => {
 		tabs.removeClass('selected');
 		content.removeClass('selected');
 		tabs[index].addClass('selected');

@@ -16,7 +16,7 @@ function MirrorFrame(place, options) {
     button.type = "button";
     button.value = name;
     self.home.appendChild(button);
-    button.onclick = function(){self[action].call(self);};
+    button.onclick = () => {self[action].call(self);};
   }
 
   makeButton("Search", "search");
@@ -30,7 +30,7 @@ function MirrorFrame(place, options) {
 }
 
 MirrorFrame.prototype = {
-  search: function() {
+  search() {
     var text = prompt("Enter search term:", "");
     if (!text) return;
 
@@ -46,10 +46,12 @@ MirrorFrame.prototype = {
     } while (confirm("End of document reached. Start over?"));
   },
 
-  replace: function() {
+  replace() {
     // This is a replace-all, but it is possible to implement a
     // prompting replace.
-    var from = prompt("Enter search string:", ""), to;
+    var from = prompt("Enter search string:", "");
+
+    var to;
     if (from) to = prompt("What should it be replaced with?", "");
     if (to == null) return;
 
@@ -58,24 +60,24 @@ MirrorFrame.prototype = {
       cursor.replace(to);
   },
 
-  jump: function() {
+  jump() {
     var line = prompt("Jump to line:", "");
     if (line && !isNaN(Number(line)))
       this.mirror.jumpToLine(Number(line));
   },
 
-  line: function() {
+  line() {
     alert("The cursor is currently at line " + this.mirror.currentLine());
     this.mirror.focus();
   },
 
-  macro: function() {
+  macro() {
     var name = prompt("Name your constructor:", "");
     if (name)
       this.mirror.replaceSelection("function " + name + "() {\n  \n}\n\n" + name + ".prototype = {\n  \n};\n");
   },
 
-  reindent: function() {
+  reindent() {
     this.mirror.reindent();
   }
 };

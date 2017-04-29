@@ -1,19 +1,19 @@
 
-window.addEvent('domready', function(){
+window.addEvent('domready', () => {
 
 	$$('#draggables DIV').makeDraggable({
 
 		droppables: $$('#droppables DIV'),
 
-		onEnter: function(draggable, droppable){
+		onEnter(draggable, droppable) {
 			droppable.setStyle('background', '#E79D35');
 		},
 
-		onLeave: function(draggable, droppable){
+		onLeave(draggable, droppable) {
 			droppable.setStyle('background', '#6B7B95');
 		},
 
-		onDrop: function(draggable, droppable){
+		onDrop(draggable, droppable) {
 			if (droppable){
 				draggable.destroy();
 				droppable.morph({

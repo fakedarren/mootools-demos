@@ -1,100 +1,97 @@
-var SchemeParser = Editor.Parser = (function() {
+var SchemeParser = Editor.Parser = ((() => {
 
 
     // isLparen: char -> boolean
-    var isLparen = function(ch) {
-	return ch === '(' || ch === '[' || ch === '{';
-    };
+    var isLparen = ch => ch === '(' || ch === '[' || ch === '{';
 
     // isRparen: char -> boolean
-    var isRparen = function(ch) {
-	return ch === ')' || ch === ']' || ch === '}';
-    };
+    var isRparen = ch => ch === ')' || ch === ']' || ch === '}';
 
     // isMatchingParens: char char -> boolean
-    var isMatchingParens = function(lparen, rparen) {
-	return ((lparen === '(' && rparen === ')') ||
+    var isMatchingParens = (lparen, rparen) => (lparen === '(' && rparen === ')') ||
 		(lparen === '[' && rparen === ']') ||
-		(lparen === '{' && rparen === '}'));
-    };
+		(lparen === '{' && rparen === '}');
 
 
     // Compute the indentation context enclosing the end of the token
     // sequence tokens.
     // The context is the token sequence of the enclosing s-expression,
     // augmented with column information.
-    var getIndentationContext = function(tokenStack) {
-	var EMPTY_CONTEXT = [];
+    var getIndentationContext = tokenStack => {
+        var EMPTY_CONTEXT = [];
 
-	var pendingParens = [], i = 0, j, line, column, context;
-	var tokens = [];
+        var pendingParens = [];
+        var i = 0;
+        var j;
+        var line;
+        var column;
+        var context;
+        var tokens = [];
 
-	// Scan for the start of the indentation context, accumulating tokens.
-	while (! isEmptyPair(tokenStack)) {
-	    i++;
-	    tokens.push(pairFirst(tokenStack));
-	    if (isLparen(pairFirst(tokenStack).type)) {
-		if (pendingParens.length === 0) {
-		    break;
-		} else {
-		    if (isMatchingParens(pairFirst(tokenStack).value,
-					 pendingParens[pendingParens.length - 1])) {
-			pendingParens.pop();
-		    } else {
-			// Error condition: we see mismatching parens,
-			// so we exit with no known indentation context.
-			return EMPTY_CONTEXT;
-		    }
-		}
-	    } else if (isRparen(pairFirst(tokenStack).type))  {
-		pendingParens.push(pairFirst(tokenStack).type);
-	    }
-	    tokenStack = pairRest(tokenStack);
-	}
+        // Scan for the start of the indentation context, accumulating tokens.
+        while (! isEmptyPair(tokenStack)) {
+            i++;
+            tokens.push(pairFirst(tokenStack));
+            if (isLparen(pairFirst(tokenStack).type)) {
+            if (pendingParens.length === 0) {
+                break;
+            } else {
+                if (isMatchingParens(pairFirst(tokenStack).value,
+                         pendingParens[pendingParens.length - 1])) {
+                pendingParens.pop();
+                } else {
+                // Error condition: we see mismatching parens,
+                // so we exit with no known indentation context.
+                return EMPTY_CONTEXT;
+                }
+            }
+            } else if (isRparen(pairFirst(tokenStack).type))  {
+            pendingParens.push(pairFirst(tokenStack).type);
+            }
+            tokenStack = pairRest(tokenStack);
+        }
 
-	// If we scanned backward too far, we couldn't find a context.  Just
-	// return the empty context.
-	if (isEmptyPair(tokenStack)) { 
-	    return EMPTY_CONTEXT; 
-	}
+        // If we scanned backward too far, we couldn't find a context.  Just
+        // return the empty context.
+        if (isEmptyPair(tokenStack)) { 
+            return EMPTY_CONTEXT; 
+        }
 
-	// Position tokenStack to the next token beyond.
-	tokenStack = pairRest(tokenStack);
+        // Position tokenStack to the next token beyond.
+        tokenStack = pairRest(tokenStack);
 
-	// We now scan backwards to closest newline to figure out the column
-	// number:
-	while (! isEmptyPair(tokenStack)) {
-	    if(pairFirst(tokenStack).type === 'whitespace' && 
-	       pairFirst(tokenStack).value === '\n') {
-		break;
-	    }
-	    tokens.push(pairFirst(tokenStack));
-	    tokenStack = pairRest(tokenStack);
-	}
+        // We now scan backwards to closest newline to figure out the column
+        // number:
+        while (! isEmptyPair(tokenStack)) {
+            if(pairFirst(tokenStack).type === 'whitespace' && 
+               pairFirst(tokenStack).value === '\n') {
+            break;
+            }
+            tokens.push(pairFirst(tokenStack));
+            tokenStack = pairRest(tokenStack);
+        }
 
-	line = 0;
-	column = 0;
-	context = [];
-	// Start generating the context, walking forward.
-	for (j = tokens.length-1; j >= 0; j--) {
-	    if (j < i) {
-		context.push({ type: tokens[j].type,
-			       value: tokens[j].value,
-			       line: line,
-			       column: column });
-	    }
+        line = 0;
+        column = 0;
+        context = [];
+        // Start generating the context, walking forward.
+        for (j = tokens.length-1; j >= 0; j--) {
+            if (j < i) {
+            context.push({ type: tokens[j].type,
+                       value: tokens[j].value,
+                       line,
+                       column });
+            }
 
-	    if (tokens[j].type === 'whitespace' && 
-		tokens[j].value === '\n') {
-		column = 0;
-		line++;
-	    } else {
-		column += tokens[j].value.length;
-	    }
-	}
-	return context;
-
-
+            if (tokens[j].type === 'whitespace' && 
+            tokens[j].value === '\n') {
+            column = 0;
+            line++;
+            } else {
+            column += tokens[j].value.length;
+            }
+        }
+        return context;
     };
 
 
@@ -102,7 +99,7 @@ var SchemeParser = Editor.Parser = (function() {
 
 
     // calculateIndentationFromContext: indentation-context number -> number
-    var calculateIndentationFromContext = function(context, currentIndentation) {
+    var calculateIndentationFromContext = (context, currentIndentation) => {
 	if (context.length === 0) {
 	    return 0;
 	}
@@ -121,7 +118,7 @@ var SchemeParser = Editor.Parser = (function() {
 
 
     // findContextElement: indentation-context number -> index or -1
-    var findContextElement = function(context, index) {
+    var findContextElement = (context, index) => {
 	var depth = 0;
 	for(var i = 0; i < context.length; i++) {
 	    if (context[i].type !== 'whitespace' && depth === 1) {
@@ -142,13 +139,15 @@ var SchemeParser = Editor.Parser = (function() {
     };
 
     // contextElement: context -> (arrayof index)
-    var contextElements = function(context) {
-	var i = 0, index, results = [];
-	
-	while ((index = findContextElement(context, i++)) != -1) {
-	    results.push(index);
-	}
-	return results;
+    var contextElements = context => {
+        var i = 0;
+        var index;
+        var results = [];
+
+        while ((index = findContextElement(context, i++)) != -1) {
+            results.push(index);
+        }
+        return results;
     };
 
 
@@ -169,7 +168,7 @@ var SchemeParser = Editor.Parser = (function() {
 			       "sequence",
 			       "unit"];
 
-    var isBeginLikeContext = function(context) {
+    var isBeginLikeContext = context => {
 	var j = findContextElement(context, 0);
 	if (j === -1) { return false; }
 	return (/^begin/.test(context[j].value) ||
@@ -181,26 +180,27 @@ var SchemeParser = Editor.Parser = (function() {
     // the indentation is that of the begin keyword's column + offset.
     // Otherwise, find the leading element on the last line.
     // Also used for default indentation.
-    var beginLikeIndentation = function(context, offset) {
-	if (typeof(offset) === 'undefined') { offset = 1; }
+    var beginLikeIndentation = (context, offset) => {
+        if (typeof(offset) === 'undefined') { offset = 1; }
 
-	var indices = contextElements(context), j;
-	if (indices.length === 0) {
-	    return context[0].column + 1;
-	} else if (indices.length === 1) {
-	    // if we only see the begin keyword, indentation is based
-	    // off the keyword.
-	    return context[indices[0]].column + offset;
-	} else {
-	    // Otherwise, we scan for the contextElement of the last line
-	    for (j = indices.length -1; j > 1; j--) {
-		if (context[indices[j]].line !==
-		    context[indices[j-1]].line) {
-		    return context[indices[j]].column;
-		}
-	    }
-	    return context[indices[j]].column;
-	}
+        var indices = contextElements(context);
+        var j;
+        if (indices.length === 0) {
+            return context[0].column + 1;
+        } else if (indices.length === 1) {
+            // if we only see the begin keyword, indentation is based
+            // off the keyword.
+            return context[indices[0]].column + offset;
+        } else {
+            // Otherwise, we scan for the contextElement of the last line
+            for (j = indices.length -1; j > 1; j--) {
+            if (context[indices[j]].line !==
+                context[indices[j-1]].line) {
+                return context[indices[j]].column;
+            }
+            }
+            return context[indices[j]].column;
+        }
     };
 
 
@@ -210,7 +210,7 @@ var SchemeParser = Editor.Parser = (function() {
 
     var DEFINE_LIKE_KEYWORDS = ["local"];
 
-    var isDefineLikeContext = function(context) {
+    var isDefineLikeContext = context => {
 	var j = findContextElement(context, 0);
 	if (j === -1) { return false; }
 	return (/^def/.test(context[j].value) ||
@@ -218,7 +218,7 @@ var SchemeParser = Editor.Parser = (function() {
     };
 
 
-    var defineLikeIndentation = function(context) {
+    var defineLikeIndentation = context => {
 	var i = findContextElement(context, 0);
 	if (i === -1) { return 0; }
 	return context[i].column +1; 
@@ -324,14 +324,14 @@ var SchemeParser = Editor.Parser = (function() {
 				"for-all"];
 
 
-    var isLambdaLikeContext = function(context) {
+    var isLambdaLikeContext = context => {
 	var j = findContextElement(context, 0);
 	if (j === -1) { return false; }
 	return (isMember(context[j].value, LAMBDA_LIKE_KEYWORDS));
     };
 
 
-    var lambdaLikeIndentation = function(context) {
+    var lambdaLikeIndentation = context => {
 	var i = findContextElement(context, 0);
 	if (i === -1) { return 0; }
 	var j = findContextElement(context, 1);
@@ -347,7 +347,7 @@ var SchemeParser = Editor.Parser = (function() {
 
     //////////////////////////////////////////////////////////////////////
     // Helpers
-    var isMember = function(x, l) {
+    var isMember = (x, l) => {
 	for (var i = 0; i < l.length; i++) {
 	    if (x === l[i]) { return true; }
 	}
@@ -358,14 +358,12 @@ var SchemeParser = Editor.Parser = (function() {
 
     //////////////////////////////////////////////////////////////////////
 
-    var pair = function(x, y) {
-	return [x,y];
-    };
+    var pair = (x, y) => [x,y];
     var EMPTY_PAIR = [];
-    var pairFirst = function(p) { return p[0]; }
-    var pairRest = function(p) { return p[1]; }
-    var isEmptyPair = function(p) { return p === EMPTY_PAIR; }
-    var pairLength = function(p) {
+    var pairFirst = p => p[0]
+    var pairRest = p => p[1]
+    var isEmptyPair = p => p === EMPTY_PAIR
+    var pairLength = p => {
 	var l = 0;
 	while (! isEmptyPair(p)) {
 	    p = pairRest(p);
@@ -378,8 +376,7 @@ var SchemeParser = Editor.Parser = (function() {
 
 
 
-    var indentTo = function(tokenStack) {
-	return function(tokenText, currentIndentation, direction) {
+    var indentTo = tokenStack => (tokenText, currentIndentation, direction) => {
 
 	    // If we're in the middle of an unclosed token,
 	    // do not change indentation.
@@ -394,14 +391,13 @@ var SchemeParser = Editor.Parser = (function() {
 	    return calculateIndentationFromContext(indentationContext,
 						   currentIndentation);		
 	};
-    };
 
 
-    var startParse = function(source) {
+    var startParse = source => {
 	source = tokenizeScheme(source);	
 	var tokenStack = EMPTY_PAIR;
 	var iter = {
-	    next: function() {
+	    next() {
 		var tok = source.next();
 		tokenStack = pair(tok, tokenStack);
 		if (tok.type === "whitespace") {
@@ -412,10 +408,10 @@ var SchemeParser = Editor.Parser = (function() {
 		return tok;
 	    },
 
-	    copy: function() {
+	    copy() {
 		var _tokenStack = tokenStack;
 		var _tokenState = source.state;
-		return function(_source) {
+		return _source => {
 		    tokenStack = _tokenStack;
 		    source = tokenizeScheme(_source, _tokenState);
 		    return iter;
@@ -425,4 +421,4 @@ var SchemeParser = Editor.Parser = (function() {
 	return iter;
     };
     return { make: startParse };
-})();
+}))();

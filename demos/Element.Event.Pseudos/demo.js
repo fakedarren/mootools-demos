@@ -1,5 +1,5 @@
 
-window.addEvent('domready', function() {
+window.addEvent('domready', () => {
 
 	// `:once` psuedo event provided by mootools-more
 	$('clickOnce').addEvent('click:once', function(event){

@@ -50,20 +50,20 @@ function UndoHistory(container, maxDepth, commitDelay, editor) {
 UndoHistory.prototype = {
   // Schedule a commit (if no other touches come in for commitDelay
   // milliseconds).
-  scheduleCommit: function() {
+  scheduleCommit() {
     var self = this;
     this.parent.clearTimeout(this.commitTimeout);
-    this.commitTimeout = this.parent.setTimeout(function(){self.tryCommit();}, this.commitDelay);
+    this.commitTimeout = this.parent.setTimeout(() => {self.tryCommit();}, this.commitDelay);
   },
 
   // Mark a node as touched. Null is a valid argument.
-  touch: function(node) {
+  touch(node) {
     this.setTouched(node);
     this.scheduleCommit();
   },
 
   // Undo the last change.
-  undo: function() {
+  undo() {
     // Make sure pending changes have been committed.
     this.commit();
 
@@ -78,7 +78,7 @@ UndoHistory.prototype = {
   },
 
   // Redo the last undone change.
-  redo: function() {
+  redo() {
     this.commit();
     if (this.redoHistory.length) {
       // The inverse of undo, basically.
@@ -89,62 +89,63 @@ UndoHistory.prototype = {
     }
   },
 
-  clear: function() {
+  clear() {
     this.history = [];
     this.redoHistory = [];
   },
 
   // Ask for the size of the un/redo histories.
-  historySize: function() {
+  historySize() {
     return {undo: this.history.length, redo: this.redoHistory.length};
   },
 
   // Push a changeset into the document.
-  push: function(from, to, lines) {
+  push(from, to, lines) {
     var chain = [];
     for (var i = 0; i < lines.length; i++) {
       var end = (i == lines.length - 1) ? to : this.container.ownerDocument.createElement("BR");
-      chain.push({from: from, to: end, text: cleanText(lines[i])});
+      chain.push({from, to: end, text: cleanText(lines[i])});
       from = end;
     }
     this.pushChains([chain], from == null && to == null);
     this.notifyEnvironment();
   },
 
-  pushChains: function(chains, doNotHighlight) {
+  pushChains(chains, doNotHighlight) {
     this.commit(doNotHighlight);
     this.addUndoLevel(this.updateTo(chains, "applyChain"));
     this.redoHistory = [];
   },
 
   // Retrieve a DOM node from a chain (for scrolling to it after undo/redo).
-  chainNode: function(chains) {
+  chainNode(chains) {
     for (var i = 0; i < chains.length; i++) {
-      var start = chains[i][0], node = start && (start.from || start.to);
+      var start = chains[i][0];
+      var node = start && (start.from || start.to);
       if (node) return node;
     }
   },
 
   // Clear the undo history, make the current document the start
   // position.
-  reset: function() {
+  reset() {
     this.history = []; this.redoHistory = [];
   },
 
-  textAfter: function(br) {
+  textAfter(br) {
     return this.after(br).text;
   },
 
-  nodeAfter: function(br) {
+  nodeAfter(br) {
     return this.after(br).to;
   },
 
-  nodeBefore: function(br) {
+  nodeBefore(br) {
     return this.before(br).from;
   },
 
   // Commit unless there are pending dirty nodes.
-  tryCommit: function() {
+  tryCommit() {
     if (!window.UndoHistory) return; // Stop when frame has been unloaded
     if (this.editor.highlightDirty()) this.commit(true);
     else this.scheduleCommit();
@@ -152,12 +153,15 @@ UndoHistory.prototype = {
 
   // Check whether the touched nodes hold any changes, if so, commit
   // them.
-  commit: function(doNotHighlight) {
+  commit(doNotHighlight) {
     this.parent.clearTimeout(this.commitTimeout);
     // Make sure there are no pending dirty nodes.
     if (!doNotHighlight) this.editor.highlightDirty(true);
+
     // Build set of chains.
-    var chains = this.touchedChains(), self = this;
+    var chains = this.touchedChains();
+
+    var self = this;
 
     if (chains.length) {
       this.addUndoLevel(this.updateTo(chains, "linkChain"));
@@ -174,8 +178,9 @@ UndoHistory.prototype = {
   // document, and only the state of the line data is updated. In the
   // first case, the content of the chains is also pushed iinto the
   // document.
-  updateTo: function(chains, updateFunc) {
-    var shadows = [], dirty = [];
+  updateTo(chains, updateFunc) {
+    var shadows = [];
+    var dirty = [];
     for (var i = 0; i < chains.length; i++) {
       shadows.push(this.shadowChain(chains[i]));
       dirty.push(this[updateFunc](chains[i]));
@@ -186,12 +191,12 @@ UndoHistory.prototype = {
   },
 
   // Notify the editor that some nodes have changed.
-  notifyDirty: function(nodes) {
+  notifyDirty(nodes) {
     forEach(nodes, method(this.editor, "addDirtyNode"))
     this.editor.scheduleHighlight();
   },
 
-  notifyEnvironment: function() {
+  notifyEnvironment() {
     if (this.onChange) this.onChange();
     // Used by the line-wrapping line-numbering code.
     if (window.frameElement && window.frameElement.CodeMirror.updateNumbers)
@@ -200,7 +205,7 @@ UndoHistory.prototype = {
 
   // Link a chain into the DOM nodes (or the first/last links for null
   // nodes).
-  linkChain: function(chain) {
+  linkChain(chain) {
     for (var i = 0; i < chain.length; i++) {
       var line = chain[i];
       if (line.from) line.from.historyAfter = line;
@@ -211,15 +216,15 @@ UndoHistory.prototype = {
   },
 
   // Get the line object after/before a given node.
-  after: function(node) {
+  after(node) {
     return node ? node.historyAfter : this.first;
   },
-  before: function(node) {
+  before(node) {
     return node ? node.historyBefore : this.last;
   },
 
   // Mark a node as touched if it has not already been marked.
-  setTouched: function(node) {
+  setTouched(node) {
     if (node) {
       if (!node.historyTouched) {
         this.touched.push(node);
@@ -233,14 +238,14 @@ UndoHistory.prototype = {
 
   // Store a new set of undo info, throw away info if there is more of
   // it than allowed.
-  addUndoLevel: function(diffs) {
+  addUndoLevel(diffs) {
     this.history.push(diffs);
     if (this.history.length > this.maxDepth)
       this.history.shift();
   },
 
   // Build chains from a set of touched nodes.
-  touchedChains: function() {
+  touchedChains() {
     var self = this;
 
     // The temp system is a crummy hack to speed up determining
@@ -266,13 +271,14 @@ UndoHistory.prototype = {
     // document. Build up line objects for remaining nodes.
     var lines = [];
     if (self.firstTouched) self.touched.push(null);
-    forEach(self.touched, function(node) {
+    forEach(self.touched, node => {
       if (node && node.parentNode != self.container) return;
 
       if (node) node.historyTouched = false;
       else self.firstTouched = false;
 
-      var line = buildLine(node), shadow = self.after(node);
+      var line = buildLine(node);
+      var shadow = self.after(node);
       if (!shadow || shadow.text != line.text || shadow.to != line.to) {
         lines.push(line);
         setTemp(node, line);
@@ -281,7 +287,8 @@ UndoHistory.prototype = {
 
     // Get the BR element after/before the given node.
     function nextBR(node, dir) {
-      var link = dir + "Sibling", search = node[link];
+      var link = dir + "Sibling";
+      var search = node[link];
       while (search && !isBR(search))
         search = search[link];
       return search;
@@ -290,12 +297,14 @@ UndoHistory.prototype = {
     // Assemble line objects into chains by scanning the DOM tree
     // around them.
     var chains = []; self.touched = [];
-    forEach(lines, function(line) {
+    forEach(lines, line => {
       // Note that this makes the loop skip line objects that have
       // been pulled into chains by lines before them.
       if (!temp(line.from)) return;
 
-      var chain = [], curNode = line.from, safe = true;
+      var chain = [];
+      var curNode = line.from;
+      var safe = true;
       // Put any line objects (referred to by temp info) before this
       // one on the front of the array.
       while (true) {
@@ -310,7 +319,7 @@ UndoHistory.prototype = {
         safe = self.after(curNode);
         curNode = nextBR(curNode, "previous");
       }
-      curNode = line.to; safe = self.before(line.from);
+      curNode = line.to;safe = self.before(line.from);
       // Add lines after this one at end of array.
       while (true) {
         if (!curNode) break;
@@ -332,8 +341,10 @@ UndoHistory.prototype = {
 
   // Find the 'shadow' of a given chain by following the links in the
   // DOM nodes at its start and end.
-  shadowChain: function(chain) {
-    var shadows = [], next = this.after(chain[0].from), end = chain[chain.length - 1].to;
+  shadowChain(chain) {
+    var shadows = [];
+    var next = this.after(chain[0].from);
+    var end = chain[chain.length - 1].to;
     while (true) {
       shadows.push(next);
       var nextNode = next.to;
@@ -350,11 +361,13 @@ UndoHistory.prototype = {
 
   // Update the DOM tree to contain the lines specified in a given
   // chain, link this chain into the DOM nodes.
-  applyChain: function(chain) {
+  applyChain(chain) {
     // Some attempt is made to prevent the cursor from jumping
     // randomly when an undo or redo happens. It still behaves a bit
     // strange sometimes.
-    var cursor = select.cursorPos(this.container, false), self = this;
+    var cursor = select.cursorPos(this.container, false);
+
+    var self = this;
 
     // Remove all nodes in the DOM tree between from and to (null for
     // start/end of container).
@@ -367,7 +380,8 @@ UndoHistory.prototype = {
       }
     }
 
-    var start = chain[0].from, end = chain[chain.length - 1].to;
+    var start = chain[0].from;
+    var end = chain[chain.length - 1].to;
     // Clear the space where this change has to be made.
     removeRange(start, end);
 

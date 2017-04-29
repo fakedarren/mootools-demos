@@ -50,7 +50,7 @@ if (!Array.prototype.indexOf)
 }
 
 
-var PHPParser = Editor.Parser = (function() {
+var PHPParser = Editor.Parser = ((() => {
   // Token types that can be considered to be atoms, part of operator expressions
   var atomicTypes = {
     "atom": true, "number": true, "variable": true, "string": true
@@ -75,8 +75,9 @@ var PHPParser = Editor.Parser = (function() {
 
   // PHP indentation rules
   function indentPHP(lexical) {
-    return function(firstChars) {
-      var firstChar = firstChars && firstChars.charAt(0), type = lexical.type;
+    return firstChars => {
+      var firstChar = firstChars && firstChars.charAt(0);
+      var type = lexical.type;
       var closing = firstChar == type;
       if (type == "form" && firstChar == "{")
         return lexical.indented;
@@ -108,12 +109,15 @@ var PHPParser = Editor.Parser = (function() {
     // line. Used to create lexical scope objects.
     var column = 0;
     var indented = 0;
+
     // Variables which are used by the mark, cont, and pass functions
     // below to communicate with the driver loop in the 'next' function.
-    var consume, marked;
+    var consume;
+
+    var marked;
 
     // The iterator object.
-    var parser = {next: next, copy: copy};
+    var parser = {next, copy};
 
     // parsing is accomplished by calling next() repeatedly
     function next(){
@@ -174,7 +178,9 @@ var PHPParser = Editor.Parser = (function() {
     // being modified. Lexical objects are not mutated, so they can
     // be shared between runs of the parser.
     function copy(){
-      var _lexical = lexical, _cc = cc.concat([]), _tokenState = tokens.state;
+      var _lexical = lexical;
+      var _cc = cc.concat([]);
+      var _tokenState = tokens.state;
 
       return function copyParser(input){
         lexical = _lexical;
@@ -194,12 +200,12 @@ var PHPParser = Editor.Parser = (function() {
     // cont and pass are used by the action functions to add other
     // actions to the stack. cont will cause the current token to be
     // consumed, pass will leave it for the next action.
-    function cont(){
-      push(arguments);
+    function cont(...args) {
+      push(args);
       consume = true;
     }
-    function pass(){
-      push(arguments);
+    function pass(...args) {
+      push(args);
       consume = false;
     }
     // Used to change the style of the current token.
@@ -398,12 +404,12 @@ var PHPParser = Editor.Parser = (function() {
     function namespacedef(token) {
       pass(require("t_string"), maybe_double_colon_def);
     }
-    
+
     function altsyntax(token){
     	if(token.content==':')
     		cont(altsyntaxBlock,poplex);
     }
-    
+
     function altsyntaxBlock(token){
     	if (token.type == "altsyntaxend") cont(require(';'));
       else pass(statement, altsyntaxBlock);
@@ -415,4 +421,4 @@ var PHPParser = Editor.Parser = (function() {
 
   return {make: parsePHP, electricChars: "{}:"};
 
-})();
+}))();

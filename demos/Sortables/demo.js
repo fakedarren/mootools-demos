@@ -1,10 +1,9 @@
 
-window.addEvent('domready', function(){
+window.addEvent('domready', () => {
+    var example1 = $('example1');
+    var step = 0;
 
-	var example1 = $('example1'),
-		step = 0;
-
-	example1.getElements('li').each(function(li){
+    example1.getElements('li').each(li => {
 		var color = [step, 82, 87].hsbToRgb();
 		li.setStyles({
 			'background-color': color,
@@ -13,12 +12,11 @@ window.addEvent('domready', function(){
 		step += 35;
 	});
 
-	new Sortables(example1);
+    new Sortables(example1);
 
-	new Sortables('#example2 UL', {
+    new Sortables('#example2 UL', {
 		clone: true,
 		revert: true,
 		opacity: 0.7
 	});
-
 });

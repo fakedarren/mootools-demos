@@ -38,7 +38,7 @@ if (!Array.prototype.forEach)
 }
 
 
-var tokenizePHP = (function() {
+var tokenizePHP = ((() => {
   /* A map of PHP's reserved words (keywords, predefined classes, functions and
      constants. Each token has a type ('keyword', 'operator' etc.) and a style.
      The style corresponds to the CSS span class in phpcolors.css.
@@ -53,9 +53,9 @@ var tokenizePHP = (function() {
 
      Reference: http://us.php.net/manual/en/reserved.php
   */
-  var keywords = function(){
+  var keywords = (() => {
     function token(type, style){
-      return {type: type, style: style};
+      return {type, style};
     }
     var result = {};
 
@@ -64,38 +64,38 @@ var tokenizePHP = (function() {
     // http://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Statements/for_each...in
 
     // keywords that take an expression and form a statement
-    ["if", "elseif", "while", "declare"].forEach(function(element, index, array) {
+    ["if", "elseif", "while", "declare"].forEach((element, index, array) => {
       result[element] = token("keyword a", "php-keyword");
     });
 
     // keywords that take just a statement
-    ["do", "else", "try" ].forEach(function(element, index, array) {
+    ["do", "else", "try" ].forEach((element, index, array) => {
       result[element] = token("keyword b", "php-keyword");
     });
 
     // keywords that take an optional expression, but no statement
     ["return", "break", "continue",  // the expression is optional
       "new", "clone", "throw"  // the expression is mandatory
-    ].forEach(function(element, index, array) {
+    ].forEach((element, index, array) => {
       result[element] = token("keyword c", "php-keyword");
     });
 
-    ["__CLASS__", "__DIR__", "__FILE__", "__FUNCTION__", "__METHOD__", "__NAMESPACE__"].forEach(function(element, index, array) {
+    ["__CLASS__", "__DIR__", "__FILE__", "__FUNCTION__", "__METHOD__", "__NAMESPACE__"].forEach((element, index, array) => {
       result[element] = token("atom", "php-compile-time-constant");
     });
 
-    ["true", "false", "null"].forEach(function(element, index, array) {
+    ["true", "false", "null"].forEach((element, index, array) => {
       result[element] = token("atom", "php-atom");
     });
 
-    ["and", "or", "xor", "instanceof"].forEach(function(element, index, array) {
+    ["and", "or", "xor", "instanceof"].forEach((element, index, array) => {
       result[element] = token("operator", "php-keyword php-operator");
     });
 
-    ["class", "interface"].forEach(function(element, index, array) {
+    ["class", "interface"].forEach((element, index, array) => {
       result[element] = token("class", "php-keyword");
     });
-    ["namespace", "use", "extends", "implements"].forEach(function(element, index, array) {
+    ["namespace", "use", "extends", "implements"].forEach((element, index, array) => {
       result[element] = token("namespace", "php-keyword");
     });
 
@@ -103,7 +103,7 @@ var tokenizePHP = (function() {
     [ "die", "echo", "empty", "exit", "eval", "include", "include_once", "isset",
       "list", "require", "require_once", "return", "print", "unset",
       "array" // a keyword rather, but mandates a parenthesized parameter list
-    ].forEach(function(element, index, array) {
+    ].forEach((element, index, array) => {
       result[element] = token("t_string", "php-reserved-language-construct");
     });
 
@@ -114,13 +114,13 @@ var tokenizePHP = (function() {
     result["function"] = token("function", "php-keyword");
 
     // http://php.net/manual/en/control-structures.alternative-syntax.php must be followed by a ':'
-    ["endif", "endwhile", "endfor", "endforeach", "endswitch", "enddeclare"].forEach(function(element, index, array) {
+    ["endif", "endwhile", "endfor", "endforeach", "endswitch", "enddeclare"].forEach((element, index, array) => {
       result[element] = token("altsyntaxend", "php-keyword");
     });
 
     result["const"] = token("const", "php-keyword");
 
-    ["final", "private", "protected", "public", "global", "static"].forEach(function(element, index, array) {
+    ["final", "private", "protected", "public", "global", "static"].forEach((element, index, array) => {
       result[element] = token("modifier", "php-keyword");
     });
     result["var"] = token("modifier", "php-keyword deprecated");
@@ -464,7 +464,7 @@ var tokenizePHP = (function() {
       "xdebug_stop_code_coverage", "xdebug_get_code_coverage",
       "xdebug_get_function_count", "xdebug_dump_superglobals",
       "_" // alias for gettext()
-    ].forEach(function(element, index, array) {
+    ].forEach((element, index, array) => {
       result[element] = token("t_string", "php-predefined-function");
     });
 
@@ -721,7 +721,7 @@ var tokenizePHP = (function() {
       "EACCELERATOR_DISK_ONLY", "EACCELERATOR_NONE", "XDEBUG_TRACE_APPEND",
       "XDEBUG_TRACE_COMPUTERIZED", "XDEBUG_TRACE_HTML", "XDEBUG_CC_UNUSED",
       "XDEBUG_CC_DEAD_CODE", "STDIN", "STDOUT", "STDERR"
-    ].forEach(function(element, index, array) {
+    ].forEach((element, index, array) => {
       result[element] = token("atom", "php-predefined-constant");
     });
 
@@ -755,13 +755,13 @@ var tokenizePHP = (function() {
       "XMLReader", "XMLWriter", "mysqli_sql_exception", "mysqli_driver", "mysqli",
       "mysqli_warning", "mysqli_result", "mysqli_stmt", "PDOException", "PDO",
       "PDOStatement", "PDORow"
-    ].forEach(function(element, index, array) {
+    ].forEach((element, index, array) => {
       result[element] = token("t_string", "php-predefined-class");
     });
 
     return result;
 
-  }();
+  })();
 
   // Helper regexps
   var isOperatorChar = /[+*&%\/=<>!?.|-]/;
@@ -771,9 +771,9 @@ var tokenizePHP = (function() {
   // Wrapper around phpToken that helps maintain parser state (whether
   // we are inside of a multi-line comment)
   function phpTokenState(inside) {
-    return function(source, setState) {
+    return (source, setState) => {
       var newInside = inside;
-      var type = phpToken(inside, source, function(c) {newInside = c;});
+      var type = phpToken(inside, source, c => {newInside = c;});
       if (newInside != inside)
         setState(phpTokenState(newInside));
       return type;
@@ -1001,7 +1001,5 @@ var tokenizePHP = (function() {
   }
 
   // The external interface to the tokenizer.
-  return function(source, startState) {
-    return tokenizer(source, startState || phpTokenState(false, true));
-  };
-})();
+  return (source, startState) => tokenizer(source, startState || phpTokenState(false, true));
+}))();

@@ -1,15 +1,13 @@
 
-window.addEvent('domready', function(){
+window.addEvent('domready', () => {
+    var up = $('up');
+    var down = $('down');
+    var arrows = $$(up, down);
+    var log;
 
+    arrows.setStyle('opacity', 0.1);
 
-	var up = $('up'),
-		down = $('down'),
-		arrows = $$(up, down),
-		log;
-
-	arrows.setStyle('opacity', 0.1);
-
-	document.addEvent('mousewheel', function(event){
+    document.addEvent('mousewheel', event => {
 
 		/* Mousewheel UP */
 		if (event.wheel > 0){
@@ -26,9 +24,8 @@ window.addEvent('domready', function(){
 
 		$('log').set('html', log);
 
-		var cls = function(){
+		var cls = (() => {
 			arrows.setStyle('opacity', 0.1);
-		}.delay(100);
+		}).delay(100);
 	});
-
 });

@@ -1,5 +1,5 @@
 
-window.addEvent('domready', function(){
+window.addEvent('domready', () => {
 
 	// First list, using CSS styles in the JavaScript
 	var list = $$('#idList LI');
@@ -10,7 +10,7 @@ window.addEvent('domready', function(){
 
 	list.addEvents({
 
-		mouseenter: function(){
+		mouseenter() {
 			// this refers to the element in an event
 			this.morph({
 				'background-color': '#666',
@@ -19,7 +19,7 @@ window.addEvent('domready', function(){
 			});
 		},
 
-		mouseleave: function(){
+		mouseleave() {
 			// this refers to the element in an event
 			this.morph({
 				'background-color': '#333',
@@ -31,7 +31,7 @@ window.addEvent('domready', function(){
 	});
 
 	// Morphing the list with CSS selectors
-	$$('#idList2 LI').each(function(el){
+	$$('#idList2 LI').each(el => {
 		el.set('morph', {
 			duration: 200
 		}).addEvents({

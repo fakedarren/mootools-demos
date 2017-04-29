@@ -1,5 +1,5 @@
 
-window.addEvent('domready', function(){
+window.addEvent('domready', () => {
 
 	$$('.item').addEvent('mousedown', function(evt){
 
@@ -16,7 +16,7 @@ window.addEvent('domready', function(){
 
 			droppables: $('cart'),
 
-			onDrop: function(dragging, cart){
+			onDrop(dragging, cart) {
 
 				dragging.destroy();
 
@@ -25,10 +25,10 @@ window.addEvent('domready', function(){
 					cart.highlight('#7389AE', '#FFF');
 				}
 			},
-			onEnter: function(dragging, cart){
+			onEnter(dragging, cart) {
 				cart.tween('background-color', '#98B5C1');
 			},
-			onLeave: function(dragging, cart){
+			onLeave(dragging, cart) {
 				cart.tween('background-color', '#FFF');
 			}
 		});

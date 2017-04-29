@@ -1,20 +1,20 @@
 
-window.addEvent('domready', function(){
+window.addEvent('domready', () => {
+    // The elements used.
+    var myForm = document.id('myForm');
 
-	// The elements used.
-	var myForm = document.id('myForm'),
-		myResult = document.id('myResult');
+    var myResult = document.id('myResult');
 
-	// Labels over the inputs.
-	myForm.getElements('[type=text], textarea').each(function(el){
+    // Labels over the inputs.
+    myForm.getElements('[type=text], textarea').each(el => {
 		new OverText(el);
 	});
 
-	// Validation.
-	new Form.Validator.Inline(myForm);
+    // Validation.
+    new Form.Validator.Inline(myForm);
 
-	// Ajax (integrates with the validator).
-	new Form.Request(myForm, myResult, {
+    // Ajax (integrates with the validator).
+    new Form.Request(myForm, myResult, {
 		requestOptions: {
 			'spinnerTarget': myForm
 		},
@@ -22,5 +22,4 @@ window.addEvent('domready', function(){
 			'html': 'Form sent.'
 		}
 	});
-
 });
