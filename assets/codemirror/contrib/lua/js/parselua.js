@@ -64,8 +64,8 @@ var luaStdFunctions = matchRegexp([
 
 
 
-var LUAParser = Editor.Parser = (function() {
-  var tokenizeLUA = (function() {
+var LUAParser = Editor.Parser = ((() => {
+  var tokenizeLUA = ((() => {
     function normal(source, setState) {
       var ch = source.next();
 
@@ -153,7 +153,7 @@ function inSLComment(source, setState) {
 
     function inMLSomething(level,what) {
 	//wat sholud be "lua-string" or "lua-comment", level is the number of "=" in opening mark.
-	return function(source, setState){
+	return (source, setState) => {
       var dashes = 0;
       while (!source.endOfLine()) {
         var ch = source.next();
@@ -167,12 +167,12 @@ function inSLComment(source, setState) {
  			dashes = (ch == "=") ? dashes + 1 : 0;
         }
       return what;
-	 }
+	 };
     }
 
 
     function inString(quote) {
-      return function(source, setState) {
+      return (source, setState) => {
         var escaped = false;
         while (!source.endOfLine()) {
           var ch = source.next();
@@ -186,13 +186,11 @@ function inSLComment(source, setState) {
       };
     }
 
-    return function(source, startState) {
-      return tokenizer(source, startState || normal);
-    };
-  })();
+    return (source, startState) => tokenizer(source, startState || normal);
+  }))();
 
   function indentLUA(indentDepth, base) {
-    return function(nextChars) {
+    return nextChars => {
 
       var closing = (luaUnindentKeys2.test(nextChars) || luaMiddleKeys.test(nextChars));
 
@@ -209,26 +207,28 @@ function parseLUA(source,basecolumn) {
     var indentDepth = 0;
 
     var iter = {
-      next: function() {
-        var token = tokens.next(), style = token.style, content = token.content;
+      next() {
+        var token = tokens.next();
+        var style = token.style;
+        var content = token.content;
 
- 
-	
-	if (style == "lua-identifier" && luaKeywords.test(content)){
-	  token.style = "lua-keyword";
-	}	
-	if (style == "lua-identifier" && luaStdFunctions.test(content)){
-	  token.style = "lua-stdfunc";
-	}
-	if (style == "lua-identifier" && luaCustomFunctions.test(content)){
-	  token.style = "lua-customfunc";
-	}
 
-	if (luaIndentKeys.test(content))
-    	indentDepth++;
-	else if (luaUnindentKeys.test(content))
-		indentDepth--;
-        
+
+        if (style == "lua-identifier" && luaKeywords.test(content)){
+          token.style = "lua-keyword";
+        }
+        if (style == "lua-identifier" && luaStdFunctions.test(content)){
+          token.style = "lua-stdfunc";
+        }
+        if (style == "lua-identifier" && luaCustomFunctions.test(content)){
+          token.style = "lua-customfunc";
+        }
+
+        if (luaIndentKeys.test(content))
+            indentDepth++;
+        else if (luaUnindentKeys.test(content))
+            indentDepth--;
+
 
         if (content == "\n")
           token.indentation = indentLUA( indentDepth, basecolumn);
@@ -236,9 +236,10 @@ function parseLUA(source,basecolumn) {
         return token;
       },
 
-      copy: function() {
-        var  _tokenState = tokens.state, _indentDepth = indentDepth;
-        return function(source) {
+      copy() {
+        var _tokenState = tokens.state;
+        var _indentDepth = indentDepth;
+        return source => {
           tokens = tokenizeLUA(source, _tokenState);
       
 	  indentDepth = _indentDepth;
@@ -250,5 +251,5 @@ function parseLUA(source,basecolumn) {
   }
 
   return {make: parseLUA, configure:configureLUA, electricChars: "delf})"};   //en[d] els[e] unti[l] elsei[f]  // this should be taken from Keys keywords
-})();
+}))();
 

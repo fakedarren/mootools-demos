@@ -1,19 +1,19 @@
 
 
-window.addEvent('domready', function(){
+window.addEvent('domready', () => {
 
-	$('makeRequest').addEvent('click', function(event){
+	$('makeRequest').addEvent('click', event => {
 		event.stop();
 
 		new Request.HTML({
 
 			url: '/echo/html/',
 
-			onRequest: function(){
+			onRequest() {
 				$('result').set('text', 'loading...');
 			},
 
-			onComplete: function(response){
+			onComplete(response) {
 				$('result').empty().adopt(response);
 			},
 

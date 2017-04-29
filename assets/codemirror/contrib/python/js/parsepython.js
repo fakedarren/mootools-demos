@@ -1,4 +1,4 @@
-var PythonParser = Editor.Parser = (function() {
+var PythonParser = Editor.Parser = ((() => {
     function wordRegexp(words) {
         return new RegExp("^(?:" + words.join("|") + ")$");
     }
@@ -43,7 +43,12 @@ var PythonParser = Editor.Parser = (function() {
                'keywords': ['nonlocal'],
                'version': 3};
 
-    var py, keywords, types, stringStarters, stringTypes, config;
+    var py;
+    var keywords;
+    var types;
+    var stringStarters;
+    var stringTypes;
+    var config;
 
     function configure(conf) {
         if (!conf.hasOwnProperty('pythonVersion')) {
@@ -74,11 +79,16 @@ var PythonParser = Editor.Parser = (function() {
         doubleDelimiters = wordRegexp(doubleDelimiters);
     }
 
-    var tokenizePython = (function() {
+    var tokenizePython = ((() => {
         function normal(source, setState) {
-            var stringDelim, threeStr, temp, type, word, possible = {};
+            var stringDelim;
+            var threeStr;
+            var temp;
+            var type;
+            var word;
+            var possible = {};
             var ch = source.next();
-            
+
             function filterPossible(token, styleIfPossible) {
                 if (!possible.style && !possible.content) {
                     return token;
@@ -281,11 +291,12 @@ var PythonParser = Editor.Parser = (function() {
         }
 
         function inString(style, terminator) {
-            return function(source, setState) {
+            return (source, setState) => {
                 var matches = [];
                 var found = false;
                 while (!found && !source.endOfLine()) {
-                    var ch = source.next(), newMatches = [];
+                    var ch = source.next();
+                    var newMatches = [];
                     // Skip escaped characters
                     if (ch == '\\') {
                         if (source.peek() == '\n') {
@@ -315,10 +326,8 @@ var PythonParser = Editor.Parser = (function() {
             };
         }
 
-        return function(source, startState) {
-            return tokenizer(source, startState || normal);
-        };
-    })();
+        return (source, startState) => tokenizer(source, startState || normal);
+    }))();
 
     function parsePython(source, basecolumn) {
         if (!keywords) {
@@ -342,9 +351,9 @@ var PythonParser = Editor.Parser = (function() {
             context = {prev: context,
                        endOfScope: false,
                        startNewScope: false,
-                       level: level,
+                       level,
                        next: null,
-                       type: type
+                       type
                        };
         }
 
@@ -363,7 +372,7 @@ var PythonParser = Editor.Parser = (function() {
 
         function indentPython(context) {
             var temp;
-            return function(nextChars, currentLevel, direction) {
+            return (nextChars, currentLevel, direction) => {
                 if (direction === null || direction === undefined) {
                     if (nextChars) {
                         while (context.next) {
@@ -406,7 +415,7 @@ var PythonParser = Editor.Parser = (function() {
         }
 
         var iter = {
-            next: function() {
+            next() {
                 var token = tokens.next();
                 var type = token.style;
                 var content = token.content;
@@ -524,9 +533,10 @@ var PythonParser = Editor.Parser = (function() {
                 return token;
             },
 
-            copy: function() {
-                var _context = context, _tokenState = tokens.state;
-                return function(source) {
+            copy() {
+                var _context = context;
+                var _tokenState = tokens.state;
+                return source => {
                     tokens = tokenizePython(source, _tokenState);
                     context = _context;
                     return iter;
@@ -538,5 +548,5 @@ var PythonParser = Editor.Parser = (function() {
 
     return {make: parsePython,
             electricChars: "",
-            configure: configure};
-})();
+            configure};
+}))();

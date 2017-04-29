@@ -1,11 +1,13 @@
-var HTMLMixedParser = Editor.Parser = (function() {
+var HTMLMixedParser = Editor.Parser = ((() => {
   if (!(CSSParser && JSParser && XMLParser))
     throw new Error("CSS, JS, and XML parsers must be loaded for HTML mixed mode to work.");
   XMLParser.configure({useHTMLKludges: true});
 
   function parseMixed(stream) {
-    var htmlParser = XMLParser.make(stream), localParser = null, inTag = false;
-    var iter = {next: top, copy: copy};
+    var htmlParser = XMLParser.make(stream);
+    var localParser = null;
+    var inTag = false;
+    var iter = {next: top, copy};
 
     function top() {
       var token = htmlParser.next();
@@ -25,7 +27,7 @@ var HTMLMixedParser = Editor.Parser = (function() {
     function local(parser, tag) {
       var baseIndent = htmlParser.indentation();
       localParser = parser.make(stream, baseIndent + indentUnit);
-      return function() {
+      return () => {
         if (stream.lookAhead(tag, false, false, true)) {
           localParser = null;
           iter.next = top;
@@ -33,7 +35,8 @@ var HTMLMixedParser = Editor.Parser = (function() {
         }
 
         var token = localParser.next();
-        var lt = token.value.lastIndexOf("<"), sz = Math.min(token.value.length - lt, tag.length);
+        var lt = token.value.lastIndexOf("<");
+        var sz = Math.min(token.value.length - lt, tag.length);
         if (lt != -1 && token.value.slice(lt, lt + sz).toLowerCase() == tag.slice(0, sz) &&
             stream.lookAhead(tag.slice(sz), false, false, true)) {
           stream.push(token.value.slice(lt));
@@ -42,7 +45,7 @@ var HTMLMixedParser = Editor.Parser = (function() {
 
         if (token.indentation) {
           var oldIndent = token.indentation;
-          token.indentation = function(chars) {
+          token.indentation = chars => {
             if (chars == "</")
               return baseIndent;
             else
@@ -55,9 +58,11 @@ var HTMLMixedParser = Editor.Parser = (function() {
     }
 
     function copy() {
-      var _html = htmlParser.copy(), _local = localParser && localParser.copy(),
-          _next = iter.next, _inTag = inTag;
-      return function(_stream) {
+      var _html = htmlParser.copy();
+      var _local = localParser && localParser.copy();
+      var _next = iter.next;
+      var _inTag = inTag;
+      return _stream => {
         stream = _stream;
         htmlParser = _html(_stream);
         localParser = _local && _local(_stream);
@@ -71,4 +76,4 @@ var HTMLMixedParser = Editor.Parser = (function() {
 
   return {make: parseMixed, electricChars: "{}/:"};
 
-})();
+}))();

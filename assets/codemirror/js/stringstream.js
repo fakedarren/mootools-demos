@@ -14,7 +14,7 @@
 // Make a stringstream stream out of an iterator that returns strings.
 // This is applied to the result of traverseDOM (see codemirror.js),
 // and the resulting stream is fed to the parser.
-var stringStream = function(source){
+var stringStream = source => {
   // String that's currently being iterated over.
   var current = "";
   // Position in that string.
@@ -41,14 +41,14 @@ var stringStream = function(source){
   return {
     // peek: -> character
     // Return the next character in the stream.
-    peek: function() {
+    peek() {
       if (!ensureChars()) return null;
       return current.charAt(pos);
     },
     // next: -> character
     // Get the next character, throw StopIteration if at end, check
     // for unused content.
-    next: function() {
+    next() {
       if (!ensureChars()) {
         if (accum.length > 0)
           throw "End of stringstream reached without emptying buffer ('" + accum + "').";
@@ -60,7 +60,7 @@ var stringStream = function(source){
     // get(): -> string
     // Return the characters iterated over since the last call to
     // .get().
-    get: function() {
+    get() {
       var temp = accum;
       accum = "";
       if (pos > 0){
@@ -71,19 +71,21 @@ var stringStream = function(source){
       return temp;
     },
     // Push a string back into the stream.
-    push: function(str) {
+    push(str) {
       current = current.slice(0, pos) + str + current.slice(pos);
     },
-    lookAhead: function(str, consume, skipSpaces, caseInsensitive) {
+    lookAhead(str, consume, skipSpaces, caseInsensitive) {
       function cased(str) {return caseInsensitive ? str.toLowerCase() : str;}
       str = cased(str);
       var found = false;
 
-      var _accum = accum, _pos = pos;
+      var _accum = accum;
+      var _pos = pos;
       if (skipSpaces) this.nextWhileMatches(/[\s\u00a0]/);
 
       while (true) {
-        var end = pos + str.length, left = current.length - pos;
+        var end = pos + str.length;
+        var left = current.length - pos;
         if (end <= current.length) {
           found = str == cased(current.slice(pos, end));
           pos = end;
@@ -113,31 +115,31 @@ var stringStream = function(source){
     // Utils built on top of the above
     // more: -> boolean
     // Produce true if the stream isn't empty.
-    more: function() {
+    more() {
       return this.peek() !== null;
     },
-    applies: function(test) {
+    applies(test) {
       var next = this.peek();
       return (next !== null && test(next));
     },
-    nextWhile: function(test) {
+    nextWhile(test) {
       var next;
       while ((next = this.peek()) !== null && test(next))
         this.next();
     },
-    matches: function(re) {
+    matches(re) {
       var next = this.peek();
       return (next !== null && re.test(next));
     },
-    nextWhileMatches: function(re) {
+    nextWhileMatches(re) {
       var next;
       while ((next = this.peek()) !== null && re.test(next))
         this.next();
     },
-    equals: function(ch) {
+    equals(ch) {
       return ch === this.peek();
     },
-    endOfLine: function() {
+    endOfLine() {
       var next = this.peek();
       return next == null || next == "\n";
     }

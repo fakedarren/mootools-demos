@@ -8,37 +8,39 @@
 // object.
 
 // Stuff from util.js that the parsers are using.
-var StopIteration = {toString: function() {return "StopIteration"}};
+var StopIteration = {toString() {return "StopIteration"}};
 
 var Editor = {};
 var indentUnit = 2;
 
-(function(){
+((() => {
   function normaliseString(string) {
     var tab = "";
     for (var i = 0; i < indentUnit; i++) tab += " ";
 
     string = string.replace(/\t/g, tab).replace(/\u00a0/g, " ").replace(/\r\n?/g, "\n");
-    var pos = 0, parts = [], lines = string.split("\n");
+    var pos = 0;
+    var parts = [];
+    var lines = string.split("\n");
     for (var line = 0; line < lines.length; line++) {
       if (line != 0) parts.push("\n");
       parts.push(lines[line]);
     }
 
     return {
-      next: function() {
+      next() {
         if (pos < parts.length) return parts[pos++];
         else throw StopIteration;
       }
     };
   }
 
-  window.highlightText = function(string, callback, parser) {
+  window.highlightText = (string, callback, parser) => {
     parser = (parser || Editor.Parser).make(stringStream(normaliseString(string)));
     var line = [];
     if (callback.nodeType == 1) {
       var node = callback;
-      callback = function(line) {
+      callback = line => {
         for (var i = 0; i < line.length; i++)
           node.appendChild(line[i]);
         node.appendChild(document.createElement("BR"));
@@ -65,4 +67,4 @@ var indentUnit = 2;
     }
     if (line.length) callback(line);
   }
-})();
+}))();

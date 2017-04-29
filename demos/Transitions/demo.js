@@ -1,28 +1,27 @@
 
-window.addEvent('domready', function(){
-
-	// First we create a Fx.Morph instance which we will use to move the red box
-	var target = $('target');
-	var fx = new Fx.Morph(target, {
+window.addEvent('domready', () => {
+    // First we create a Fx.Morph instance which we will use to move the red box
+    var target = $('target');
+    var fx = new Fx.Morph(target, {
 		duration: 1000,
 		link: 'chain'
 	});
 
-	// The big gray erea
-	var box = $('box');
+    // The big gray erea
+    var box = $('box');
 
-	target.setStyles({
+    target.setStyles({
 		top: box.getTop(),
 		left: box.getLeft()
 	});
 
-	var selectTransition = $('fxTransition'),
-		selectEase = $('fxEase'),
-		durationInput = $('duration'),
-		result = $('result');
+    var selectTransition = $('fxTransition');
+    var selectEase = $('fxEase');
+    var durationInput = $('duration');
+    var result = $('result');
 
-	// Run the event if one of the select boxes has changed
-	$$(selectEase, selectTransition).addEvent('change', function(){
+    // Run the event if one of the select boxes has changed
+    $$(selectEase, selectTransition).addEvent('change', () => {
 		var transition = selectTransition.get('value');
 
 		// This is where we set the transition option to the selected value
@@ -38,16 +37,16 @@ window.addEvent('domready', function(){
 
 	});
 
-	// Run the above event on once on startup
-	selectEase.fireEvent('change');
+    // Run the above event on once on startup
+    selectEase.fireEvent('change');
 
-	// Set the duration option if it has changed
-	durationInput.addEvent('keyup', function(){
+    // Set the duration option if it has changed
+    durationInput.addEvent('keyup', () => {
 		fx.options.duration = parseFloat(durationInput.get('value'));
 	});
 
-	// If you click anywhere on the gray box, the red box should morph to the clicked coordinates
-	box.addEvent('mousedown', function(event){
+    // If you click anywhere on the gray box, the red box should morph to the clicked coordinates
+    box.addEvent('mousedown', event => {
 		event.stop();
 		fx.start({
 			// The clicked coordinates are stored in the event.page property
@@ -55,6 +54,5 @@ window.addEvent('domready', function(){
 			left: [event.page.x - 25]
 		});
 	});
-
 });
 

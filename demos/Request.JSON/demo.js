@@ -14,39 +14,39 @@ var data = {"previews":[
 	{"name":"Screwdriver Paper", "src":"setting.jpg", "description":"An always useful screwdriver.", "views":42}
 ]};
 
-window.addEvent('domready', function() {
+window.addEvent('domready', () => {
 
 	var images_path = 'demos/Request.JSON/images/';
 	var gallery = $('gallery');
 
-	var addImages = function(images){
-		images.each(function(image){
-			var el = new Element('div.preview'),
-				name = new Element('h3', {'html': image.name}).inject(el),
-				desc = new Element('span', {'html': image.description}).inject(name, 'after'),
-				img = new Element('img', {'src': images_path + image.src}).inject(desc, 'after'),
-				footer = new Element('span').inject(img, 'after');
+	var addImages = images => {
+		images.each(image => {
+            var el = new Element('div.preview');
+            var name = new Element('h3', {'html': image.name}).inject(el);
+            var desc = new Element('span', {'html': image.description}).inject(name, 'after');
+            var img = new Element('img', {'src': images_path + image.src}).inject(desc, 'after');
+            var footer = new Element('span').inject(img, 'after');
 
-			if (image.views > 50 && image.views < 250) footer.set({'html': 'popular', 'class': 'popular'});
+            if (image.views > 50 && image.views < 250) footer.set({'html': 'popular', 'class': 'popular'});
 			else if (image.views > 250) footer.set({'html': 'SUPERpopular', 'class': 'SUPERpopular'});
 			else footer.set({'html': 'normal', 'class': 'normal'});
 
-			el.inject(gallery);
-		});
+            el.inject(gallery);
+        });
 	};
 
-	$('loadJSON').addEvent('click', function(e){
+	$('loadJSON').addEvent('click', e => {
 		e.stop();
 
 		var request = new Request.JSON({
 
 			url: '/echo/json/',
 
-			onRequest: function(){
+			onRequest() {
 				gallery.set('text', 'Loading...');
 			},
 
-			onComplete: function(jsonObj) {
+			onComplete(jsonObj) {
 				gallery.empty();
 				addImages(jsonObj.previews);
 			},
@@ -58,7 +58,7 @@ window.addEvent('domready', function() {
 		}).send();
 	});
 
-	$('clearJSON').addEvent('click', function(e){
+	$('clearJSON').addEvent('click', e => {
 		e.stop();
 		gallery.empty();
 	});

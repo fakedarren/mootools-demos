@@ -13,12 +13,10 @@
 */
 
 
-var tokenizeScheme = (function() {
-    var isWhiteSpace = function(ch) {
-	// The messy regexp is because IE's regexp matcher is of the
-	// opinion that non-breaking spaces are no whitespace.
-	return ch != "\n" && /^[\s\u00a0]*$/.test(ch);
-    };
+var tokenizeScheme = ((() => {
+    var isWhiteSpace = ch => // The messy regexp is because IE's regexp matcher is of the
+    // opinion that non-breaking spaces are no whitespace.
+    ch != "\n" && /^[\s\u00a0]*$/.test(ch);
 
 
     // scanUntilUnescaped: string-stream char -> boolean
@@ -26,7 +24,7 @@ var tokenizeScheme = (function() {
     // backslash) is encountered.
     // Returns true if we hit end of line without closing.
     // Returns false otherwise.
-    var scanUntilUnescaped = function(source, end) {
+    var scanUntilUnescaped = (source, end) => {
 	var escaped = false;
 	while (true) {
 	    if (source.endOfLine()) {
@@ -42,7 +40,7 @@ var tokenizeScheme = (function() {
     
 
     // Advance the stream until endline.
-    var scanUntilEndline = function(source, end) {
+    var scanUntilEndline = (source, end) => {
 	while (!source.endOfLine()) {
 	    source.next();
 	}
@@ -77,7 +75,7 @@ var tokenizeScheme = (function() {
 
     // looksLikeNumber: string -> boolean
     // Returns true if string s looks like a number.
-    var looksLikeNumber = function(s) {
+    var looksLikeNumber = s => {
 	for (var i = 0; i < numberPatterns.length; i++) {
 	    if (numberPatterns[i].test(s)) {
 		return true;
@@ -88,10 +86,10 @@ var tokenizeScheme = (function() {
 
 
 
-    var UNCLOSED_STRING = function(source, setState) {
-	var readNewline = function() {
+    var UNCLOSED_STRING = (source, setState) => {
+	var readNewline = () => {
 	    var content = source.get();
-	    return { type:'whitespace', style:'whitespace', content: content };
+	    return { type:'whitespace', style:'whitespace', content };
 	};
 
 	var ch = source.peek();
@@ -106,22 +104,22 @@ var tokenizeScheme = (function() {
 		setState(START);
 	    }
 	    var content = source.get();
-	    return {type: "string", style: "scheme-string", content: content,
+	    return {type: "string", style: "scheme-string", content,
 		    isUnclosed: isUnclosedString};
 	}
     };
 
 
 
-    var START = function(source, setState) {
-	var readHexNumber = function(){
+    var START = (source, setState) => {
+	var readHexNumber = () => {
 	    source.next(); // skip the 'x'
 	    source.nextWhileMatches(isHexDigit);
 	    return {type: "number", style: "scheme-number"};
 	};
 
 
-	var readNumber = function() {
+	var readNumber = () => {
 	    scanSimpleNumber();
 	    if (source.equals("-") || source.equals("+")) {
 		source.next();
@@ -136,7 +134,7 @@ var tokenizeScheme = (function() {
 
 	// Read a word, look it up in keywords. If not found, it is a
 	// variable, otherwise it is a keyword of the type found.
-	var readWordOrNumber = function() {
+	var readWordOrNumber = () => {
 	    source.nextWhileMatches(isNotDelimiterChar);
 	    var word = source.get();
 	    if (looksLikeNumber(word)) {
@@ -147,7 +145,7 @@ var tokenizeScheme = (function() {
 	};
 
 
-	var readString = function(quote) {
+	var readString = quote => {
 	    var isUnclosedString = scanUntilUnescaped(source, quote);
 	    if (isUnclosedString) {
 		setState(UNCLOSED_STRING);
@@ -158,7 +156,7 @@ var tokenizeScheme = (function() {
 	};
 
 
-	var readPound = function() {
+	var readPound = () => {
 	    var text;
 	    // FIXME: handle special things here
 	    if (source.equals(";")) {
@@ -177,22 +175,22 @@ var tokenizeScheme = (function() {
 
 	};
 	
-	var readLineComment = function() {
+	var readLineComment = () => {
 	    scanUntilEndline(source);
 	    var text = source.get();
 	    return { type: "comment", style: "scheme-comment", content: text};	
 	};
 
 
-	var readWhitespace = function() {
+	var readWhitespace = () => {
 	    source.nextWhile(isWhiteSpace);
 	    var content = source.get();
-	    return { type: 'whitespace', style:'whitespace', content: content };
+	    return { type: 'whitespace', style:'whitespace', content };
 	};
 
-	var readNewline = function() {
+	var readNewline = () => {
 	    var content = source.get();
-	    return { type:'whitespace', style:'whitespace', content: content };
+	    return { type:'whitespace', style:'whitespace', content };
 	};
 
 
@@ -222,27 +220,27 @@ var tokenizeScheme = (function() {
 
 
 
-    var makeTokenizer = function(source, state) {
+    var makeTokenizer = (source, state) => {
 	// Newlines are always a separate token.
 
 	var tokenizer = {
-	    state: state,
+	    state,
 
-	    take: function(type) {
+	    take(type) {
  		if (typeof(type) == "string")
- 		    type = {style: type, type: type};
+ 		    type = {style: type, type};
 
  		type.content = (type.content || "") + source.get();
 		type.value = type.content;
 		return type;
 	    },
 
-	    next: function () {
+	    next() {
 		if (!source.more()) throw StopIteration;
 
 		var type;
 		while (!type) {
-		    type = tokenizer.state(source, function(s) {
+		    type = tokenizer.state(source, s => {
 			tokenizer.state = s;
 		    });
 		}
@@ -255,7 +253,5 @@ var tokenizeScheme = (function() {
 
 
     // The external interface to the tokenizer.
-    return function(source, startState) {
-	return makeTokenizer(source, startState || START);
-    };
-})();
+    return (source, startState) => makeTokenizer(source, startState || START);
+}))();

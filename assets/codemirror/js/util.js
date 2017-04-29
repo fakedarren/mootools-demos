@@ -2,11 +2,11 @@
 
 // Capture a method on an object.
 function method(obj, name) {
-  return function() {obj[name].apply(obj, arguments);};
+  return function(...args) {obj[name](...args);};
 }
 
 // The value used to signal the end of a sequence in iterators.
-var StopIteration = {toString: function() {return "StopIteration"}};
+var StopIteration = {toString() {return "StopIteration"}};
 
 // Apply a function to each element in a sequence.
 function forEach(iter, f) {
@@ -23,7 +23,7 @@ function forEach(iter, f) {
 // Map a function over a sequence, producing an array of results.
 function map(iter, f) {
   var accum = [];
-  forEach(iter, function(val) {accum.push(f(val));});
+  forEach(iter, val => {accum.push(f(val));});
   return accum;
 }
 
@@ -31,7 +31,7 @@ function map(iter, f) {
 // regular expression. No longer used but might be used by 3rd party
 // parsers.
 function matcher(regexp){
-  return function(value){return regexp.test(value);};
+  return value => regexp.test(value);
 }
 
 // Test whether a DOM node has a certain CSS class. Much faster than
@@ -99,11 +99,11 @@ function addEventHandler(node, type, handler, removeFunc) {
   }
   if (typeof node.addEventListener == "function") {
     node.addEventListener(type, wrapHandler, false);
-    if (removeFunc) return function() {node.removeEventListener(type, wrapHandler, false);};
+    if (removeFunc) return () => {node.removeEventListener(type, wrapHandler, false);};
   }
   else {
     node.attachEvent("on" + type, wrapHandler);
-    if (removeFunc) return function() {node.detachEvent("on" + type, wrapHandler);};
+    if (removeFunc) return () => {node.detachEvent("on" + type, wrapHandler);};
   }
 }
 

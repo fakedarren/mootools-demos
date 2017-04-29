@@ -1,7 +1,7 @@
 /* Simple parser for CSS */
 
-var CSSParser = Editor.Parser = (function() {
-  var tokenizeCSS = (function() {
+var CSSParser = Editor.Parser = ((() => {
+  var tokenizeCSS = ((() => {
     function normal(source, setState) {
       var ch = source.next();
       if (ch == "@") {
@@ -79,7 +79,7 @@ var CSSParser = Editor.Parser = (function() {
     }
 
     function inString(quote) {
-      return function(source, setState) {
+      return (source, setState) => {
         var escaped = false;
         while (!source.endOfLine()) {
           var ch = source.next();
@@ -93,13 +93,11 @@ var CSSParser = Editor.Parser = (function() {
       };
     }
 
-    return function(source, startState) {
-      return tokenizer(source, startState || normal);
-    };
-  })();
+    return (source, startState) => tokenizer(source, startState || normal);
+  }))();
 
   function indentCSS(inBraces, inRule, base) {
-    return function(nextChars) {
+    return nextChars => {
       if (!inBraces || /^\}/.test(nextChars)) return base;
       else if (inRule) return base + indentUnit * 2;
       else return base + indentUnit;
@@ -112,11 +110,15 @@ var CSSParser = Editor.Parser = (function() {
   function parseCSS(source, basecolumn) {
     basecolumn = basecolumn || 0;
     var tokens = tokenizeCSS(source);
-    var inBraces = false, inRule = false, inDecl = false;;
+    var inBraces = false;
+    var inRule = false;
+    var inDecl = false;
 
     var iter = {
-      next: function() {
-        var token = tokens.next(), style = token.style, content = token.content;
+      next() {
+        var token = tokens.next();
+        var style = token.style;
+        var content = token.content;
 
         if (style == "css-hash")
           style = token.style =  inRule ? "css-colorcode" : "css-identifier";
@@ -142,9 +144,11 @@ var CSSParser = Editor.Parser = (function() {
         return token;
       },
 
-      copy: function() {
-        var _inBraces = inBraces, _inRule = inRule, _tokenState = tokens.state;
-        return function(source) {
+      copy() {
+        var _inBraces = inBraces;
+        var _inRule = inRule;
+        var _tokenState = tokens.state;
+        return source => {
           tokens = tokenizeCSS(source, _tokenState);
           inBraces = _inBraces;
           inRule = _inRule;
@@ -156,4 +160,4 @@ var CSSParser = Editor.Parser = (function() {
   }
 
   return {make: parseCSS, electricChars: "}"};
-})();
+}))();

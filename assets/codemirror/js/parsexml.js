@@ -6,7 +6,7 @@
  * {useHTMLKludges: false} as parserConfig option.
  */
 
-var XMLParser = Editor.Parser = (function() {
+var XMLParser = Editor.Parser = ((() => {
   var Kludges = {
     autoSelfClosers: {"br": true, "img": true, "hr": true, "link": true, "input": true,
                       "meta": true, "col": true, "frame": true, "base": true, "area": true},
@@ -19,7 +19,7 @@ var XMLParser = Editor.Parser = (function() {
   // Simple stateful tokenizer for XML documents. Returns a
   // MochiKit-style iterator, with a state property that contains a
   // function encapsulating the current state. See tokenize.js.
-  var tokenizeXML = (function() {
+  var tokenizeXML = ((() => {
     function inText(source, setState) {
       var ch = source.next();
       if (ch == "<") {
@@ -92,7 +92,7 @@ var XMLParser = Editor.Parser = (function() {
     }
 
     function inAttribute(quote) {
-      return function(source, setState) {
+      return (source, setState) => {
         while (!source.endOfLine()) {
           if (source.next() == quote) {
             setState(inTag);
@@ -104,7 +104,7 @@ var XMLParser = Editor.Parser = (function() {
     }
 
     function inBlock(style, terminator) {
-      return function(source, setState) {
+      return (source, setState) => {
         while (!source.endOfLine()) {
           if (source.lookAhead(terminator, true)) {
             setState(inText);
@@ -116,31 +116,32 @@ var XMLParser = Editor.Parser = (function() {
       };
     }
 
-    return function(source, startState) {
-      return tokenizer(source, startState || inText);
-    };
-  })();
+    return (source, startState) => tokenizer(source, startState || inText);
+  }))();
 
   // The parser. The structure of this function largely follows that of
   // parseJavaScript in parsejavascript.js (there is actually a bit more
   // shared code than I'd like), but it is quite a bit simpler.
   function parseXML(source) {
-    var tokens = tokenizeXML(source), token;
+    var tokens = tokenizeXML(source);
+    var token;
     var cc = [base];
-    var tokenNr = 0, indented = 0;
-    var currentTag = null, context = null;
+    var tokenNr = 0;
+    var indented = 0;
+    var currentTag = null;
+    var context = null;
     var consume;
-    
+
     function push(fs) {
       for (var i = fs.length - 1; i >= 0; i--)
         cc.push(fs[i]);
     }
-    function cont() {
-      push(arguments);
+    function cont(...args) {
+      push(args);
       consume = true;
     }
-    function pass() {
-      push(arguments);
+    function pass(...args) {
+      push(args);
       consume = false;
     }
 
@@ -156,13 +157,13 @@ var XMLParser = Editor.Parser = (function() {
 
     function pushContext(tagname, startOfLine) {
       var noIndent = UseKludges.doNotIndent.hasOwnProperty(tagname) || (context && context.noIndent);
-      context = {prev: context, name: tagname, indent: indented, startOfLine: startOfLine, noIndent: noIndent};
+      context = {prev: context, name: tagname, indent: indented, startOfLine, noIndent};
     }
     function popContext() {
       context = context.prev;
     }
     function computeIndentation(baseContext) {
-      return function(nextChars, current) {
+      return (nextChars, current) => {
         var context = baseContext;
         if (context && context.noIndent)
           return current;
@@ -235,9 +236,9 @@ var XMLParser = Editor.Parser = (function() {
     }
 
     return {
-      indentation: function() {return indented;},
+      indentation() {return indented;},
 
-      next: function(){
+      next() {
         token = tokens.next();
         if (token.style == "whitespace" && tokenNr == 0)
           indented = token.value.length;
@@ -258,11 +259,13 @@ var XMLParser = Editor.Parser = (function() {
         }
       },
 
-      copy: function(){
-        var _cc = cc.concat([]), _tokenState = tokens.state, _context = context;
+      copy() {
+        var _cc = cc.concat([]);
+        var _tokenState = tokens.state;
+        var _context = context;
         var parser = this;
-        
-        return function(input){
+
+        return input => {
           cc = _cc.concat([]);
           tokenNr = indented = 0;
           context = _context;
@@ -276,11 +279,11 @@ var XMLParser = Editor.Parser = (function() {
   return {
     make: parseXML,
     electricChars: "/",
-    configure: function(config) {
+    configure(config) {
       if (config.useHTMLKludges != null)
         UseKludges = config.useHTMLKludges ? Kludges : NoKludges;
       if (config.alignCDATA)
         alignCDATA = config.alignCDATA;
     }
   };
-})();
+}))();

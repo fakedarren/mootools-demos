@@ -1,4 +1,4 @@
-var PlsqlParser = Editor.Parser = (function() {
+var PlsqlParser = Editor.Parser = ((() => {
 
   function wordRegexp(words) {
     return new RegExp("^(?:" + words.join("|") + ")$", "i");
@@ -78,7 +78,7 @@ var PlsqlParser = Editor.Parser = (function() {
 
   var operatorChars = /[*+\-<>=&|:\/]/;
 
-  var tokenizeSql = (function() {
+  var tokenizeSql = ((() => {
     function normal(source, setState) {
       var ch = source.next();
       if (ch == "@" || ch == "$") {
@@ -125,7 +125,8 @@ var PlsqlParser = Editor.Parser = (function() {
       }
       else {
         source.nextWhileMatches(/[_\w\d]/);
-        var word = source.get(), type;
+        var word = source.get();
+        var type;
         if (operators.test(word))
           type = "plsql-operator";
         else if (keywords.test(word))
@@ -141,7 +142,7 @@ var PlsqlParser = Editor.Parser = (function() {
     }
 
     function inLiteral(quote) {
-      return function(source, setState) {
+      return (source, setState) => {
         var escaped = false;
         while (!source.endOfLine()) {
           var ch = source.next();
@@ -155,13 +156,11 @@ var PlsqlParser = Editor.Parser = (function() {
       };
     }
 
-    return function(source, startState) {
-      return tokenizer(source, startState || normal);
-    };
-  })();
+    return (source, startState) => tokenizer(source, startState || normal);
+  }))();
 
   function indentSql(context) {
-    return function(nextChars) {
+    return nextChars => {
       var firstChar = nextChars && nextChars.charAt(0);
       var closing = context && firstChar == context.type;
       if (!context)
@@ -170,23 +169,27 @@ var PlsqlParser = Editor.Parser = (function() {
         return context.col - (closing ? context.width : 0);
       else
         return context.indent + (closing ? 0 : indentUnit);
-    }
+    };
   }
 
   function parseSql(source) {
     var tokens = tokenizeSql(source);
-    var context = null, indent = 0, col = 0;
+    var context = null;
+    var indent = 0;
+    var col = 0;
     function pushContext(type, width, align) {
-      context = {prev: context, indent: indent, col: col, type: type, width: width, align: align};
+      context = {prev: context, indent, col, type, width, align};
     }
     function popContext() {
       context = context.prev;
     }
 
     var iter = {
-      next: function() {
+      next() {
         var token = tokens.next();
-        var type = token.style, content = token.content, width = token.value.length;
+        var type = token.style;
+        var content = token.content;
+        var width = token.value.length;
 
         if (content == "\n") {
           token.indentation = indentSql(context);
@@ -215,9 +218,12 @@ var PlsqlParser = Editor.Parser = (function() {
         return token;
       },
 
-      copy: function() {
-        var _context = context, _indent = indent, _col = col, _tokenState = tokens.state;
-        return function(source) {
+      copy() {
+        var _context = context;
+        var _indent = indent;
+        var _col = col;
+        var _tokenState = tokens.state;
+        return source => {
           tokens = tokenizeSql(source, _tokenState);
           context = _context;
           indent = _indent;
@@ -230,4 +236,4 @@ var PlsqlParser = Editor.Parser = (function() {
   }
 
   return {make: parseSql, electricChars: ")"};
-})();
+}))();

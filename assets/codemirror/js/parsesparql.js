@@ -1,4 +1,4 @@
-var SparqlParser = Editor.Parser = (function() {
+var SparqlParser = Editor.Parser = ((() => {
   function wordRegexp(words) {
     return new RegExp("^(?:" + words.join("|") + ")$", "i");
   }
@@ -9,7 +9,7 @@ var SparqlParser = Editor.Parser = (function() {
                              "graph", "by", "asc", "desc"]);
   var operatorChars = /[*+\-<>=&|]/;
 
-  var tokenizeSparql = (function() {
+  var tokenizeSparql = ((() => {
     function normal(source, setState) {
       var ch = source.next();
       if (ch == "$" || ch == "?") {
@@ -47,7 +47,8 @@ var SparqlParser = Editor.Parser = (function() {
           source.nextWhileMatches(/[\w\d_\-]/);
           return "sp-prefixed";
         }
-        var word = source.get(), type;
+        var word = source.get();
+        var type;
         if (ops.test(word))
           type = "sp-operator";
         else if (keywords.test(word))
@@ -59,7 +60,7 @@ var SparqlParser = Editor.Parser = (function() {
     }
 
     function inLiteral(quote) {
-      return function(source, setState) {
+      return (source, setState) => {
         var escaped = false;
         while (!source.endOfLine()) {
           var ch = source.next();
@@ -73,13 +74,11 @@ var SparqlParser = Editor.Parser = (function() {
       };
     }
 
-    return function(source, startState) {
-      return tokenizer(source, startState || normal);
-    };
-  })();
+    return (source, startState) => tokenizer(source, startState || normal);
+  }))();
 
   function indentSparql(context) {
-    return function(nextChars) {
+    return nextChars => {
       var firstChar = nextChars && nextChars.charAt(0);
       if (/[\]\}]/.test(firstChar))
         while (context && context.type == "pattern") context = context.prev;
@@ -93,22 +92,27 @@ var SparqlParser = Editor.Parser = (function() {
         return context.col - (closing ? context.width : 0);
       else
         return context.indent + (closing ? 0 : indentUnit);
-    }
+    };
   }
 
   function parseSparql(source) {
     var tokens = tokenizeSparql(source);
-    var context = null, indent = 0, col = 0;
+    var context = null;
+    var indent = 0;
+    var col = 0;
     function pushContext(type, width) {
-      context = {prev: context, indent: indent, col: col, type: type, width: width};
+      context = {prev: context, indent, col, type, width};
     }
     function popContext() {
       context = context.prev;
     }
 
     var iter = {
-      next: function() {
-        var token = tokens.next(), type = token.style, content = token.content, width = token.value.length;
+      next() {
+        var token = tokens.next();
+        var type = token.style;
+        var content = token.content;
+        var width = token.value.length;
 
         if (content == "\n") {
           token.indentation = indentSparql(context);
@@ -144,9 +148,12 @@ var SparqlParser = Editor.Parser = (function() {
         return token;
       },
 
-      copy: function() {
-        var _context = context, _indent = indent, _col = col, _tokenState = tokens.state;
-        return function(source) {
+      copy() {
+        var _context = context;
+        var _indent = indent;
+        var _col = col;
+        var _tokenState = tokens.state;
+        return source => {
           tokens = tokenizeSparql(source, _tokenState);
           context = _context;
           indent = _indent;
@@ -159,4 +166,4 @@ var SparqlParser = Editor.Parser = (function() {
   }
 
   return {make: parseSparql, electricChars: "}]"};
-})();
+}))();
